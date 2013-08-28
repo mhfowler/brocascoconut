@@ -14,6 +14,12 @@ def viewWrapper(view):
 
 
 def home(request):
-    stats = Stat.objects.all()
-    return HttpResponse("Miley do what she want doe yup")
+    stat = Stat.xg.get_or_none(name="test")
+    if not stat:
+        stat = Stat(name="test")
+        stat.save()
+    else:
+        stat.number += 1
+        stat.save()
+    return HttpResponse("Miley do what she want doe yup" + str(stat.number))
     # return shortcuts.redirect("/blog/")
