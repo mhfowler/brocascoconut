@@ -1,7 +1,7 @@
 django-tagging
 feedparser
 python-Twitter
-urllib2
+urllib3
 urllib
 PIL
 setuptools
