@@ -4,8 +4,10 @@ import json
 PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 # read secrets from json
+print "PROJECT_PATH: " + str(PROJECT_PATH)
 SECRETS_PATH = os.path.join(PROJECT_PATH, "secret.json")
-if os.environ.get("LOCAL"):
+LOCAL = os.environ.get("LOCAL")
+if LOCAL:
     SECRETS_DICT = json.loads(open(SECRETS_PATH, "r").read())
 else:
     SECRETS_ENV = os.environ.get("SECRETS")
@@ -72,7 +74,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+if LOCAL:
+    STATIC_ROOT = os.path.join(PROJECT_PATH, "static")
+else:
+    STATIC_ROOT = "/static/"
+print "STATIC_ROOT: " + str(STATIC_ROOT)
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -83,6 +89,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH, "django_yaba/media"),
 )
 
 # List of finder classes that know how to find static files in
@@ -132,9 +139,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mhf',
-    'south'
+    'tagging',
+    'disqus',
+    'django_yaba',
+    'south',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -168,3 +178,31 @@ LOGGING = {
     }
 }
 
+
+#### DJANGO YABA SETTINGS django_yaba
+
+# GitHub UserName for sidebar GitHub List - Leave blank if you don't want to use it
+GITHUB_USERNAME = 'maximusfowler'
+
+# Twitter UserName for sidebar Twitter List and Automatic Tweets
+TWITTER_USERNAME = 'TWITTER_USER_HOLDER'
+TWITTER_PASSWORD = "TWITTER_PASS_HOLDER"
+
+# Blog Name
+BLOG_NAME = 'mhfowler'
+
+# Blog URL
+if LOCAL:
+    ROOT_BLOG_URL = "http://127.0.0.1:8000/blog/"
+else:
+    ROOT_BLOG_URL = 'http://mhfowler.com/blog/'
+
+# Root system path
+PROJECT_DIR = PROJECT_PATH
+
+# Disqus Settings
+DISQUS_API_KEY = SECRETS_DICT['DISQUS_API_KEY']
+DISQUS_WEBSITE_SHORTNAME = "mhfowler"
+
+# If you want to use contrib.comments set the following to True
+DJANGO_COMMENTS = False

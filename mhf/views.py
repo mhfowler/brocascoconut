@@ -13,4 +13,5 @@ def viewWrapper(view):
 
 
 def home(request):
-    return HttpResponse("Miley do what she want doe")
+    # return HttpResponse("Miley do what she want doe")
+    return shortcuts.redirect("/blog/")

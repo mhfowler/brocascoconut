@@ -31,3 +31,5 @@ class Stat(XModel):
     number = models.IntegerField(default=0)
 
 
+
+
