@@ -34,7 +34,7 @@ urlpatterns += patterns('',
 
 
 # # redirect everything else
-# urlpatterns += patterns('',
-#                         (r'.*$',  redirect, {'page':"/home/"}),
-#                         )
+urlpatterns += patterns('',
+                        (r'.*$',  redirect, {'page':"/home/"}),
+                        )
 
