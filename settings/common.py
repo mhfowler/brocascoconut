@@ -185,8 +185,8 @@ LOGGING = {
 GITHUB_USERNAME = 'maximusfowler'
 
 # Twitter UserName for sidebar Twitter List and Automatic Tweets
-TWITTER_USERNAME = 'TWITTER_USER_HOLDER'
-TWITTER_PASSWORD = "TWITTER_PASS_HOLDER"
+TWITTER_USERNAME = 'MaxFowler2'
+TWITTER_PASSWORD = SECRETS_DICT['TWITTER_PASSWORD']
 
 # Blog Name
 BLOG_NAME = 'mhfowler'
