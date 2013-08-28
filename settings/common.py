@@ -75,9 +75,9 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 if LOCAL:
-    STATIC_ROOT = os.path.join(PROJECT_PATH, "static")
+    STATIC_ROOT = os.path.join(PROJECT_PATH, "staticfiles")
 else:
-    STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = os.path.join(PROJECT_PATH, "staticfiles")
 print "STATIC_ROOT: " + str(STATIC_ROOT)
 
 # URL prefix for static files.
