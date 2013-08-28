@@ -14,8 +14,8 @@ def parse_github():
         commit = "<ul>"
         for x in e:
             link = x['link']
-            link = link.lstrip("http://github.com/")
-            link = "http://github.com/%s" % link
+            # link = link.lstrip("http://github.com/")
+            # link = "http://github.com/%s" % link
             commit += "<li>"
             commit += '<a href="%s">' % link
             commit += x['title_detail']['value']

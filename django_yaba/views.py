@@ -11,7 +11,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django_yaba.models import Story, Article, Category, Links, Photo, Gallery
-from django.template import RequestContext 
+from django.template import RequestContext
 
 LOG_FILENAME = '/tmp/yaba.out'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
@@ -62,7 +62,7 @@ def story_list(request):
     ROOT_URL = settings.ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/story_list.html", 
-        {'posts': posts, 'ROOT_URL': ROOT_URL}, 
+        {'posts': posts, 'ROOT_URL': ROOT_URL},
         context_instance=RequestContext(request))
 
 def story_detail(request, slug):

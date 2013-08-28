@@ -14,25 +14,25 @@
    <!-- start links -->
             <h3> Links </h3>
             <ul>
-            {% for link in link_list %}
-               <li><a href="{{ link.site_link }}">{{ link.label }}</a></li>
-            {% endfor %}
+             <li><a href="http://www.youtube.com/watch?v=Z8Y1MalRrDc">cinnamon</a></li>
+               <li><a href="http://www.youtube.com/watch?v=NhheiPTdZCw">colors</a></li>
+                <li><a href="http://www.youtube.com/watch?v=LrUvu1mlWco">miley</a></li>
             </ul>
             <hr />
    <!-- end links -->
    <!-- Start Tweet -->
             {% if tweet_it %}
-            <h3> Recent Tweets: </h3>
-            {% load tweet %}
-            <ul>
-               {% twitter_user_timeline NULL as twitter_entries %}
-               {% if twitter_entries %}
-                   {% for entry in twitter_entries %}
-                       <li>{{ entry.created_at|date:"d M Y H:i" }} - {{ entry.text }}</li>
-                   {% endfor %}
-               {% endif %}
-            </ul>
-               <p><a href="http://www.twitter.com/{{ tweet_user }}">Follow me on Twitter</a></p>
+{#            <h3> Recent Tweets1: </h3>#}
+{#            {% load tweet %}#}
+{#            <ul>#}
+{#               {% twitter_user_timeline tweet_user as twitter_entries %}#}
+{#               {% if twitter_entries %}#}
+{#                   {% for entry in twitter_entries %}#}
+{#                       <li>{{ entry.created_at|date:"d M Y H:i" }} - {{ entry.text }}</li>#}
+{#                   {% endfor %}#}
+{#               {% endif %}#}
+{#            </ul>#}
+               <p><a href="http://www.twitter.com/{{ tweet_user }}">@{{tweet_user}}</a></p>
             <hr />
             {% endif %}
    <!-- Stop Tweet -->
