@@ -13,7 +13,7 @@ else:
     SECRETS_ENV = os.environ.get("SECRETS")
     SECRETS_DICT = json.loads(SECRETS_ENV)
 
-DEBUG = LOCAL
+DEBUG = True
 APPEND_SLASH = True
 TEMPLATE_DEBUG = DEBUG
 
