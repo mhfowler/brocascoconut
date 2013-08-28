@@ -2,7 +2,6 @@ django-tagging
 feedparser
 python-Twitter
 urllib3
-urllib
 PIL
 setuptools
 django-disqus
