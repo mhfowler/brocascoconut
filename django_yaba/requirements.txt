@@ -1,0 +1,8 @@
+Django-tagging
+Python-Feedparser
+Python-Twitter
+UrlLib
+UrlLib2
+PIL
+setuptools
+django-disqus
