@@ -6,5 +6,6 @@ tinyMCE.init({
         theme_advanced_buttons1 : "formatselect, bold, italic, strikethrough, sub, sup, charmap, bullist, numlist, indent, outdent, link, unlink, undo, redo, code",
         theme_advanced_buttons2 : "",
         theme_advanced_blockformats : "p, h2, h3, h4, h5, h6, blockquote",
-        theme_advanced_toolbar_location : "top"
+        theme_advanced_toolbar_location : "top",
+        extended_valid_elements : "iframe[src|width|height|name|align]"
 });
