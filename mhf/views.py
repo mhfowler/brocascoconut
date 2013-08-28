@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django import shortcuts
+from mhf.models import Stat
 
 
 def redirect(request, page='/home'):
@@ -13,5 +14,6 @@ def viewWrapper(view):
 
 
 def home(request):
-    # return HttpResponse("Miley do what she want doe")
-    return shortcuts.redirect("/blog/")
+    stats = Stat.objects.all()
+    return HttpResponse("Miley do what she want doe yup")
+    # return shortcuts.redirect("/blog/")
