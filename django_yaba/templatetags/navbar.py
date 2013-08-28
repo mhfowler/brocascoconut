@@ -81,6 +81,8 @@ def sidebar():
     commit = parse_github()
     sitename = settings.BLOG_NAME
     year_range, month_range = archives()
+    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_URL.rstrip("/")
     if settings.TWITTER_USERNAME or settings.TWITTER_PASSWORD:
         tweet = True
     else:
@@ -89,7 +91,7 @@ def sidebar():
     return {'link_list': link_list, 'commit': commit, 'sitename': sitename, 
         'categories': categories, 'tweet_it': tweet, 
         'tweet_user': settings.TWITTER_USERNAME, 'year_range': year_range, 
-        'month_range': month_range}
+        'month_range': month_range, "ROOT_URL":ROOT_URL}
 
 def main_nav():
     articles = Article.objects.all()
