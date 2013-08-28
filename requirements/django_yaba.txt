@@ -1,5 +1,5 @@
 Django-tagging
-Python-Feedparser
+feedparser
 Python-Twitter
 UrlLib
 UrlLib2
