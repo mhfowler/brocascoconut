@@ -21,5 +21,7 @@ def home(request):
     else:
         stat.number += 1
         stat.save()
-    return HttpResponse("Miley do what she want doe yup" + str(stat.number))
+    return HttpResponse(
+        "<p>Miley do what she want doe " + str(stat.number) + "</p>"
+                                                              "<a href='/blog/'> go to the blog </a>")
     # return shortcuts.redirect("/blog/")

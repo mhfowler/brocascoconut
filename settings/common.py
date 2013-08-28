@@ -77,7 +77,7 @@ MEDIA_URL = ''
 if LOCAL:
     STATIC_ROOT = os.path.join(PROJECT_PATH, "static")
 else:
-    STATIC_ROOT = "/static/"
+    STATIC_ROOT = 'staticfiles'
 print "STATIC_ROOT: " + str(STATIC_ROOT)
 
 # URL prefix for static files.
