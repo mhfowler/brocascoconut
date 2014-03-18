@@ -1,0 +1,21 @@
+
+.newnew-divider {
+    margin-top:50px;
+}
+
+.newnew-story {
+    padding-left: 100px;
+    padding-right:100px;
+    padding-top: 40px;
+    width: 1000px;
+    padding-bottom: 40px;
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 2;
+    text-align: justify;
+}
+
+.newnew-story img {
+    width:100%;
+}

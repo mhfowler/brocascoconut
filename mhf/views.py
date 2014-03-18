@@ -27,3 +27,7 @@ def home(request):
     #    "<p>" + str(stat.number) + "</p>"
     #                                                          "<a href='/blog/'> go to the blog </a>")
     # return shortcuts.redirect("/blog/")
+
+
+def machine_learning(request):
+    return render(request, 'cs195_assignment3.html', {})

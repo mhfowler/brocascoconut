@@ -1,4 +1,4 @@
-import datetime, urllib, re, twitter
+import datetime, urllib, re
 from tagging.fields import TagField
 from tagging.models import Tag
 from django.contrib.comments.moderation import CommentModerator, moderator
