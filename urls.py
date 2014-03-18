@@ -4,14 +4,16 @@ from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
 
+# urlpatterns = patterns('',
+#     # ... the rest of your URLconf goes here ...
+# ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
-
+#
 # patterns for mhfowler
 urlpatterns = patterns('',
                        (r'^home/$', viewWrapper(home)),
                        (r'^machine_learning/$', viewWrapper(machine_learning)),
-                       ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                       )
 
 # patterns for django_yaba
 urlpatterns += patterns('',
@@ -30,9 +32,10 @@ urlpatterns += patterns('',
 
 #
 # # # redirect everything else
-# urlpatterns += patterns('',
-#                         (r'^/$',  redirect, {'page':"/home/"}),
-#                         (r'^$',  redirect, {'page':"/home/"}),
-#                         # (r'.*$',  redirect, {'page':"/home/"}),
-#                         )
+urlpatterns += patterns('',
+                        (r'^/$',  redirect, {'page':"/home/"}),
+                        (r'^$',  redirect, {'page':"/home/"}),
+                        # (r'.*$',  redirect, {'page':"/home/"}),
+                        ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
