@@ -1,0 +1,367 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4: Tweet TimeMap, Twitter Sentiment Analysis by County, K-Means Clustering </title>
+
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/queue.v1.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+    <!--<script type="text/javascript" src="d3tip/index.js"></script>-->
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script type="text/javascript" src="/static/d3_part1.js"></script>
+    <script type="text/javascript" src="/static/d3_part2.js"></script>
+    <script type="text/javascript" src="/static/d3_part3.js"></script>
+
+    <style>
+
+        /* tooltips */
+        .d3-tip {
+            line-height: 1;
+            font-weight: bold;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        /* Creates a small triangle extender for the tooltip */
+        .d3-tip:after {
+            box-sizing: border-box;
+            display: inline;
+            font-size: 10px;
+            width: 100%;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Northward tooltips */
+        .d3-tip.n:after {
+            content: "\25BC";
+            margin: -1px 0 0 0;
+            top: 100%;
+            left: 0;
+            text-align: center;
+        }
+
+        /* Eastward tooltips */
+        .d3-tip.e:after {
+            content: "\25C0";
+            margin: -4px 0 0 0;
+            top: 50%;
+            left: -8px;
+        }
+
+        /* Southward tooltips */
+        .d3-tip.s:after {
+            content: "\25B2";
+            margin: 0 0 1px 0;
+            top: -8px;
+            left: 0;
+            text-align: center;
+        }
+
+        /* Westward tooltips */
+        .d3-tip.w:after {
+            content: "\25B6";
+            margin: -4px 0 0 -1px;
+            top: 50%;
+            left: 100%;
+        }
+
+        /* timemap */
+        rect.bordered {
+            stroke: #E6E6E6;
+            stroke-width:2px;
+        }
+
+        text.mono {
+            font-size: 9pt;
+            font-family: Consolas, courier;
+            fill: #aaa;
+        }
+
+        text.axis-workweek {
+            fill: #000;
+        }
+
+        text.axis-worktime {
+            fill: #000;
+        }
+
+        /* geomapping */
+        .counties {
+            fill: none;
+        }
+
+        .states {
+            fill: none;
+            stroke: #fff;
+            stroke-linejoin: round;
+        }
+
+        .q0-9 { fill:rgb(247,251,255); }
+        .q1-9 { fill:rgb(222,235,247); }
+        .q2-9 { fill:rgb(198,219,239); }
+        .q3-9 { fill:rgb(158,202,225); }
+        .q4-9 { fill:rgb(107,174,214); }
+        .q5-9 { fill:rgb(66,146,198); }
+        .q6-9 { fill:rgb(33,113,181); }
+        .q7-9 { fill:rgb(8,81,156); }
+        .q8-9 { fill:rgb(8,48,107); }
+
+        .not-enough-data {
+            fill:gray;
+        }
+
+        .purple {
+            fill:purple;
+        }
+
+        .legend {
+            border:1px solid black;
+        }
+
+        /* k-clustering */
+        .link {
+            stroke: #ccc;
+        }
+
+        .node text {
+            /*pointer-events: none;*/
+            /*font: 10px;*/
+            font-size:10px;
+        }
+
+        .text {
+            color:black;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<div class="page-header center">
+    <h1>Assignment 4 <small>Tweet Length TimeMap, GeoMapping Tweet Sentiment, K-Means Clustering </small></h1>
+</div>
+
+<h2> Visualizing Data From Twitter</h2>
+<p>
+    For my fourth Data Science project I built three different visualizations each having to do with a completely
+    different type of analysis of tweets. I created a heatmap visualizing the character
+    length of tweets during different hours of the week, a geomap visualizing
+    the average sentiment of tweets across different counties in the US and a graph visualization of clusters
+    of users who were found to tweet similarly via k-means clustering.
+</p>
+<p>
+    You can find each of the interactive visualizations below, along with my analysis of
+    what these visualizations show.
+</p>
+
+
+<h2> Part 1: Tweet Length TimeMap</h2>
+<p>
+    The heatmap below visualizes the average character lengths by time of over 400,000 tweets collected between Jan 28th to Feb 25th
+    of 2014.
+</p>
+<div id="timemap_chart"></div>
+<p>
+    You can clearly see that users on average post the shortest tweets on Sunday morning (before noon). You can also see
+    that users generally post shorter tweets between 3am and 10am on every day of the week -- being able to visualize
+    both of these insights simultaneously is a great example of the usefulness of a heatmap.
+</p>
+<p>
+    I would theorize that users tweets are so short on Sunday mornings because they are hungover. Alternatively, I
+    might speculate that during the week users are spending more time on twitter, and composing longer tweets,
+    because they are bored at work.
+</p>
+<p>  Here are some example tweets from Sunday at 8AM (there might have been subliminal bias in choosing them to support one of my theories):</p>
+<ul>
+    <li>Just why.</li>
+    <li>this's shits getting old already</li>
+    <li>I'm really in my bed fighting my sleep .</li>
+    <li>You just don't pass out with your shoes on. No exceptions</li>
+    <li>guys congratulate other guys for hooking up but girls get like shunned for it &amp; it's really annoying..</li>
+    <li>Im up all night going in while these niggas sleep</li>
+    <li>Shit soo damn crazy</li>
+    <li>So. Tired.</li>
+    <li>I just want to cuddle in bed and etch Parks And Rec</li>
+</ul>
+
+<h2> Part 2: GeoMapping Tweet Sentiment</h2>
+<p>
+    Below is a map of the United States visualizing the average sentiment of tweets by county. I only looked
+    at tweets which had coordinates associated with them, and then used the datasciencetoolkit coordinates2politics
+    API to lookup which counties the coordinates belonged to.
+</p>
+<p>
+    After grouping the tweets by county, I used a logistic regression classifier (which was trained on 80,000 hand
+    labelled tweets) to predict the sentiment of each of the tweets in my dataset, and then calculate the
+    average sentiment by county. The colors of each county represent the average probability that the logistic
+    regression classifier assigned to tweets from that county to be happy. I only included counties with 5 or more
+    tweets in the visualization, all counties which appear as gray did not have 5 tweets in my sample data. Mouseover
+    a county to see its name!
+</p>
+<div id="country_chart"></div>
+
+<p>
+    It is clear from the visualization that there are regions of the country where Twitter is more commonly
+    used (or at least was more commonly used during the period the sample I took was gathered), but taking
+    into account population density it is possible that Twitter is not less popular in these regions, but
+    that there are just fewer people (the midwest in particular seems to have a glaring lack of data points).
+</p>
+<p>
+    Of states with enough data points, there appears to be a scattering of particularly happy counties through
+    out the country. Washington, ME and Humboldt, NV are two particularly large counties that have
+    a particularly high average sentiment. Hutchinson, TX has a particularly low average sentiment.
+</p>
+<p>
+    If I had to speculate what factors might increase or decrease the average sentiment of tweets I would
+    look to the metrics which economists usually use to measure quality of life: wealth and employment, built environment,
+    physical and mental health, education, recreation and leisure time, social belonging (from http://en.wikipedia.org/wiki/Quality_of_life).
+</p>
+<p>
+    Quality of life (and in turn happiness) and what causes them are such subjective features that it would
+    be hard to argue any of the above would explicitly trump our average twitter sentiment analysis
+    as an indicator of societal well being. Perhaps it would make sense to take the reverse approach
+    and decide what features of a county determine quality of life by looking at which "quality of life"
+    metrics mentioned above are actually associated with a high average twitter sentiment!
+</p>
+<p> Below are three example tweets from Hutchinson, Humboldt and Washington respectively:
+</p>
+<ul>
+   <li>Best looking girl I have seen in my drive thru yet. #hotmom #makesmyday #wcw @ jesse's burritos Stinnett http://t.co/FZgxXnAW6I</li>
+    <li>I'm in a perpetual state of soreness #andilikeit</li>
+    <li>I made it to 5 on flappy bird. Get on my level.</li>
+</ul>
+
+<h2> Part 3: K-Means Clustering</h2>
+<p>
+    Below is a Graph visualization of famous twitter users who use similar words in their tweets. I made the graph using <a href="https://github.com/mbostock/d3/wiki/Force-Layout">force</a>.
+    Connected portions of the graph are similar clusters, as determined by a k-means clustering model identifying 4 clusters.
+    Small circles indicate users whose tweets were used to train the clustering model, and large circles indicated test users
+    whose "cluster" was identified after the model was trained. The user at the center of each cluster, is the centroid
+    who determines the distances measured by k-clustering (these are the centroids that were ultimately chosen as the optima,
+    although rerunning k-means can result in different centroids due to variance). You can click on a node and drag it around
+    to get a feel for how the force layout simulation works!
+</p>
+
+<div id="force_graph"></div>
+
+<p>
+    "BBC Breaking News" is the centroid of a cluster which clearly has something in common. All five nodes in the cluster
+    are live news sites. "WSJ Breaking News" is the center of its own cluster -- while it is also a live news account,
+    perhaps the three nodes in its cluster use particularly similar words in their tweets because WSJ, reuters, and Kai-Fu
+    are all extremely business focused. Rupert Murdoch is his own man. Everyone else (actors, athletes, some news agencies,
+    ceos, and others) all are in the same large cluster. Below I have included screen shots of the result
+    of the clustering when different numbers of clusters were inputted -- and you can see that regardless of the number
+    searched for there was always one large cluster with no discernible theme other than that Leonardo DiCaprio is the
+    centroid (perhaps most people in the world are really secretly aspiring to be Leo).
+</p>
+
+<img src="/static/cluster_pics/10_clusters.png"/>
+<img src="/static/cluster_pics/6_clusters.png"/>
+<img src="/static/cluster_pics/4_clusters.png"/>
+<img src="/static/cluster_pics/3_clusters.png"/>
+
+<p>
+    There are some common patterns throughout the clusterings but they k-means clustering algorithm definitely
+    did not identify the "clusters" which I chose users by (but that isn't to say that the clusters I chose
+    users by actually tweet similarly). The full list of screen names I chose, and the groups I believed
+    them to belong to are included at the bottom of this page.
+</p>
+<p>
+    Despite not identifying the categories which I used to choose the users by, there are still some interesting
+    patterns through the different visualizations. In every visualization there is a news group cluster and
+    there is a large cluster which Leonardo Dicarpio is the centroid for. Adele, Katy Perry and Rihanna appear
+    in their own indpendent cluster in every visualization with more than 4 clusters -- implying that these
+    3 female pop stars share something in common (at least in the way they tweet).
+</p>
+<p>
+    Below is the full list of screen names organized by the groups that I used to search for their twitter
+    handles (via lists of famous twitter accounts in each of the groups).
+</p>
+<h4> Actors </h4>
+<p>
+    EmWatson<br>
+    JimCarrey<br>
+    LeoDiCaprio<br>
+    aplusk<br>
+    charliesheen<br>
+    galifianakisz<br>
+    IAMQUEENLATIFAH<br>
+    DannyDeVito<br>
+</p>
+<h4> Female Music Popstars</h4>
+<p>
+    katyperry<br>
+    taylorswift13<br>
+    britneyspears<br>
+    JLo<br>
+    shakira<br>
+    KimKardashian<br>
+    OfficialAdele<br>
+    aliciakeys<br>
+    MileyCyrus<br>
+</p>
+<h4> News Sites </h4>
+<p>
+    CNN<br>
+    nytimes<br>
+    BBCBreaking<br>
+    espn<br>
+    cnnbrk<br>
+    WSJbreakingnews<br>
+    ReutersLive<br>
+    AJELive<br>
+    ABCNewsLive<br>
+</p>
+<h4>Athletes</h4>
+<p>
+    KingJames<br>
+    10Ronaldinho<br>
+    WayneRooney<br>
+    Cristiano<br>
+    alexmorgan13<br>
+    hopesolo<br>
+    SteveNash<br>
+    CHARLESBARRKLEY<br>
+    MettaWorldPeace<br>
+</p>
+<h4> World Leaders and CEOS</h4>
+<p>
+    DalaiLama<br>
+    BarackObama<br>
+    BillGates<br>
+    RichardBranson<br>
+    RupertMurdoch<br>
+    JeffWeiner<br>
+    AnandMahindra<br>
+    KaifuLee<br>
+    MarissaMayer<br>
+</p>
+<h4> Top 10 Most Interesting Twitter Accounts </h4>
+<p>
+    GoogleFacts<br>
+    neiltyson<br>
+    sciencegoddess<br>
+    afromusing<br>
+    TEDTalks<br>
+    NASA<br>
+    DARPA<br>
+    melindagates<br>
+    briansolis<br>
+</p>
+</div>
+</div>
+</body>
+</html>

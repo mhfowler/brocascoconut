@@ -31,3 +31,6 @@ def home(request):
 
 def machine_learning(request):
     return render(request, 'cs195_assignment3.html', {})
+
+def twitter_visualization(request):
+    return render(request, 'cs195_assignment4/writeup.html', {})

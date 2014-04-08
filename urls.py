@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from mhf.views import viewWrapper, home, redirect, machine_learning
+from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -13,6 +13,7 @@ from django.conf import settings
 urlpatterns = patterns('',
                        (r'^home/$', viewWrapper(home)),
                        (r'^machine_learning/$', viewWrapper(machine_learning)),
+                       (r'^twitter_visualization/$', viewWrapper(twitter_visualization)),
                        )
 
 # patterns for django_yaba
