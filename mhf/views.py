@@ -34,3 +34,6 @@ def machine_learning(request):
 
 def twitter_visualization(request):
     return render(request, 'cs195_assignment4/writeup.html', {})
+
+def map_reduce(request):
+    return render(request, 'map_reduce.html', {})

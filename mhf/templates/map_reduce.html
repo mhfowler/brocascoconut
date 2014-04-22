@@ -1,0 +1,185 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5: MapReduce</title>
+
+    <style>
+        p {
+            font-size:16px;
+        }
+        li {
+            font-size:16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        <div class="page-header center">
+            <h1>Assignment 5 <small>MapReduce</small></h1>
+        </div>
+
+        <p>
+            In this assignment I used <a href="http://pythonhosted.org/mrjob/">mrJob</a>, built on top of <a href="http://aws.amazon.com/documentation/elasticmapreduce/">Amazon Elastic Map Reduce (EMR)</a>,
+            to compute movie suggestions based on movie rating data from <a href="http://grouplens.org/datasets/movielens/">MovieLens 1M</a> and <a href="https://github.com/sidooms/MovieTweetings">MovieTweetings</a>.
+        </p>
+
+        <p>
+            The initial data consisted of lines containing a userid, a movie title and the rating given by that user to that movie.
+        </p>
+
+        <p>
+            Through a series of map reduce steps I aggregated this data into key,value pairs of the following format <br><br>
+
+            key: (movie_title1, movie_title2)<br>
+            value: (rating1, rating2, num_raters1, num_raters2)<br><br>
+
+            I created these key,value pairs for all pairs of movies where a single user had rated both movies.
+        </p>
+        <ul>
+            <li>rating1 is the rating that user gave movie1</li>
+            <li>rating2 is the rating that user gave movie2</li>
+            <li> num_raters1 is the total number of users who rated movie1 in the data set</li>
+            <li>num_raters2 is the total number of users who rated movie2 in the data set</li>
+        </ul>
+
+        <p>
+            From each of these individual key,value pairs I was then able to compute different metrics of the similarity of each
+            of the pairs of movies, with the implication that based on how you felt about movie1 one would then be able to
+            use these similarity metrics to predict how well you would like movie2.
+        </p>
+
+        <p>
+            Below is an explanation of the four similarity metrics I calculated for each movie pair:
+        </p>
+
+        <ul>
+            <!--<li> correlation:-->
+            <!--<p>$Correlation(X, Y) = \frac{n \sum xy - \sum x \sum y}{\sqrt{n \sum x^2 - (\sum x)^2} \sqrt{n \sum y^2 - (\sum y)^2}}$</p>-->
+            <!--</li>-->
+            <!--<li> regluarized correlation: RegularizedCorrelation(X,Y)=Weight(X,Y)∗Correlation(X,Y)+(1−Weight(X,Y))∗PriorCorrelation</li>-->
+            <!--<li> cosine similarity:-->
+            <!--<p>$Cosine(X, Y) = \frac{\sum xy}{\sqrt{\sum x^2} \sqrt{\sum y^2}}$</p></li>-->
+            <!--<li> jaccard similarity: </li>-->
+
+            <li>
+                <strong><a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">Correlation</a></strong>
+                <p>$Correlation(X, Y) = \frac{n \sum xy - \sum x \sum y}{\sqrt{n \sum x^2 - (\sum x)^2} \sqrt{n \sum y^2 - (\sum y)^2}}$</p>
+
+            </li>
+
+            <li>
+                <strong>Regularized Correlation</strong>
+                <p>$Weight(X, Y) = \frac{n}{n + VirtualCount}$</p>
+                <p>$RegularizedCorrelation(X, Y) = Weight(X, Y) * Correlation(X, Y) + (1 - Weight(X, Y)) * PriorCorrelation$</p>
+            </li>
+
+            <li>
+                <strong><a href="http://en.wikipedia.org/wiki/Cosine_similarity">Cosine Similarity</a></strong>
+                <p>$Cosine(X, Y) = \frac{\sum xy}{\sqrt{\sum x^2} \sqrt{\sum y^2}}$</p>
+            </li>
+
+            <li>
+                <strong><a href="http://en.wikipedia.org/wiki/Jaccard_index">Jaccard Similarity</a></strong>
+                <p>$Jaccard(X, Y) = \frac{n}{n_1 + n_2 - n}$</p>
+            </li>
+        </ul>
+
+        <p>
+            After computing similarity metrics for each pair of movies I could then see which movie was most similar to another
+            based on particular metrics.
+        <p>
+            Below are the 4 movie pairs which were found to have the highest regularized correlation in the MovieLens data set.
+        </p>
+
+        <ul>
+            <li>
+                Star Wars (1977), Star Wars: Episode V - The Empire Strikes Back (1980), 0.71
+            </li>
+            <li>
+                Before Sunrise (1995), Before Sunset (2004), 0.71
+            </li>
+            <li>
+                Harry Potter and the Chamber of Secrets (2002), Harry Potter and the Sorcerer's Stone (2001), 0.69
+            </li>
+            <li>
+                Star Wars: Episode I - The Phantom Menace (1999), Star Wars: Episode II - Attack of the Clones (2002), 0.68
+            </li>
+        </ul>
+        <p>
+            You actually have to get all the way down to the 9th highest regularized correlation to find a pair of movies which were
+            not part of the same series.
+        </p>
+        <ul>
+            <li>
+                Warm Bodies (2013), White House Down (2013), 0.65
+            </li>
+        </ul>
+        <p>
+            And all the way down to the 13th spot to find the first pair of 'good' correlated movies ;)
+        </p>
+        <ul>
+            <li>The Bourne Legacy (2012), The Wolverine (2013), 0.62
+            </li>
+        </ul>
+
+        <p>
+            Below are some examples of movies which were found to be most similar by regularized correlation in the MovieTweetings data set.
+        </p>
+
+        <ul>
+            <li>
+                Fistful of Dollars, A (1964), For a Few Dollars More (1965), 0.77
+            </li>
+            <li>
+                Battle for the Planet of the Apes (1973), Beneath the Planet of the Apes (1970), 0.77
+            </li>
+            <li>
+                Police Academy 4: Citizens on Patrol (1987), Police Academy 5: Assignment: Miami Beach (1988), 0.76
+            </li>
+        </ul>
+        <p>
+            For this data set you had to get all the way down to the 13th spot to see a pair which were not in the same series.
+        </p>
+        <ul>
+            <li>Wrong Trousers, The (1993), Close Shave, A (1995), 0.74
+        </ul>
+
+        <p>
+            Clearly there is some real meaning encoded into regularized coefficient, as it makes a lot of sense that people who liked one movie in a series
+            would like another movie in the same series -- suggesting that all unrelated movies the algorithm finds are super interesting insights!
+        </p>
+
+        <p>
+            It took a little bit of time to understand the MapReduce paradigm, but then once I got a feel for it it was a delight
+            to use. Anywhere you can systematically perform a computation on a subset of a data set without needing any knowledge of the rest
+            of the data set MapReduce might be able to expedite processing. By stringing together multiple partitioning and calculation
+            steps (map and reduce) there are clearly an amazing number of problems which could be easily deconstructed into
+            a format that would make MapReduce a very beneficial approach.
+        </p>
+
+        <div class="col-md-2"></div>
+    </div>
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+</body>
+</html>
