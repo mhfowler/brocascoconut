@@ -29,6 +29,7 @@ def home(request):
     # return shortcuts.redirect("/blog/")
 
 
+# data science blog posts
 def machine_learning(request):
     return render(request, 'cs195_assignment3.html', {})
 
