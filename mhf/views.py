@@ -16,19 +16,15 @@ def viewWrapper(view):
 
 def home(request):
     print "++: accessing home page"
-    stat = Stat.xg.get_or_none(name="test")
-    if not stat:
-        stat = Stat(name="test")
-        stat.save()
-    else:
-        stat.number += 1
-        stat.save()
-    return render(request, 'home.html', {"stat":stat})
-    #return HttpResponse(
-    #    "<p>" + str(stat.number) + "</p>"
-    #                                                          "<a href='/blog/'> go to the blog </a>")
-    # return shortcuts.redirect("/blog/")
-
+    # stat = Stat.xg.get_or_none(name="test")
+    # if not stat:
+    #     stat = Stat(name="test")
+    #     stat.save()
+    # else:
+    #     stat.number += 1
+    #     stat.save()
+    # return render(request, 'home.html', {"stat":stat})
+    return shortcuts.redirect("/machine_learning/")
 
 # data science blog posts
 def machine_learning(request):
