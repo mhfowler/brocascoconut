@@ -55,7 +55,7 @@ def story_list(request):
     for x in temp:
         front_page.append(x)
     
-    front_page.sort(key=sort_by_date, reverse=1)
+    front_page.sort(key=sort_by_date)
     paginator = Paginator(front_page, 5)
     page = int(request.GET.get('page', '1'))
     posts = paginator.page(page)
