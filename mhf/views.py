@@ -15,6 +15,7 @@ def viewWrapper(view):
 
 
 def home(request):
+    print "++: accessing home page"
     stat = Stat.xg.get_or_none(name="test")
     if not stat:
         stat = Stat(name="test")
