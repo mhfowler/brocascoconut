@@ -64,17 +64,6 @@
             {% endfor %}</p>
             <!-- end tags -->
             <hr />
-            <!-- start social media -->
-            <p>
-                <a href="http://reddit.com/submit?url={{ ROOT_URL }}{{ post.get_absolute_url }}amp;title={{ post.title
-                        }}"><img src="http://slyapartment.com/wp-content/uploads/2014/06/caribou_art.jpg" alt="Reddit" /></a>
-                <a href="http://digg.com/submit?phase=2amp;url={{ ROOT_URL }}{{ post.get_absolute_url }}">
-                    <img src="http://images.wikia.com/fairlyoddparents/en/images/archive/2/2f/20120123232652!FairlyOddParents_Cosmo_01.jpg" alt="Digg it!" /></a>
-                <a href="http://www.stumbleupon.com/submit?url={{ ROOT_URL }}{{ post.get_absolute_url }}amp;title={{
-                        post.title }}"><img src="http://mhsartgallerymac.wikispaces.com/file/view/Pablo-Picasso-Head-Of-A-Woman.jpg/338349984/533x640/Pablo-Picasso-Head-Of-A-Woman.jpg" alt="StumbleUpon" /></a>
-                <a href="http://del.icio.us/post?url={{ ROOT_URL }}{{ post.get_absolute_url }}amp;title={{ post.title
-                        }}"><img src="http://41.media.tumblr.com/tumblr_mcgtxqJvYL1r9nwnbo1_1280.jpg" alt="Delicious!" /></a>
-            </p>
         </div>
         <hr />
     {% endfor %}
