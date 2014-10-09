@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
-from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, monkeySkull, \
-loadingCrazy, theHome, submitEmail
+from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
+loadingCrazy, theHome, submitEmail, monkeyLoader, robertMarvin
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -12,8 +12,9 @@ from django.conf import settings
 #
 # patterns for mhfowler
 urlpatterns = patterns('',
+                       # (r'^$', viewWrapper(monkeyLoader)),
                        (r'^______/$', viewWrapper(theHome)),
-                       (r'^~/$', viewWrapper(monkeySkull)),
+                       (r'^~/$', viewWrapper(robertMarvin)),
                        (r'^LOADING/$', viewWrapper(loadingCrazy)),
                        (r'^home/$', viewWrapper(home)),
                        (r'^machine_learning/$', viewWrapper(machine_learning)),
