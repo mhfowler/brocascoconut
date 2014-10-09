@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, monkeySkull, \
-loadingCrazy, theHome
+loadingCrazy, theHome, submitEmail
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -19,6 +19,8 @@ urlpatterns = patterns('',
                        (r'^machine_learning/$', viewWrapper(machine_learning)),
                        (r'^twitter_visualization/$', viewWrapper(twitter_visualization)),
                        (r'^map_reduce/$', viewWrapper(map_reduce)),
+                       # posts
+                       (r'^submit_email/$', viewWrapper(submitEmail)),
                        )
 
 # patterns for django_yaba

@@ -1,14 +1,16 @@
 from django import shortcuts
+from django.http import HttpResponse
 from mhf.models import Stat
 from django.shortcuts import render
 import random, os
 from settings.common import PROJECT_PATH
+from django.views.decorators.csrf import csrf_exempt
 
 # boiler ###############################################################################################################
 def redirect(request, page='/home'):
     return shortcuts.redirect(page)
 
-
+@csrf_exempt
 def viewWrapper(view):
     def new_view(request, *args, **kwargs):
         return view(request,*args,**kwargs)
@@ -63,8 +65,14 @@ def getSaying():
         saying = random.choice(lines)
     return saying
 
-
 def theHome(request):
     stat = getNumVisitors()
     return render(request, 'theHome.html', {"stat":stat})
+
+@csrf_exempt
+def submitEmail(request):
+    email = request.POST["email"]
+    # TODO: save email
+    return HttpResponse("yup")
+
 
