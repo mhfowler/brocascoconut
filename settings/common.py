@@ -20,6 +20,9 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+ADMIN_EMAILS = [
+    "maxhfowler@gmail.com"
+]
 
 MANAGERS = ADMINS
 
@@ -209,3 +212,11 @@ DISQUS_WEBSITE_SHORTNAME = "mhfowler"
 
 # If you want to use contrib.comments set the following to True
 DJANGO_COMMENTS = False
+
+# EMAIL SETTINGS
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = SECRETS_DICT["GMAIL_USER"]
+EMAIL_HOST_PASSWORD = SECRETS_DICT["GMAIL_PASSWORD"]
+DEFAULT_FROM_EMAIL = SECRETS_DICT["GMAIL_USER"]

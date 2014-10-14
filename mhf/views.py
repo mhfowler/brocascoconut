@@ -1,9 +1,11 @@
 from django import shortcuts
 from django.http import HttpResponse
 from mhf.models import Stat
+from django.core.mail import send_mail
 from django.shortcuts import render
 import random, os
-from settings.common import PROJECT_PATH, SECRETS_DICT
+from settings.common import PROJECT_PATH, SECRETS_DICT, ADMIN_EMAILS
+import stripe, json
 
 # boiler ###############################################################################################################
 def redirect(request, page='/home'):
@@ -82,19 +84,49 @@ def capitalistTees(request):
 def buyShirt(request):
     # Set your secret key: remember to change this to your live secret key in production
     # See your keys here https://dashboard.stripe.com/account
-    stripe.api_key = SECRETS_DICT["STRIPE_SECRET_KEY"]
+    stripe_secret_key = SECRETS_DICT["STRIPE_SECRET_KEY"]
+    stripe.api_key = stripe_secret_key
 
     # Get the credit card details submitted by the form
-    token = request.POST['stripeToken']
-
-    # Create the charge on Stripe's servers - this will charge the user's card
+    json_token = request.POST['stripeToken']
+    token = json.loads(json_token)
+    user_email = token["email"]
+    token_id = token["id"]
+    color = request.POST["color"]
+    size = request.POST["size"]
+    cost = request.POST["cost"]
+    address = request.POST["address"]
+    costincents = int(cost) * 1000
     try:
         charge = stripe.Charge.create(
-            amount=100, # amount in cents, again
+            amount=costincents, # amount in cents, again
             currency="usd",
-            card=token,
-            description="payinguser@example.com"
+            card=token_id,
+            description=user_email
         )
+        # successful charge
+        sendOrderEmail(True, user_email, color, size, cost, address)
+        return HttpResponse("success")
     except stripe.CardError, e:
         # The card has been declined
-        pass
+        sendOrderEmail(False, user_email, color, size, cost, address)
+        return HttpResponse("failure")
+
+# send an email about success or failure of order
+def sendOrderEmail(success, email, color, size, cost, address):
+    base_price = 15
+    message = \
+    "email: " + email + "\n" + \
+    "color: " + color + "\n" + \
+    "size: " + size + "\n" + \
+    "number: " + str(int(cost)-base_price) + "\n" + \
+    "cost: " + cost + "\n" + \
+    "address: " + address + "\n"
+    if success:
+        subject = "Capitalist Tee Order Placed"
+    else:
+        subject = "Capitalist Tee Order Failure"
+    send_mail(subject, message, 'order@robertmarvin.com',
+    ADMIN_EMAILS, fail_silently=False)
+
+
