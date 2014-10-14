@@ -8,23 +8,27 @@
         height:100%;
     }
 
+    .mainimg {
+        width:100%;
+    }
+
 </style>
 
 <div>
 
-    <img class="loading-circle" src="/static/img/moon.jpg"/>
-
-    <p class="loading-text">{{ saying }}</p>
+    <a href="/robertmarvin/">
+        <img class="mainimg" src="/static/img/moon.jpg"/>
+    </a>
 
 </div>
 
 
-<script src="/static/js/jquery.js"></script>
-
-<script>
-   $( document ).ready(function() {
-       setTimeout(function(){
-           window.location.replace("/~/");
-    }, 500);
-    });
-</script>
+{#<script src="/static/js/jquery.js"></script>#}
+{##}
+{#<script>#}
+{#   $( document ).ready(function() {#}
+{#       setTimeout(function(){#}
+{#           window.location.replace("/~/");#}
+{#    }, 500);#}
+{#    });#}
+{#</script>#}

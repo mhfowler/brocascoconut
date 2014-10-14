@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from mhf.models import Stat
 from django.shortcuts import render
 import random, os
-from settings.common import PROJECT_PATH
+from settings.common import PROJECT_PATH, SECRETS_DICT
 
 # boiler ###############################################################################################################
 def redirect(request, page='/home'):
@@ -43,17 +43,17 @@ def map_reduce(request):
 
 
 # robert marvin ########################################################################################################
-def monkeyLoader(request):
+def monkeySkull(request):
     return render(request, 'monkeySkull.html')
 
 def robertMarvin(request):
     stat = getNumVisitors()
     return render(request, 'robertMarvin.html', {"stat":stat})
 
-def loadingCrazy(request):
+def loadingCrazy(request, page):
     stat = getNumVisitors()
     saying = getSaying()
-    return render(request, 'loadingCrazy.html', {"saying":saying})
+    return render(request, 'loadingCrazy.html', {"saying":saying, "page":page})
 
 def getSaying():
     sayings_file = os.path.join(PROJECT_PATH,"mhf/static/sayings.txt")
@@ -75,3 +75,26 @@ def submitEmail(request):
     return HttpResponse("yup")
 
 
+# capitalist tees ######################################################################################################
+def capitalistTees(request):
+    return render(request, 'capitalistTees.html')
+
+def buyShirt(request):
+    # Set your secret key: remember to change this to your live secret key in production
+    # See your keys here https://dashboard.stripe.com/account
+    stripe.api_key = SECRETS_DICT["STRIPE_SECRET_KEY"]
+
+    # Get the credit card details submitted by the form
+    token = request.POST['stripeToken']
+
+    # Create the charge on Stripe's servers - this will charge the user's card
+    try:
+        charge = stripe.Charge.create(
+            amount=100, # amount in cents, again
+            currency="usd",
+            card=token,
+            description="payinguser@example.com"
+        )
+    except stripe.CardError, e:
+        # The card has been declined
+        pass

@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
-loadingCrazy, theHome, submitEmail, monkeyLoader, robertMarvin
+    loadingCrazy, theHome, submitEmail, monkeySkull, robertMarvin, capitalistTees
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -14,15 +14,26 @@ from django.conf import settings
 urlpatterns = patterns('',
                        # (r'^$', viewWrapper(monkeyLoader)),
                        (r'^______/$', viewWrapper(theHome)),
-                       (r'^~/$', viewWrapper(robertMarvin)),
-                       (r'^LOADING/$', viewWrapper(loadingCrazy)),
-                       (r'^home/$', viewWrapper(home)),
-                       (r'^machine_learning/$', viewWrapper(machine_learning)),
-                       (r'^twitter_visualization/$', viewWrapper(twitter_visualization)),
-                       (r'^map_reduce/$', viewWrapper(map_reduce)),
+                       (r'^~/$', viewWrapper(monkeySkull)),
+                       (r'^robertmarvin/$', viewWrapper(robertMarvin)),
+                       (r'^LOADING/(?P<page>\w+)/$', viewWrapper(loadingCrazy)),
+
                        # posts
                        (r'^submit_email/$', viewWrapper(submitEmail)),
+
+                       # pages
+                       (r'^capitalist_tees/$', viewWrapper(capitalistTees)),
+
+
                        )
+
+# patterns for blog
+urlpatterns += patterns('',
+                        (r'^home/$', viewWrapper(home)),
+                        (r'^machine_learning/$', viewWrapper(machine_learning)),
+                        (r'^twitter_visualization/$', viewWrapper(twitter_visualization)),
+                        (r'^map_reduce/$', viewWrapper(map_reduce)),
+                        )
 
 # patterns for django_yaba
 urlpatterns += patterns('',
@@ -45,6 +56,6 @@ urlpatterns += patterns('',
                         (r'^/$',  redirect, {'page':"/~/"}),
                         (r'^$',  redirect, {'page':"/~/"}),
                         # (r'.*$',  redirect, {'page':"/home/"}),
-                        ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
