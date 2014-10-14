@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
-    loadingCrazy, theHome, submitEmail, monkeySkull, robertMarvin, capitalistTees, buyShirt
+    loadingCrazy, theHome, submitEmail, monkeySkull, robertMarvin, capitalistTees, buyShirt, \
+    writing, art, contact, about
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -23,6 +24,10 @@ urlpatterns = patterns('',
 
                        # pages
                        (r'^capitalist_tees/$', viewWrapper(capitalistTees)),
+                       (r'^writing/$', viewWrapper(writing)),
+                       (r'^art/$', viewWrapper(art)),
+                       (r'^contact/$', viewWrapper(contact)),
+                       (r'^about/$', viewWrapper(about)),
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
 
 

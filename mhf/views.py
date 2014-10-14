@@ -129,4 +129,17 @@ def sendOrderEmail(success, email, color, size, cost, address):
     send_mail(subject, message, 'order@robertmarvin.com',
     ADMIN_EMAILS, fail_silently=False)
 
+# main pages
+def art(request):
+     return render(request, 'art.html')
+
+def writing(request):
+     return render(request, 'writing.html')
+
+def about(request):
+     return render(request, 'about.html')
+
+def contact(request):
+     return render(request, 'contact.html')
+
 
