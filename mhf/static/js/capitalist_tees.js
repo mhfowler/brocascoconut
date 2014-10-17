@@ -57,12 +57,14 @@ $( document ).ready(function() {
             var json_token = JSON.stringify(token, null, 2);
             var color = $(".selected-color").html();
             var size = $(".selected-size").html();
+            var style = $(".selected-style").html();
             var address = $(".shipping-input").val();
             var cost = $(".shirtCost").attr("data-cost");
             startLoading();
             $.post("/buyShirt/", { stripeToken: json_token,
                 color:color,
                 size:size,
+                style:style,
                 address:address,
                 cost:cost},function(data) {
                 showThankyou();
@@ -98,12 +100,14 @@ $( document ).ready(function() {
             var total_price = 15;
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("?");
+            $(".shirt-img-number").html("?");
             $(".total-price").html("What You Pay");
         }
         else {
             var total_price = base_price + parseInt(newNumber);
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("$" + newNumber);
+            $(".shirt-img-number").html(newNumber);
             $(".total-price").html("$" + total_price);
         }
     }
@@ -133,12 +137,27 @@ $( document ).ready(function() {
         e.preventDefault();
         $(".color-button").removeClass("selected-color");
         $(this).addClass("selected-color");
-    });
 
+        $(".shirtimg").hide();
+        if ($(this).hasClass("black-button")) {
+            $(".black-male-shirt-img").show();
+            $(".shirt-img-number").css("color","white");
+        }
+        else {
+            $(".white-male-shirt-img").show();
+            $(".shirt-img-number").css("color","black");
+        }
+
+    });
     $(".size-button").click(function(e) {
         e.preventDefault();
         $(".size-button").removeClass("selected-size");
         $(this).addClass("selected-size");
+    });
+    $(".style-button").click(function(e) {
+        e.preventDefault();
+        $(".style-button").removeClass("selected-style");
+        $(this).addClass("selected-style");
     });
 
     $(".new-order").click(function(e) {

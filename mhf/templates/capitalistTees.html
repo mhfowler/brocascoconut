@@ -1,157 +1,241 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<meta charset="UTF-8">
+<title></title>
 
-    <script src="/static/js/jquery.js"></script>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script src="/static/js/capitalist_tees.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="/static/js/capitalist_tees.js"></script>
 
-    <style>
+<style>
 
-        .body-wrapper {
-            height:2000px;
-            width:900px;
-            display:block;
-            margin-left:auto;
-            margin-right:auto;
-        }
+.left-pane {
+    border-right:1px solid black;
+    width:30%;
+}
+.right-pane {
+    border-left:1px solid black;
+}
 
-        .pane {
-            float:left;
-            height:100%;
-        }
-        .side-pane {
-            width:150px;
-            border-left:1px solid gray;
-            border-right:1px solid gray;
-        }
-        .central-pane {
-            width:550px;
-        }
+.body-wrapper {
+{#        width:900px;#}
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    height:815px;
+    width:1400px;
+}
 
-        .capitalist-tee {
-            width:100%;
-            text-align:center;
-        }
+.pane {
+    float:left;
+    height:100%;
+}
+.side-pane {
+{#        width:150px;#}
+}
+.left-pane {
+    width:200px;
+}
+.right-pane {
+    width:600px;
+}
 
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
+.central-pane {
+    width:550px;
+}
 
-        .triangle-img {
-            width:90%;
-            display:block;
-            margin-left:auto;
-            margin-right:auto;
-        }
+.capitalist-tee {
+    width:100%;
+    text-align:center;
+    margin-bottom:10px;
+}
 
-        .select-number {
-            background-image:url("/static/img/black_triangle.png");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size:70%;
-            width:100%;
-            height:365px;
-        }
-        .number-input {
-            margin-left: 224px;
-            margin-top: 205px;
-            width: 100px;
-            height: 110px;
-            font-size: 40px;
-            text-align: center;
-        }
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
-        .color-buttons {
-            display:block;
-            width:400px;
-            margin:auto;
-            margin-top:20px;
-            margin-bottom:20px;
-            height:30px;
-        }
+.triangle-img {
+    width:90%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
 
-        .size-buttons {
-            display:block;
-            width:400px;
-            margin:auto;
-            margin-top:20px;
-            margin-bottom:20px;
-            height:30px;
-        }
+.select-number {
+    background-image:url("/static/img/black_triangle.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:70%;
+    width:100%;
+    height:365px;
+}
+.number-input {
+    margin-left: 224px;
+    margin-top: 205px;
+    width: 100px;
+    height: 110px;
+    font-size: 40px;
+    text-align: center;
+}
 
-        .color-button {
-            width: 185px;
-            float: left;
-            text-align: center;
-            padding: 5px;
-            border: 1px solid gray;
-        }
+.color-buttons {
+    display:block;
+    width:400px;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    height:30px;
+}
 
-        .size-button {
-            width: 80px;
-            float: left;
-            text-align: center;
-            padding: 5px;
-            border: 1px solid gray;
-        }
+.size-buttons {
+    display:block;
+    width:400px;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    height:30px;
+}
+.style-buttons {
+    display:block;
+    width:400px;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    height:30px;
+}
 
-        .purchaseButton {
-            width: 71%;
-            margin: auto;
-            display: block;
-            padding: 5px;
-            border: 1px solid gray;
-            text-align: center;
-        }
+.color-button {
+    width: 185px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid gray;
+}
+.style-button {
+    width: 185px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid gray;
+}
 
-        .shipping-input {
-            width:300px;
-            margin-left:20px;
-            height:20px;
-        }
 
-        .shipping {
-            height:50px;
-            width:400px;
-            display:block;
-            margin:auto;
-        }
 
-        .display-price {
-            font-size:14px;
-            width:400px;
-            margin:auto;
-            height:40px;
-        }
-        .display-price span {
-            font-size:18px;
-        }
+.size-button {
+    width: 80px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid gray;
+}
 
-        .selected-color {
-            background-color:lightgray;
-        }
-        .selected-size {
-            background-color:lightgray;
-        }
+.purchaseButton {
+    width: 71%;
+    margin: auto;
+    display: block;
+    padding: 5px;
+    border: 1px solid gray;
+    text-align: center;
+}
 
-        .description {
-            text-align:center;
-            width:100%;
-        }
+.shipping-input {
+    width:300px;
+    margin-left:20px;
+    height:20px;
+}
+.ship-to {
+    position:relative;
+    top:4px;
+}
 
-        .main-div {
-            display:none;
-        }
+.shipping {
+    height:50px;
+    width:400px;
+    display:block;
+    margin:auto;
+}
 
-        .thankyou-div {
-            width:100%;
-            text-align:center;
-        }
+.display-price {
+    font-size:14px;
+    width:400px;
+    margin:auto;
+    height:40px;
+}
+.display-price span {
+    font-size:18px;
+}
 
-    </style>
+.selected-color {
+    background-color:black;
+    color:white;
+}
+.selected-size {
+    background-color:black;
+    color:white;
+}
+.selected-style {
+    background-color:black;
+    color:white;
+}
+
+.description {
+    text-align:center;
+    width:100%;
+}
+
+.main-div {
+    display:none;
+}
+
+.thankyou-div {
+    width:100%;
+    text-align:center;
+}
+
+a {
+    text-decoration:none;
+    color:black;
+}
+a:hover {
+    background-color:black;
+    color:white;
+}
+
+.money-img {
+    width:90%;
+}
+.shirtimg {
+    width:90%;
+    display:none;
+    margin-left: 11%;
+    margin-top: 14%;
+}
+.black-male-shirt-img.shirtimg {
+    display:block;
+}
+
+.capitalist-tee {
+{#            color: rgb(255, 0, 203);#}
+}
+
+.description {
+    font-family:"Times New Roman", Times, serif;
+}
+
+.shirt-img-number {
+    position: absolute;
+    top: 254px;
+    font-family:"Helvetica";
+    left: 1077px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+
+</style>
 
 </head>
 <body>
@@ -161,16 +245,29 @@
 
 <div class="body-wrapper">
 
-    <div class="side-pane left-pane pane"></div>
+    <div class="side-pane left-pane pane">
+        <img class="money-img" src="http://d3515qaf3aty6m.cloudfront.net/ac72056e309158cc9cb768fe36feba61/news/1348877548-DollarSign.jpg-scaled.jpg"/>
+        <img class="money-img" src="http://d3515qaf3aty6m.cloudfront.net/ac72056e309158cc9cb768fe36feba61/news/1348877548-DollarSign.jpg-scaled.jpg"/>
+        <img class="money-img" src="http://d3515qaf3aty6m.cloudfront.net/ac72056e309158cc9cb768fe36feba61/news/1348877548-DollarSign.jpg-scaled.jpg"/>
+        <img class="money-img" src="http://d3515qaf3aty6m.cloudfront.net/ac72056e309158cc9cb768fe36feba61/news/1348877548-DollarSign.jpg-scaled.jpg"/>
+
+        {#        <img class="black-shirt-img shirtimg" src="http://www.clipartbest.com/cliparts/RcA/6ae/RcA6ae9ji.jpeg"/>#}
+        {#        <img class="black-shirt-img shirtimg" src="/static/img/blackshirt0.jpg"/>#}
+        {#        <img class="black-shirt-img shirtimg" src="http://www.clipartbest.com/cliparts/RcA/6ae/RcA6ae9ji.jpeg"/>#}
+        {#        <img class="black-shirt-img shirtimg" src="/static/img/whiteshirt0.jpg"/>#}
+        {#        <img class="black-shirt-img shirtimg" src="http://www.clipartbest.com/cliparts/RcA/6ae/RcA6ae9ji.jpeg"/>#}
+        {#        <img class="black-shirt-img shirtimg" src="/static/img/blackshirt0.jpg"/>#}
+    </div>
 
     <div class="central-pane pane">
         <h1 class="capitalist-tee"> The Capitalist Tee </h1>
-        <h3 class="description">
+        <p class="description">
             Enter the number 'X' that you want printed on your shirt<br>
-            and we will send you your shirt for 15 + 'X' dollars<br>
-        </h3>
+            and we will send you the shirt for 15 + 'X' dollars<br>
+        </p>
 
         <div class="main-div purchase-div">
+
             <div class="select-number">
                 <input type="text" class="number-input"/>
             </div>
@@ -179,6 +276,11 @@
                 <a href="" class="black-button color-button selected-color">Black</a>
                 <a href="" class="white-button color-button">White</a>
             </div>
+
+{#            <div class="style-buttons">#}
+{#                <a href="" class="mens-button style-button selected-style">Masculine</a>#}
+{#                <a href="" class="womens-button style-button">Feminine</a>#}
+{#            </div>#}
 
             <div class="size-buttons">
 
@@ -189,7 +291,7 @@
             </div>
 
             <div class="shipping">
-                <span> ship to </span>
+                <span class="ship-to"> ship to </span>
                 <input type="text" class="shipping-input"/>
             </div>
 
@@ -201,7 +303,7 @@
                 <span class="total-price">What You Pay</span>
             </div>
 
-            <a href="" class="purchaseButton">Purchase With Card</a>
+            <a href="" class="purchaseButton">Purchase With Credit Card</a>
         </div>
 
         <div class="main-div loading-div">
@@ -211,14 +313,18 @@
             <img class="loading-gif" src="http://38.media.tumblr.com/85eb371444e4dfe9cbe6cdb68550168a/tumblr_mxv8vmb87W1ql82o1o1_r1_500.gif"/>
         </div>
 
-         <div class="main-div thankyou-div">
+        <div class="main-div thankyou-div">
             <p class="thankyou-text">thankyou</p>
             <a href="" class="new-order">click here to start a new order</a>
         </div>
 
     </div>
 
-    <div class="side-pane right-pane pane"></div>
+    <div class="side-pane right-pane pane">
+        <img class="black-male-shirt-img shirtimg" src="/static/img/blacktriangle.jpg"/>
+        <img class="white-male-shirt-img shirtimg" src="/static/img/whitetriangle.jpg"/>
+        <div class="shirt-img-number">?</div>
+    </div>
 
 </div>
 
