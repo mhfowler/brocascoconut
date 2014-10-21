@@ -50,7 +50,7 @@ def monkeySkull(request):
 
 def brocasCoconut(request):
     stat = getNumVisitors()
-    return render(request, 'robertMarvin.html', {"stat":stat})
+    return render(request, 'brocasCoconut.html', {"stat":stat})
 
 def loadingCrazy(request, page):
     stat = getNumVisitors()
