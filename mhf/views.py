@@ -48,7 +48,7 @@ def map_reduce(request):
 def monkeySkull(request):
     return render(request, 'monkeySkull.html')
 
-def robertMarvin(request):
+def brocasCoconut(request):
     stat = getNumVisitors()
     return render(request, 'robertMarvin.html', {"stat":stat})
 
