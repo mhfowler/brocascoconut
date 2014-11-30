@@ -5,3 +5,4 @@ mysql-python
 South
 -r django_yaba.txt
 stripe
+mailchimp
