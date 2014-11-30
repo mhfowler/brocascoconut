@@ -20,6 +20,7 @@ $( document ).ready(function() {
     var cPage = window.location.pathname;
     showPage(cPage);
 
+    // csrf protect
     /* csrf protection */
     function getCookie(name) {
         var cookieValue = null;

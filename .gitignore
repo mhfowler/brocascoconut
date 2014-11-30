@@ -3,3 +3,4 @@
 .DS_STORE
 *.db
 *secret*
+mailgun.secret

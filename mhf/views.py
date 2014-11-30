@@ -5,7 +5,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 import random, os
 from settings.common import PROJECT_PATH, SECRETS_DICT, ADMIN_EMAILS
-import stripe, json
+from django.views.decorators.csrf import ensure_csrf_cookie
+import stripe, json, mailchimp
 
 # boiler ###############################################################################################################
 def redirect(request, page='/home'):
@@ -67,13 +68,18 @@ def getSaying():
         saying = random.choice(lines)
     return saying
 
+@ensure_csrf_cookie
 def theHome(request):
     stat = getNumVisitors()
     return render(request, 'theHome.html', {"stat":stat})
 
 def submitEmail(request):
     email = request.POST["email"]
-    # TODO: save email
+    mailchimp_key = SECRETS_DICT["MAILCHIMP_KEY"]
+    mailchimp_id = SECRETS_DICT["MAILCHIMP_ID"]
+    mchimp = mailchimp.Mailchimp(apikey=mailchimp_key)
+    mchimp.lists.subscribe(id=mailchimp_id,email={"email":email})
+    print "subscribed email: " + email
     return HttpResponse("yup")
 
 
