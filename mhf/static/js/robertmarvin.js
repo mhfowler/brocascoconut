@@ -57,7 +57,7 @@ $( document ).ready(function() {
         $.post("/submit_email/", { email: email },function(data) {
             setTimeout(function(){
                 window.location.replace("/______/");
-            }, 1500);
+            }, 1000);
         });
     }
 
