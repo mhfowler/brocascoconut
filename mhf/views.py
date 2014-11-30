@@ -77,9 +77,12 @@ def submitEmail(request):
     email = request.POST["email"]
     mailchimp_key = SECRETS_DICT["MAILCHIMP_KEY"]
     mailchimp_id = SECRETS_DICT["MAILCHIMP_ID"]
-    mchimp = mailchimp.Mailchimp(apikey=mailchimp_key)
-    mchimp.lists.subscribe(id=mailchimp_id,email={"email":email})
-    print "subscribed email: " + email
+    try:
+        mchimp = mailchimp.Mailchimp(apikey=mailchimp_key)
+        mchimp.lists.subscribe(id=mailchimp_id,email={"email":email})
+        print "subscribed email: " + email
+    except:
+        print "error subscribing email: " + email
     return HttpResponse("yup")
 
 
