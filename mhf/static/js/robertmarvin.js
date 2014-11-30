@@ -53,8 +53,8 @@ $( document ).ready(function() {
     /* submit email */
     function submitEmail() {
         var email = $(".subscribe-input").val();
+        showPage("/thankyou/");
         $.post("/submit_email/", { email: email },function(data) {
-            showPage("/thankyou/");
             setTimeout(function(){
                 window.location.replace("/______/");
             }, 1500);
