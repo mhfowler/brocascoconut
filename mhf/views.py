@@ -151,4 +151,28 @@ def about(request):
 def contact(request):
      return render(request, 'contact.html')
 
+# truespeak
+def truespeak(request):
+    names = getRecentlyOut()
+    return render(request, 'truespeak.html', {"names":names})
 
+def getRecentlyOut():
+    names = ["Banana Bob", "Jafferty Johnson", "Lalala Kidd"]
+    to_return = []
+    for name in names:
+        url = name.replace(" ", "_")
+        to_return.append({
+            "url":url,
+            "name":name
+        })
+    return to_return
+
+
+
+def truespeakDetail(request, name):
+    display_name = name.replace("_", " ")
+    conversations = getConversations(name)
+    return render(request, 'truespeakDetail.html', {"name":display_name, "conversations":conversations})
+
+def getConversations(name):
+    return {}
