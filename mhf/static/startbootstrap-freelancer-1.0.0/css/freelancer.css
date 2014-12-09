@@ -86,7 +86,7 @@ header {
 }
 
 header .container {
-    padding-top: 40px;
+    padding-top: 80px;
     padding-bottom: 50px;
 }
 
@@ -445,7 +445,6 @@ footer .footer-below {
 }
 
 .upload-section {
-    height:640px;
 }
 
 .steps-list {
@@ -464,7 +463,6 @@ footer .footer-below {
 }
 
 .explore-container {
-    width:700px;
     margin:auto;
 }
 
@@ -493,7 +491,6 @@ footer .footer-below {
 }
 
 .about-section {
-    height:400px;
 }
 
 .conversation-detail {
