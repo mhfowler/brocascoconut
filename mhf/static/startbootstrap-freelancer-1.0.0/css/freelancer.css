@@ -516,3 +516,11 @@ footer .footer-below {
     text-align:center;
 }
 
+.download-button:hover {
+    cursor:pointer;
+}
+
+.brocas-link {
+    color:white;
+    font-size:20px;
+}
