@@ -32,7 +32,7 @@ urlpatterns = patterns('',
 
                        # truespeak
                        (r'^truespeak/$', viewWrapper(truespeak)),
-                       (r'^truespeak/(?P<name>\w+)/$', viewWrapper(truespeakDetail)),
+                       (r'^truespeak/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakDetail)),
 
 
                        )

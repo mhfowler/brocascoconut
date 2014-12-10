@@ -494,7 +494,25 @@ footer .footer-below {
 }
 
 .conversation-detail {
-    height:400px;
     padding-top:150px;
     padding-bottom:200px;
 }
+
+.sent-by {
+    font-weight:bold;
+    width:300px;
+}
+
+.text-wrapper {
+    margin-top:10px;
+}
+
+.spacer {
+    height:80px;
+}
+
+.table-of-contents-header {
+    width:100%;
+    text-align:center;
+}
+

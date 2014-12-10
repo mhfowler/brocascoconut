@@ -1,6 +1,7 @@
 # Django settings
 import os
 import json
+from boto.s3.connection import S3Connection, Key
 PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 # read secrets from json
@@ -12,6 +13,35 @@ if LOCAL:
 else:
     SECRETS_ENV = os.environ.get("SECRETS")
     SECRETS_DICT = json.loads(SECRETS_ENV)
+
+def getS3Credentials():
+    aws_access_key_id = SECRETS_DICT["AWS_ACCESS_KEY_ID"]
+    aws_secret_access_key = SECRETS_DICT["AWS_SECRET_ACCESS_KEY"]
+    return aws_access_key_id, aws_secret_access_key
+
+def getS3Connection():
+    aws_access_key_id, aws_secret_access_key = getS3Credentials()
+    conn = S3Connection(aws_access_key_id, aws_secret_access_key)
+    return conn
+
+def getTrueSpeakBucket():
+    conn = getS3Connection()
+    return conn.get_bucket("truespeak")
+
+def getOrCreateS3Key(key_name):
+    bucket = getTrueSpeakBucket()
+    try:
+        key = bucket.get_key(key_name)
+        key_json = key.get_contents_as_string()
+    except Exception as e:
+        key = Key(bucket)
+        key.key = key_name
+        key_json = json.dumps({})
+    try:
+        key_dict = json.loads(key_json)
+    except:
+        key_dict = {}
+    return key, key_dict
 
 DEBUG = True
 APPEND_SLASH = True

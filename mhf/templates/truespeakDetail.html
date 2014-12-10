@@ -44,7 +44,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/truespeak/#page-top">TrueSpeak</a>
+            <a class="navbar-brand" href="#page-top">TrueSpeak</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,8 +78,27 @@
                 <hr class="star-primary">
             </div>
         </div>
+        <div class="table-of-contents">
+            <h4 class="table-of-contents-header">Table Of Contents</h4>
+            {% for person in people %}
+                <a href="#{{ person }}" class="chapter-link">{{ person }}</a>
+            {% endfor %}
+        </div>
+         <hr class="star-primary">
         <div class="row container">
-        <p> Browsable version of their text history </p>
+        {% for convo_with, conversation in conversations %}
+            <div class="conversation-wrapper" id="{{ convo_with }}">
+                <div class="spacer"></div>
+                <h3 class="conversation-header"> Conversation With {{ convo_with }} </h3>
+                {% for text in conversation %}
+                    <div class="text-wrapper">
+                        <span class="sent-by">{{ text.from_name }}</span>
+                        <span class="message">{{ text.text_message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% endfor %}
         </div>
     </div>
 </section>

@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from mhf.models import Stat
 from django.core.mail import send_mail
 from django.shortcuts import render
-import random, os
-from settings.common import PROJECT_PATH, SECRETS_DICT, ADMIN_EMAILS
+import random, os, re
+from settings.common import PROJECT_PATH, SECRETS_DICT, ADMIN_EMAILS, getTrueSpeakBucket, getOrCreateS3Key
 from django.views.decorators.csrf import ensure_csrf_cookie
+from boto.s3.connection import S3Connection, Key
 import stripe, json, mailchimp
 
 # boiler ###############################################################################################################
@@ -151,28 +152,73 @@ def about(request):
 def contact(request):
      return render(request, 'contact.html')
 
-# truespeak
+# truespeak ######################################################################################
 def truespeak(request):
     names = getRecentlyOut()
     return render(request, 'truespeak.html', {"names":names})
 
 def getRecentlyOut():
-    names = ["Banana Bob", "Jafferty Johnson", "Lalala Kidd"]
     to_return = []
-    for name in names:
-        url = name.replace(" ", "_")
-        to_return.append({
-            "url":url,
-            "name":name
-        })
+    for key in getTrueSpeakRawKeys():
+        try:
+            name,appendage = key.name.split("|")
+            name = name[4:] # remove the raw/ that it starts with
+            url = name + "/" + appendage
+            display_name = name.replace("_", " ")
+            to_return.append({
+                "url":url,
+                "name":display_name,
+                "date":key.last_modified
+            })
+        except Exception as e:
+            pass
+    to_return.sort(key=lambda x: x["date"], reverse=True)
     return to_return
 
+def comparatorFun(x, y):
+    if x and x[0].isalpha():
+        if (not y) or (not y[0].isalpha()):
+            return -1
+        else:
+            if (x > y):
+                return 1
+            else:
+                return -1
+    else:
+        if y and y[0].isalpha():
+            return 1
+        else:
+            if (x > y):
+                return 1
+            else:
+                return -1
 
-
-def truespeakDetail(request, name):
+def truespeakDetail(request, name, appendage):
     display_name = name.replace("_", " ")
-    conversations = getConversations(name)
-    return render(request, 'truespeakDetail.html', {"name":display_name, "conversations":conversations})
+    conversations = getConversations(name, appendage)
+    people = [x[0] for x in conversations]
+    return render(request, 'truespeakDetail.html', {"name":display_name, "conversations":conversations, "people":people})
 
-def getConversations(name):
-    return {}
+def getConversations(name, appendage):
+    key_name = "raw/" + name + "|" + appendage
+    key, key_dict = getOrCreateS3Key(key_name)
+    conversations = key_dict["conversations"]
+    people = list(conversations.keys())
+    people.sort(cmp=comparatorFun)
+    to_return = []
+    for person in people:
+        conversation = conversations[person]
+        to_return.append((person, conversation))
+    return to_return
+
+# return all keys in the raw folder
+def getTrueSpeakRawKeys():
+    bucket = getTrueSpeakBucket()
+    keys = bucket.list()
+    keys_list = []
+    for key in keys:
+        name = key.name
+        result = re.match("raw/.+", name)
+        if result:
+            keys_list.append(key)
+    return keys_list
