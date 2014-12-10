@@ -5,6 +5,7 @@ from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_vis
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
+from django.http import HttpResponse
 
 # urlpatterns = patterns('',
 #     # ... the rest of your URLconf goes here ...
@@ -59,6 +60,8 @@ admin.autodiscover()
 urlpatterns += patterns('',
                         (r'^admin/', include(admin.site.urls)),
                         )
+
+urlpatterns += patterns('', (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", mimetype="text/plain")) )
 
 #
 # # # redirect everything else
