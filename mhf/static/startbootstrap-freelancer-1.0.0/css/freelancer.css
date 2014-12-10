@@ -58,20 +58,21 @@ hr.star-primary:after {
 }
 
 hr.star-light {
-    border-color: #fff;
+    border-color: white;
 }
 
 hr.star-light:after {
     color: #fff;
-    background-color: #18bc9c;
+    /*background-color:#2c3e50;*/
+    background-color: #772b97;
 }
 
 hr.star-primary {
-    border-color: #2c3e50;
+    border-color: black;
 }
 
 hr.star-primary:after {
-    color: #2c3e50;
+    color: black;
     background-color: #fff;
 }
 
@@ -181,7 +182,15 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #18bc9c;
+    background: #772b97;
+    /*background-color: #2c3e50;*/
+    /*background:black;*/
+}
+
+section.black {
+    color: #fff;
+    /*background: #18bc9c;*/
+    background:black;
 }
 
 @media(max-width:767px) {
