@@ -533,3 +533,49 @@ footer .footer-below {
     color:white;
     font-size:20px;
 }
+
+.line-spacer {
+    width:100%;
+    border-top: 1px solid gray;
+    margin-bottom:25px;
+}
+
+.instructions {
+    margin-top:20px;
+    margin-bottom:25px;
+}
+.instructions-line-spacer {
+    margin-bottom:40px;
+    width:100%;
+    border-top: 1px solid gray;
+}
+
+.publish-container {
+    margin-top:20px;
+}
+
+.how-many-wrapper {
+    width:100%;
+    text-align:center;
+}
+.publish-btn {
+    width:100%;
+    margin-top:15px;
+}
+
+.instructions-header {
+    margin-bottom:20px;
+}
+
+input[type="checkbox"].include-checkbox {
+    margin-left:11px;
+    position:relative;
+    top:-2px;
+}
+
+.chapter-link {
+    color:gray;
+}
+.chapter-link.selected {
+    color:blue;
+}

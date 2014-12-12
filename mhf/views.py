@@ -193,11 +193,30 @@ def comparatorFun(x, y):
             else:
                 return -1
 
-def truespeakDetail(request, name, appendage):
+
+def truespeakPublicDetail(request, name, appendage):
     display_name = name.replace("_", " ")
     conversations = getConversations(name, appendage)
     people = [x[0] for x in conversations]
     return render(request, 'truespeakDetail.html', {"name":display_name, "conversations":conversations, "people":people})
+
+@ensure_csrf_cookie
+def truespeakSecretLink(request, name, appendage):
+    display_name = name.replace("_", " ")
+    conversations = getConversations(name, appendage)
+    people = [x[0] for x in conversations]
+    return render(request, 'truespeakDetail.html', {"name":display_name, "conversations":conversations, "people":people, "secret":True})
+
+
+def publishTexts(request):
+    current_url = request.POST["current_url"]
+    result = re.match("^/secretlink/([A-z]+)/(\d+)/$", current_url)
+    name = result.group(1)
+    appendage = result.group(2)
+    include_which = json.loads(request.POST["conversations"])
+    publishConversations(name, appendage, include_which)
+    return HttpResponse("published text history.")
+
 
 def getConversations(name, appendage):
     key_name = "raw/" + name + "|" + appendage
@@ -210,6 +229,25 @@ def getConversations(name, appendage):
         conversation = conversations[person]
         to_return.append((person, conversation))
     return to_return
+
+
+def publishConversations(name, appendage, include_which):
+    key_name = "raw/" + name + "|" + appendage
+    key, key_dict = getOrCreateS3Key(key_name)
+    conversations = key_dict["conversations"]
+    people = list(conversations.keys())
+    published_conversations = {}
+    for person in people:
+        if person in include_which:
+            published_conversations[person] = conversations[person]
+    # now save to s3
+    new_appendage = str(random.randint(0,100000000000))  # new appendage so they cant find the original
+    public_key_name = "public/" + name + "|" + new_appendage
+    public_key, public_key_dict = getOrCreateS3Key(public_key_name)
+    published_conversations_json = json.dumps(published_conversations)
+    public_key.set_contents_from_string(published_conversations_json)
+    return published_conversations
+
 
 # return all keys in the raw folder
 def getTrueSpeakRawKeys():

@@ -72,6 +72,31 @@
 <!-- Conversation Details Grid Section -->
 <section class="conversation-detail">
     <div class="container conversation-detail-container">
+        {% if secret %}
+            <div class="instructions">
+                <h3 class="instructions-header"> Instructions On How To Publish Your Text History </h3>
+                <p>
+                    Below is your entire text history, currently this page is only viewable by people
+                    who hold the secret link which you received in an email.
+                </p>
+                <p>
+                    To share your story with the world, scroll down this page
+                    and select the checkbox next to each of the conversations which you would like to
+                    include in your story and then scroll back up to the top of this page and click
+                    "Publish Selected Conversations To The World".
+                </p>
+                <p>
+                    When you click "Publish Selected Conversations To The World" all of the conversations which you selected will be posted
+                    to a publicly viewable page. All of the conversations which you have not selected will
+                    not be included in the public post but will still be viewable on this secret page.
+                </p>
+                <div class="publish-container">
+                    <div class="how-many-wrapper"><span class="how-many">0</span> Conversations Selected</div>
+                    <button class="publish publish-btn btn btn-default" type="button">Publish Selected Conversations To The World</button>
+                </div>
+            </div>
+            <div class="instructions-line-spacer"></div>
+        {% endif %}
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2>The Story Of {{ name }}</h2>
@@ -84,22 +109,30 @@
             {% for person in people %}
                 <a href="#{{ person }}" class="chapter-link">{{ person }}</a>
             {% endfor %}
+            <hr class="star-primary">
         </div>
-         <hr class="star-primary">
         <div class="row container">
-        {% for convo_with, conversation in conversations %}
-            <div class="conversation-wrapper" id="{{ convo_with }}">
-                <div class="spacer"></div>
-                <h3 class="conversation-header"> Conversation With {{ convo_with }} </h3>
-                {% for text in conversation %}
-                    <div class="text-wrapper">
-                        <span class="sent-by">{{ text.from_name }}</span>
-                        <span class="message">{{ text.text_message }}</span>
-                    </div>
-                {% endfor %}
-            </div>
+            {% for convo_with, conversation in conversations %}
+                <div class="conversation-wrapper" id="{{ convo_with }}">
+                    {% if not forloop.first %}
+                        <div class="spacer"></div>
+                    {% endif %}
+                    {% if secret %}
+                        <div class="line-spacer"></div>
+                        <p>
+                            <span class="include-text">Include In Publication</span><input type="checkbox" name="include" class="include-checkbox" value="{{ convo_with }}"/>
+                        </p>
+                    {% endif %}
+                    <h3 class="conversation-header"> Conversation With {{ convo_with }} </h3>
+                    {% for text in conversation %}
+                        <div class="text-wrapper">
+                            <span class="sent-by">{{ text.from_name }}</span>
+                            <span class="message">{{ text.text_message }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
 
-        {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </section>

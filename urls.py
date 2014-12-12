@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
     loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
-    writing, art, contact, about, truespeak, truespeakDetail
+    writing, art, contact, about, truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -32,8 +32,10 @@ urlpatterns = patterns('',
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
 
                        # truespeak
-                       (r'^hiddenspeak/$', viewWrapper(truespeak)),
-                       (r'^hiddenspeak/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakDetail)),
+                       (r'^ztest$', viewWrapper(truespeak)),
+                       (r'^ztest/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakPublicDetail)),
+                       (r'^secretlink/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakSecretLink)),
+                       (r'^publish_texts/$', viewWrapper(publishTexts)),
 
 
                        )
