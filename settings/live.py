@@ -1,6 +1,6 @@
 from settings.common import *
 
-DEBUG=True
+DEBUG=False
 
 DATABASES = {
     'default': SECRETS_DICT['DATABASES']['LIVE']
