@@ -32,8 +32,8 @@ urlpatterns = patterns('',
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
 
                        # truespeak
-                       (r'^truespeak/$', viewWrapper(truespeak)),
-                       (r'^truespeak/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakDetail)),
+                       (r'^hiddenspeak/$', viewWrapper(truespeak)),
+                       (r'^hiddenspeak/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakDetail)),
 
 
                        )
