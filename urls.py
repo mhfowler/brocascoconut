@@ -32,9 +32,9 @@ urlpatterns = patterns('',
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
 
                        # truespeak
-                       (r'^ztest$', viewWrapper(truespeak)),
-                       (r'^ztest/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakPublicDetail)),
-                       (r'^secretlink/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakSecretLink)),
+                       (r'^truespeak/$', viewWrapper(truespeak)),
+                       (r'^truespeak/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakPublicDetail)),
+                       (r'^secretlink/(?P<name>\S+)/(?P<appendage>\d+)/$', viewWrapper(truespeakSecretLink)),
                        (r'^publish_texts/$', viewWrapper(publishTexts)),
 
 

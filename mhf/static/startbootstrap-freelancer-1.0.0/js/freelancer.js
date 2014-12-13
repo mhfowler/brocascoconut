@@ -73,26 +73,49 @@ $( document ).ready(function() {
         var name = $(this).val();
         var chapterLink = $(".chapter-link[href^='#" + name + "']");
         var howMany = parseInt($(".how-many").html());
+        var obfuscationWrapper = $(".obfuscation-wrapper[data-name='" + name + "']");
         if ($(this).is(":checked")) {
             howMany += 1;
             chapterLink.addClass("selected");
+            obfuscationWrapper.show();
         }
         else {
             howMany -= 1;
             chapterLink.removeClass("selected");
+            obfuscationWrapper.hide();
         }
         $(".how-many").html(howMany);
-    })
+    });
 
-    $(".publish-btn").click(function(e) {
+    $(".initial-publish-btn").click(function(e) {
+        e.preventDefault();
+        var initialPublishButton = $(this);
+        initialPublishButton.hide();
+        var confirmPublishButton = $(".confirm-publish-btn");
+        confirmPublishButton.show();
+        $(".really-publish").show();
+        $(".instructions-text").hide();
+    });
+
+    $(".confirm-publish-btn").click(function(e) {
         e.preventDefault();
         var checkedValues = $('.include-checkbox:checked').map(function() {
             return this.value;
         }).get();
-        var jsonValues = JSON.stringify(checkedValues);
+        var obfuscationMap = {};
+        $.each(checkedValues, function(i,name) {
+            var obfuscationInput = $(".obfuscation-input[data-name='" + name + "']");
+            var new_name = obfuscationInput.val();
+            obfuscationMap[name] = new_name;
+        });
+        var jsonValues = JSON.stringify(obfuscationMap);
+        var origUsername = $("input.orig-username").val();
+        var aliasUsername = $("input.alias-username").val();
         $.post("/publish_texts/", {
-            conversations: jsonValues,
-            current_url: window.location.pathname
+            include: jsonValues,
+            current_url: window.location.pathname,
+            orig_username: origUsername,
+            alias_username: aliasUsername
         },function(data) {
             alert("success");
         });

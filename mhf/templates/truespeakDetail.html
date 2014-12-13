@@ -75,25 +75,45 @@
         {% if secret %}
             <div class="instructions">
                 <h3 class="instructions-header"> Instructions On How To Publish Your Text History </h3>
-                <p>
-                    Below is your entire text history, currently this page is only viewable by people
-                    who hold the secret link which you received in an email.
-                </p>
-                <p>
-                    To share your story with the world, scroll down this page
-                    and select the checkbox next to each of the conversations which you would like to
-                    include in your story and then scroll back up to the top of this page and click
-                    "Publish Selected Conversations To The World".
-                </p>
-                <p>
-                    When you click "Publish Selected Conversations To The World" all of the conversations which you selected will be posted
-                    to a publicly viewable page. All of the conversations which you have not selected will
-                    not be included in the public post but will still be viewable on this secret page.
-                </p>
-                <div class="publish-container">
-                    <div class="how-many-wrapper"><span class="how-many">0</span> Conversations Selected</div>
-                    <button class="publish publish-btn btn btn-default" type="button">Publish Selected Conversations To The World</button>
+                <div class="instructions-text">
+                    <p>
+                        Below is your entire text history, currently this page is only viewable by people
+                        who hold the secret link which you were shown at the end of your upload.
+                    </p>
+                    <p>
+                        To share your story with the world, scroll down this page
+                        and select the checkbox next to each of the conversations which you would like to
+                        include in your story and then scroll back up to the top of this page and click
+                        "Publish Selected Conversations To The World".
+                    </p>
+                    <p>
+                        When you click "Publish Selected Conversations To The World" all of the conversations which you selected will be posted
+                        to a publicly viewable page. All of the conversations which you have not selected will
+                        not be included in the public post but will still be viewable on this secret page.
+                    </p>
                 </div>
+                <div class="really-publish">
+                    <p>
+                        Click "Confirm Publish Selected Conversations To The World" to confirm that you would like to publish <span class="how-many">0</span>
+                        conversations from your text message history.
+                    </p>
+                    <p>
+                        If you would like to obfuscate your name, enter your original full name and
+                        all occurrences of your first or last name in your texts will be replaced with
+                        the alias your story is being published under.
+                    </p>
+                    <div class="username-obfuscation-wrapper input-group">
+                        <div class="username-input-wrapper">
+                            <span class="username-input-text">Original Name</span>
+                            <input type="text" class="orig-username form-control username-input" placeholder="Your Full Name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="publish-container">
+                <div class="how-many-wrapper"><span class="how-many">0</span> Conversations Selected</div>
+                <button class="publish publish-btn initial-publish-btn btn btn-default" type="button">Publish Selected Conversations To The World</button>
+                <button class="publish publish-btn confirm-publish-btn btn btn-default" type="button">Confirm Publish Selected Conversations To The World</button>
             </div>
             <div class="instructions-line-spacer"></div>
         {% endif %}
@@ -122,6 +142,12 @@
                         <p>
                             <span class="include-text">Include In Publication</span><input type="checkbox" name="include" class="include-checkbox" value="{{ convo_with }}"/>
                         </p>
+                        <div class="obfuscation-wrapper input-group" data-name="{{ convo_with }}">
+                            <div class="input-label">Change all appearances of "{{ convo_with }}" to</div>
+                            <div class="input-wrapper">
+                                <input class="obfuscation-input form-control" type="text" data-name="{{ convo_with }}" value="{{ convo_with }}"/>
+                            </div>
+                        </div>
                     {% endif %}
                     <h3 class="conversation-header"> Conversation With {{ convo_with }} </h3>
                     {% for text in conversation %}

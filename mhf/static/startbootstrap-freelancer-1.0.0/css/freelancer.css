@@ -577,5 +577,52 @@ input[type="checkbox"].include-checkbox {
     color:gray;
 }
 .chapter-link.selected {
-    color:blue;
+    color:darkblue;
+}
+
+.obfuscation-wrapper {
+    display:none;
+    width:100%;
+}
+
+.obfuscation-wrapper input.obfuscation-input {
+    margin-top:10px;
+    margin-bottom:20px;
+    width:300px;
+    float:left;
+}
+
+.input-wrapper {
+    float:left;
+    width:100%;
+}
+
+.input-group input.username-input {
+    width:200px;
+    float:left;
+}
+
+.username-input-text {
+    display:block;
+    margin-bottom:5px;
+    font-size:18px;
+    color:darkgray;
+}
+
+.username-input-wrapper {
+    float:left;
+    width:100%;
+    margin-bottom:15px;
+}
+
+.instructions-text {
+    margin-bottom:20px;
+}
+
+.really-publish {
+    display:none;
+}
+
+.confirm-publish-btn {
+    display:none;
 }
