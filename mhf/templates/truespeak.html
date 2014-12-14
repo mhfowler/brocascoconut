@@ -99,7 +99,8 @@
                     <li> Click the download button below, to download a script which will help you upload your text messages. </li>
                     <li> After the download completes, double click truespeak.zip to unzip the script. </li>
                     <li> Right click truespeak (the unzipped file) and click open to run the script which will guide you through uploading your text
-                    messages to a page on truespeak.com which is publicly visible to the world.</li>
+                    messages to a secret page which only you have a link to.</li>
+                    <li> From your secret page select which of your text conversations you would like to publicly publish under which aliases.</li>
             </ol>
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <a href="https://s3.amazonaws.com/truespeak/truespeak.zip" class="btn btn-lg btn-outline download-button" download>
@@ -115,7 +116,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2>Recently Out</h2>
+                <h2>Recent Stories</h2>
                 <hr class="star-primary">
             </div>
         </div>
@@ -125,6 +126,8 @@
                     <a class="explore-row" href="/truespeak/{{name.url}}/">
                         {{ name.name }}
                     </a>
+                {% empty %}
+                    <p class="click-it">No one has shared a story yet.</p>
                 {% endfor %}
         </div>
     </div>
@@ -141,9 +144,9 @@
         </div>
         <div class="row">
             <p class="about-p">
-                If we simultaneously live a hundred incongruous lives then how can we ever hope for anyone to truly
-                understand us, or even to understand ourselves. It is human to want to be understood, and it is human to err, and to do things that we regret,
-                and to forgive, and to share our stories.
+                If we simultaneously live one hundred incongruous lives then how can we ever hope for anyone to truly
+                understand us. It is human to want to be understood, it is human to err, to do things that we regret,
+                to forgive, and to share our stories.
             </p>
         </div>
     </div>
