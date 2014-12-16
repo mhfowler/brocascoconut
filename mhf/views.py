@@ -302,7 +302,16 @@ def obfuscate(conversation, orig_convowith, alias_convowith, orig_username, alia
         else:
             text_words = []
         for index,word in enumerate(text_words):
-            replace_with = replace_mappings.get(word.lower()) or word
+            # get alpha characters at start of word
+            result = re.match("^([A-z]+)(.*)", word)
+            if result:
+                matching = result.group(1)
+                extra = result.group(2)
+            else:
+                matching = word
+                extra = ""
+            replace_with = replace_mappings.get(matching.lower()) or matching
+            replace_with = replace_with + extra
             if index > 0:
                 obfuscated_message += " "
             obfuscated_message += replace_with
