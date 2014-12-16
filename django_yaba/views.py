@@ -16,6 +16,8 @@ from django.template import RequestContext
 LOG_FILENAME = '/tmp/yaba.out'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
 
+ROOT_BLOG_URL = "http://brocascoconut.com/fuckcss/"
+
 def sort_by_date(x):
     return x.created
 
@@ -37,7 +39,7 @@ def category(request, slug):
     paginator = Paginator(front_page, 10)
     page = int(request.GET.get('page', '1'))
     posts = paginator.page(page)
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/story_list.html", 
         {'posts':posts, 'ROOT_URL': ROOT_URL}, 
@@ -59,7 +61,7 @@ def story_list(request):
     paginator = Paginator(front_page, 5)
     page = int(request.GET.get('page', '1'))
     posts = paginator.page(page)
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/story_list.html", 
         {'posts': posts, 'ROOT_URL': ROOT_URL},
@@ -70,7 +72,7 @@ def story_detail(request, slug):
     Takes the slug of a story, and displays that story
     """
     posts = get_object_or_404(Story, slug=slug)
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/story_detail.html", 
         {'posts': posts, 'ROOT_URL': ROOT_URL}, 
@@ -81,7 +83,7 @@ def article_detail(request, slug):
     Takes the slug of an article and displays that article
     """
     posts = get_object_or_404(Article, slug=slug)
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/article_detail.html", 
         {'posts': posts, 'ROOT_URL': ROOT_URL}, 
@@ -101,7 +103,7 @@ def story_id(request, story_id):
     Bit of a cheap hack. Currently used to get people back to the story they 
     commented on. Translates an ID to a slug
     """
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     try:
         posts = get_object_or_404(Story, pk=story_id)
@@ -121,7 +123,7 @@ def search(request):
     """
     searches across galleries, articles, and blog posts
     """
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     if 'q' in request.GET:
         term = request.GET['q']
@@ -152,7 +154,7 @@ def tag_list(request, tag):
     """
     Accepts a tag, and finds all stories that match it.
     """
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     stories = Story.objects.filter(tags__icontains=tag)
     galleries = Gallery.objects.filter(tags__icontains=tag)
@@ -175,7 +177,7 @@ def gallery(request, slug):
     """
     Accepts a slug, and grabs the article that matches that
     """
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     gallery = get_object_or_404(Gallery, slug=slug)
     return render_to_response("blog/gallery.html", 
@@ -186,7 +188,7 @@ def photo_detail(request, id):
     """
     Deprecated - Replaced by JS image viewer
     """
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     photo = get_object_or_404(Photo, id=id)
     return render_to_response("blog/photo.html", 
@@ -201,7 +203,7 @@ def gallery_list(request):
     paginator = Paginator(Gallery.objects.all().order_by('-created'), 5)
     page = int(request.GET.get('page', '1'))
     gallery = paginator.page(page)
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/gallery_list.html", 
         {'gallery': gallery, 'ROOT_URL': ROOT_URL}, 
@@ -211,7 +213,7 @@ def archives(request, date):
     """
     Accepts a date in YYYY-MM format, and returns all stories matching that.
     """
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     stories = Story.objects.filter(created__icontains=str(date))
     galleries = Gallery.objects.filter(created__icontains=str(date))
@@ -232,7 +234,7 @@ def archives(request, date):
 @login_required
 def preview_story(request, slug):
     posts = Story.admin_objects.get(slug=slug)
-    ROOT_URL = settings.ROOT_BLOG_URL
+    ROOT_URL = ROOT_BLOG_URL
     ROOT_URL = ROOT_URL.rstrip("/")
     return render_to_response("blog/story_detail.html", 
         {'posts': posts, 'ROOT_URL': ROOT_URL}, 
