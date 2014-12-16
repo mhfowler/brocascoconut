@@ -16,7 +16,7 @@ from django.template import RequestContext
 LOG_FILENAME = '/tmp/yaba.out'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
 
-ROOT_BLOG_URL = "http://brocascoconut.com/fuckcss/"
+ROOT_BLOG_URL = "/fuckcss"
 
 def sort_by_date(x):
     return x.created
