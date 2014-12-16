@@ -210,6 +210,17 @@ a.project-link {
     text-decoration:none;
 }
 
+/* mobile */
+@media (max-width: 750px) {
+    .projects-wrapper {
+        padding-left:10px;
+        width:100%;
+    }
+    .project-wrapper {
+        width:100%;
+    }
+}
+
 .under-image {
     position: absolute;
     left: 107px;
