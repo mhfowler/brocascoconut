@@ -139,5 +139,44 @@ body {
 
 .about-container {
     float:left;
-    width:80%;
+    padding-left:100px;
+    padding-top:40px;
+}
+/* mobile */
+@media (max-width: 750px) {
+    .about-container {
+        padding-left:0px;
+        width:100%;
+    }
+    .about-text-wrapper {
+        padding-left:10px;
+    }
+    .max-pic {
+        width:100%;
+    }
+    .evan-pic {
+        width:100%;
+    }
+    .about-text-wrapper p {
+        width:100%;
+    }
+    .about-page.about-page-mini {
+        width:100%;
+    }
+}
+
+.max-pic {
+    max-width:600px;
+}
+.evan-pic {
+    max-width:600px;
+    margin-top:25px;
+}
+
+.about-text-wrapper p {
+    max-width:600px;
+}
+
+.about-page {
+    width:950px;
 }
