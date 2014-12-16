@@ -53,7 +53,7 @@ urlpatterns += patterns('',
 
 # patterns for django_yaba
 urlpatterns += patterns('',
-                        url(r'^fuckcss/', include('django_yaba.urls')),
+                        url(r'^nocss/', include('django_yaba.urls')),
                         )
 
 
