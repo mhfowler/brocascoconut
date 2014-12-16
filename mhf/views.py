@@ -157,6 +157,12 @@ def about(request):
 def contact(request):
      return render(request, 'contact.html')
 
+def projects(request):
+     return render(request, 'projects.html')
+
+def store(request):
+     return render(request, 'store.html')
+
 # truespeak ######################################################################################
 def truespeak(request):
     names = getRecentlyOut()

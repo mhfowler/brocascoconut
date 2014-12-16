@@ -177,3 +177,65 @@ body {
 .about-page {
     width:950px;
 }
+
+
+/* projects */
+.projects-wrapper {
+    float: left;
+    width: 600px;
+    padding-left: 100px;
+    padding-top: 55px;
+}
+
+.project-number {
+    float:left;
+    margin-right:5px;
+    font-weight:bold;
+}
+.project-title {
+    font-weight:bold;
+}
+
+a.project-link div.project-title {
+    text-decoration:underline;
+}
+
+a .project-wrapper {
+    color:black;
+    cursor:pointer;
+    margin-bottom:30px;
+}
+
+a.project-link {
+    text-decoration:none;
+}
+
+.under-image {
+    position: absolute;
+    left: 107px;
+    top: -9px;
+    z-index: -1;
+    width: 213px;
+    opacity: .3;
+}
+
+
+
+/* store */
+.store-wrapper {
+    float: left;
+    width: 600px;
+    padding-left: 100px;
+    padding-top: 55px;
+}
+
+
+.segue-pic {
+    margin-top:15px;
+    width:200px;
+}
+
+.item-number {
+    float:left;
+    margin-right:5px;
+}
