@@ -48,7 +48,12 @@ def map_reduce(request):
 
 # robert marvin ########################################################################################################
 def monkeySkull(request):
-    return render(request, 'monkeySkull.html')
+    if request.COOKIES.get("brocas"):
+        return shortcuts.redirect("/______/")
+    else:
+        response = render(request, 'monkeySkull.html')
+        response.set_cookie("brocas", 666)
+        return response
 
 def brocasCoconut(request):
     stat = getNumVisitors()
