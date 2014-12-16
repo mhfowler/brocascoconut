@@ -344,7 +344,8 @@ footer h3 {
 
 footer .footer-above {
     padding-top: 50px;
-    background-color: #202020;
+    /*background-color: #202020;*/
+    background-color: #2c3e50;
 }
 
 footer .footer-col {
@@ -353,7 +354,8 @@ footer .footer-col {
 
 footer .footer-below {
     padding: 25px 0;
-    background-color: #000000;
+    /*background-color: #000000;*/
+    background-color: #131e28;
 }
 
 .btn-social {
@@ -628,5 +630,6 @@ input[type="checkbox"].include-checkbox {
 }
 
 .navbar-default.navbar-fixed-top {
-    background-color:black;
+    /*background-color:black;*/
+    background-color: #2c3e50;
 }
