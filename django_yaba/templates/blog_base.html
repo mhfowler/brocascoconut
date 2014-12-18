@@ -2,74 +2,85 @@
 {% load navbar %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Old Blog</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<!-- add your meta tags here -->
-<link href="/static/newnew.css" rel="stylesheet" type="text/css" />
-<link href="{{ MEDIA_URL }}themes/{% theme %}/css/layout.css" rel="stylesheet" type="text/css" />
-<!--[if lte IE 7]>
+    <title>Old Blog</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <!-- add your meta tags here -->
+    <link href="/static/newnew.css" rel="stylesheet" type="text/css" />
+    <link href="{{ MEDIA_URL }}themes/{% theme %}/css/layout.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 7]>
 <link href="media/css/patch_layout.css" rel="stylesheet" type="text/css" />
 <![endif]-->
-<script type="text/javascript"    src="{{ MEDIA_URL }}js/slide.js"></script>
-{% load get_setting %}
-{% get_setting "DJANGO_COMMENTS" "django_comments" %}
-  {% if django_comments %}
-{#    {#    {% load comments %}  #}#}
-      <h1> should not see this!</h1>
-  {% else %}
-    {% load disqus_tags %}
-  {% endif %}
+    <script type="text/javascript"    src="{{ MEDIA_URL }}js/slide.js"></script>
+    {% load get_setting %}
+    {% get_setting "DJANGO_COMMENTS" "django_comments" %}
+    {% if django_comments %}
+        {#    {#    {% load comments %}  #}#}
+        <h1> should not see this!</h1>
+    {% else %}
+        {% load disqus_tags %}
+    {% endif %}
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-57781529-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 
 </head>
 <body>
-  <div class="page_margins">
+<div class="page_margins">
     <div class="page">
-      <div id="header">
-        <div id="topnav">
-          <!-- start: skip link navigation -->
-{#          <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>#}
-{#          <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>#}
-          <form action="{{ ROOT_URL }}/blog/search" method="get">
-              <label for="q">Search:</label>
-              <input type="text" id="q" size="13" name="q" />
-          </form>
-          <!-- end: skip link navigation <a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a> -->
+        <div id="header">
+            <div id="topnav">
+                <!-- start: skip link navigation -->
+                {#          <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>#}
+                {#          <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>#}
+                <form action="{{ ROOT_URL }}/blog/search" method="get">
+                    <label for="q">Search:</label>
+                    <input type="text" id="q" size="13" name="q" />
+                </form>
+                <!-- end: skip link navigation <a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a> -->
+            </div>
+            <h1>No CSS courtesy of <a href="http://brocascoconut.com">Broca's Coconut</a></h1>
         </div>
-        <h1>No CSS courtesy of <a href="http://brocascoconut.com">Broca's Coconut</a></h1>
-      </div>
-      <div id="nav">
-        <!-- skiplink anchor: navigation -->
-        <a id="navigation" name="navigation"></a>
-        <div class="hlist">
-          <!-- main navigation: horizontal list -->
-          <ul>
-            <li><a href="{{ ROOT_URL }}">Home</a></li>
-{#            <li><a href="{{ ROOT_URL }}/feeds/rss">RSS Feed</a></li>#}
-{#            <li><a href="{{ ROOT_URL }}/gallery/list">Galleries</a></li>#}
-            {% main_nav %}
+        <div id="nav">
+            <!-- skiplink anchor: navigation -->
+            <a id="navigation" name="navigation"></a>
+            <div class="hlist">
+                <!-- main navigation: horizontal list -->
+                <ul>
+                    <li><a href="{{ ROOT_URL }}">Home</a></li>
+                    {#            <li><a href="{{ ROOT_URL }}/feeds/rss">RSS Feed</a></li>#}
+                    {#            <li><a href="{{ ROOT_URL }}/gallery/list">Galleries</a></li>#}
+                    {% main_nav %}
+            </div>
         </div>
-      </div>
-      <div id="main">
-        <div id="col1">
-          <div id="col1_content" class="clearfix">
-<!-- start main content -->
-          {% block content %}
-          {% endblock %}
-<!-- end main content -->
-          </div>
-        </div>
+        <div id="main">
+            <div id="col1">
+                <div id="col1_content" class="clearfix">
+                    <!-- start main content -->
+                    {% block content %}
+                    {% endblock %}
+                    <!-- end main content -->
+                </div>
+            </div>
             {% sidebar %}
             <hr />
-<!-- End sidebar -->
-          </div>
-          <!-- IE Column Clearing -->
-          <div id="ie_clearing"> amp;#160; </div>
+            <!-- End sidebar -->
         </div>
-      </div>
-      <!-- begin: #footer -->
-      <div id="footer">Layout based on <a href="http://www.yaml.de/">YAML</a>
-      </div>
+        <!-- IE Column Clearing -->
+        <div id="ie_clearing"> amp;#160; </div>
     </div>
-  </div>
+</div>
+<!-- begin: #footer -->
+<div id="footer">Layout based on <a href="http://www.yaml.de/">YAML</a>
+</div>
+</div>
+</div>
 </body>
 </html>
