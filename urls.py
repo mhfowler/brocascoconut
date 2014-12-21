@@ -31,7 +31,7 @@ urlpatterns = patterns('',
                        (r'^projects/$', viewWrapper(projects)),
                        (r'^store/$', viewWrapper(store)),
                        (r'^contact/$', viewWrapper(contact)),
-                       (r'^about/$', viewWrapper(about)),
+                       (r'^about_brocas/$', viewWrapper(about)),
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
 
                        # truespeak
