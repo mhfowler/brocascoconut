@@ -221,7 +221,7 @@ a:hover {
 }
 
 .description {
-    font-family:"Times New Roman", Times, serif;
+{#    font-family:"Times New Roman", Times, serif;#}
 }
 
 .shirt-img-number {
@@ -233,6 +233,18 @@ a:hover {
     font-size: 20px;
     text-align: center;
     width: 200px;
+}
+
+.see-the-back {
+    margin-left:50%;
+    cursor:pointer;
+}
+
+.shirtimg {
+    display:none;
+}
+.shirtimg.showshirt.selected {
+    display:block;
 }
 
 </style>
@@ -332,9 +344,11 @@ a:hover {
     </div>
 
     <div class="side-pane right-pane pane">
-        <img class="black-male-shirt-img shirtimg" src="/static/img/blacktriangle.jpg"/>
-        <img class="white-male-shirt-img shirtimg" src="/static/img/whitetriangle.jpg"/>
+        <img class="black-male-shirt-img shirtimg shirtfront showshirt" src="/static/img/blacktriangle.jpg"/>
+        <img class="white-male-shirt-img shirtimg shirtfront showshirt" src="/static/img/whitetriangle.jpg"/>
+        <img class="black-back-img shirtimg shirtback" src="/static/img/blackshirtback.png"/>
         <div class="shirt-img-number">?</div>
+        <a class="see-the-back">see the back</a>
     </div>
 
 </div>

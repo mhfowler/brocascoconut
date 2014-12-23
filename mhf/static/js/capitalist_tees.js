@@ -138,14 +138,19 @@ $( document ).ready(function() {
         $(".color-button").removeClass("selected-color");
         $(this).addClass("selected-color");
 
-        $(".shirtimg").hide();
         if ($(this).hasClass("black-button")) {
-            $(".black-male-shirt-img").show();
+            $(".black-male-shirt-img").addClass("selected");
+            $(".white-male-shirt-img").removeClass("selected");
             $(".shirt-img-number").css("color","white");
+            $(".black-shirt-back").addClass("selected");
+            $(".white-shirt-back").removeClass("selected");
         }
         else {
-            $(".white-male-shirt-img").show();
+            $(".black-male-shirt-img").removeClass("selected");
+            $(".white-male-shirt-img").addClass("selected");
             $(".shirt-img-number").css("color","black");
+            $(".black-shirt-back").removeClass("selected");
+            $(".white-shirt-back").addClass("selected");
         }
 
     });
@@ -158,6 +163,11 @@ $( document ).ready(function() {
         e.preventDefault();
         $(".style-button").removeClass("selected-style");
         $(this).addClass("selected-style");
+    });
+    $(".see-shirt-back").click(function(e) {
+        e.preventDefault();
+        $(".shirtback").addClass("showshirt");
+        $(".shirtfront").removeClass("showshirt");
     });
 
     $(".new-order").click(function(e) {
