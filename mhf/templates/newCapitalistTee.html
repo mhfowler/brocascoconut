@@ -40,128 +40,122 @@
 
     </script>
 
+    <script src="/static/js/jquery.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="/static/js/capitalist_tees.js"></script>
+
+    <link href="/static/newCapitalist.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top" class="index">
 
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#page-top">TrueSpeak</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#upload">Upload</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#explore">Explore</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="#about">About</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+{#<!-- Navigation -->#}
+{#<nav class="navbar navbar-default navbar-fixed-top">#}
+{#    <div class="container">#}
+{#          <a class="navbar-brand central-brand" href="#page-top">The Capitalist Tee</a>#}
+{#    </div>#}
+{#    <!-- /.container-fluid -->#}
+{#</nav>#}
 
 <!-- Header -->
 <header>
-    <div class="container">
+    <div class="container header-container">
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive" src="../static/startbootstrap-freelancer-1.0.0/img/head_circle.png" alt="">
-                <div class="intro-text">
-                    <span class="name">Share Your Story</span>
-                    <hr class="star-primary">
-                    <span class="skills">If you backup your iPhone onto a macbook, you can come out to the world as yourself by uploading your text message history to a publicly viewable page.</span>
+                <div class="central-pane pane">
+                    <h1 class="capitalist-tee"> The Capitalist T-Shirt </h1>
+                    <p class="description">
+                        Enter the number 'X' that you want printed on your t-shirt<br>
+                        and we will send you the t-shirt for 10 + 'X' dollars.<br>
+                    </p>
+
+                    <div class="main-div purchase-div">
+
+                        <div class="select-number">
+                            <img src="/static/img/black_triangle.png" class="black-triangle-img"/>
+                            <input type="text" class="number-input"/>
+                        </div>
+
+                        <div class="buttons-wrapper">
+
+                            <div class="color-buttons row-buttons">
+                                <a href="" class="black-button color-button selected-color">Black</a>
+                                <a href="" class="white-button color-button">White</a>
+                                <div style="clear:both;"></div>
+                            </div>
+
+                            {#            <div class="style-buttons">#}
+                            {#                <a href="" class="mens-button style-button selected-style">Masculine</a>#}
+                            {#                <a href="" class="womens-button style-button">Feminine</a>#}
+                            {#            </div>#}
+
+                            <div class="size-buttons row-buttons">
+
+                                <a href="" class="size-button selected-size">S</a>
+                                <a href="" class="size-button">M</a>
+                                <a href="" class="size-button">L</a>
+
+                            </div>
+
+                            <div class="shipping row-buttons">
+                                <span class="ship-to">SHIP TO</span>
+                                <input type="text" class="shipping-input"/>
+                            </div>
+
+                            <div class="display-price row-buttons">
+                                <span class="base-price">$10</span>
+                                <span class="plus">+</span>
+                                <span class="bonus-price">?</span>
+                                <span class="plus">=</span>
+                                <span class="total-price">What You Pay</span>
+                            </div>
+
+                            <a href="" class="purchaseButton row-buttons">Purchase With Credit Card</a>
+                        </div>
+
+                        <div class="shirt-img-wrapper">
+                            <div class="shirt-front-wrapper">
+                                <img class="black-male-shirt-img shirtimg shirtfront selected" src="/static/img/blacktriangle.jpg"/>
+                                <img class="white-male-shirt-img shirtimg shirtfront" src="/static/img/whitetriangle.jpg"/>
+                                <div class="shirt-img-number">?</div>
+                                <a class="see-the-back">see the back</a>
+                            </div>
+                            <div class="shirt-back-wrapper">
+                                <img class="black-shirt-back shirtimg shirtback selected" src="/static/img/blackshirtback.png"/>
+                                <img class="white-shirt-back shirtimg shirtback" src="/static/img/fractal.jpg"/>
+                                <a class="see-the-front">see the front</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="main-div loading-div">
+                        <p class="loading-text">
+                            processing...
+                        </p>
+                        <img class="loading-gif" src="http://38.media.tumblr.com/85eb371444e4dfe9cbe6cdb68550168a/tumblr_mxv8vmb87W1ql82o1o1_r1_500.gif"/>
+                    </div>
+
+                    <div class="main-div thankyou-div">
+                        <p class="thankyou-text">thankyou</p>
+                        <a href="" class="new-order">click here to start a new order</a>
+                    </div>
+
                 </div>
+
+                {% comment %}
+                <div class="description-pane">
+                    <h2>about</h2>
+                    <p class="about-paragraph">
+                        Logos, etc.
+                    </p>
+                </div>
+                {% endcomment %}
             </div>
         </div>
     </div>
 </header>
-
-<!-- Upload Section -->
-<section class="success upload-section" id="upload">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>How To Upload Your Texts</h2>
-                <hr class="star-light">
-            </div>
-        </div>
-        <div class="row">
-            <ol class="steps-list">
-                <li> Click the download button below, to download a script which will help you upload your text messages. </li>
-                <li> After the download completes, double click truespeak.zip to unzip the script. </li>
-                <li> Right click truespeak (the unzipped file) and click open to run the script which will guide you through uploading your text
-                    messages to a secret page which only you have a link to.</li>
-                <li> From your secret page select which of your text conversations you would like to publicly publish under which aliases.</li>
-            </ol>
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <a href="https://s3.amazonaws.com/truespeak/truespeak.zip" class="btn btn-lg btn-outline download-button" download>
-                    <i class="fa fa-download"></i> Download
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Portfolio Grid Section -->
-<section id="explore">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Recent Stories</h2>
-                <hr class="star-primary">
-            </div>
-        </div>
-        <div class="row explore-container">
-            <p class="click-it"> Click a name to read their story. </p>
-            {% for name in names %}
-                <a class="explore-row" href="/truespeak/{{name.url}}/">
-                    {{ name.name }}
-                </a>
-            {% empty %}
-                <p class="click-it">No one has shared a story yet.</p>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="success about-section" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>About Truespeak</h2>
-                <hr class="star-light">
-            </div>
-        </div>
-        <div class="row">
-            <p class="about-p">
-                If we simultaneously live one hundred incongruous lives then how can we ever hope for anyone to truly
-                understand us. It is human to want to be understood, it is human to err, to do things that we regret,
-                to forgive, and to share our stories.
-            </p>
-        </div>
-    </div>
-</section>
 
 <!-- Footer -->
 <footer class="text-center">
@@ -187,14 +181,11 @@
                         <li>
                             <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
                         </li>
-                        <li>
-                            <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                        </li>
                     </ul>
                 </div>
                 <div class="footer-col col-md-4">
                     <h3>Contact</h3>
-                    <p>Send an email to <a class="brocas-link" href="mailto:truespeak@brocascoconut.com">truespeak@brocascoconut.com</a></p>
+                    <p><a class="brocas-link" href="mailto:hello@brocascoconut.com">hello@brocascoconut.com</a></p>
                 </div>
             </div>
         </div>
@@ -202,8 +193,8 @@
     <div class="footer-below">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    Truth Is Beauty
+                <div class="col-lg-12 much-stacks">
+                    need 3 hands
                 </div>
             </div>
         </div>

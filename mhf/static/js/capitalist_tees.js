@@ -95,9 +95,9 @@ $( document ).ready(function() {
 
     // set new bonus price
     function setBonusPrice(newNumber) {
-        var base_price = 15;
+        var base_price = 10;
         if (newNumber == "") {
-            var total_price = 15;
+            var total_price = 10;
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("?");
             $(".shirt-img-number").html("?");
@@ -164,10 +164,15 @@ $( document ).ready(function() {
         $(".style-button").removeClass("selected-style");
         $(this).addClass("selected-style");
     });
-    $(".see-shirt-back").click(function(e) {
+    $(".see-the-back").click(function(e) {
         e.preventDefault();
-        $(".shirtback").addClass("showshirt");
-        $(".shirtfront").removeClass("showshirt");
+        $(".shirt-back-wrapper").show();
+        $(".shirt-front-wrapper").hide();
+    });
+    $(".see-the-front").click(function(e) {
+        e.preventDefault();
+        $(".shirt-back-wrapper").hide();
+        $(".shirt-front-wrapper").show();
     });
 
     $(".new-order").click(function(e) {
