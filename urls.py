@@ -25,7 +25,7 @@ urlpatterns = patterns('',
                        (r'^submit_email/$', viewWrapper(submitEmail)),
 
                        # pages
-                       (r'^capitalist_tees/$', viewWrapper(capitalistTees)),
+                       (r'^the_capitalist_tee/$', viewWrapper(capitalistTees)),
                        (r'^writing/$', viewWrapper(writing)),
                        (r'^art/$', viewWrapper(art)),
                        (r'^projects/$', viewWrapper(projects)),
