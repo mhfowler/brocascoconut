@@ -381,6 +381,9 @@ a {
     .purchaseButton {
         max-width:90%;
     }
+    .row {
+        margin-right:0px;
+    }
 }
 
 

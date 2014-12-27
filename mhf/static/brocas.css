@@ -219,15 +219,27 @@ a.project-link {
     .project-wrapper {
         width:100%;
     }
+    .under-image {
+        display:none;
+    }
+    .left-side {
+        position:relative;
+    }
 }
 
 .under-image {
     position: absolute;
     left: 107px;
-    top: -9px;
+    top: 1px;
     z-index: -1;
     width: 213px;
-    opacity: .3;
+    opacity: 0.5;
+}
+.left-under-image {
+    display:none;
+}
+.right-under-image {
+    display:none;
 }
 
 
