@@ -1,6 +1,10 @@
 
 $( document ).ready(function() {
 
+   if (window.location.protocol != 'https:') {
+       window.location.replace("https://brocascoconut.com/the_capitalist_tee/");
+   }
+
     // csrf protect
     /* csrf protection */
     function getCookie(name) {
