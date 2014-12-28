@@ -3,6 +3,7 @@
 .shirt-img-wrapper {
 }
 .shirt-contingent {
+    display:none;
 }
 .print-contingent {
     display:none;
@@ -53,7 +54,7 @@ section.related-section {
     padding-top:0px;
 }
 div.related-products-wrapper {
-    margin-top:30px;
+    margin-top:0px;
     margin-bottom:30px;
     padding-top:35px;
     padding-bottom:45px;
@@ -77,7 +78,7 @@ div.related-products-wrapper {
     color:black;
 }
 .featured-pane {
-    height:1050px;
+    /*height:1050px;*/
 }
 
 /* old */
@@ -331,7 +332,7 @@ a:hover {
 }
 .booty-img-number {
     position: absolute;
-    left: 127px;
+    left: 184px;
     top: 93px;
     font-size: 60px;
     font-family: "Helvetica";
@@ -382,7 +383,7 @@ a.navbar-brand.triangle-brand {
 .container.header-container {
     margin-top:0px;
     padding-top:10px;
-    padding-bottom:50px;
+    padding-bottom:40px;
 }
 
 .description-pane {
@@ -475,15 +476,19 @@ a {
         width:100%;
     }
     .row-buttons {
-        width:100%;
+        /*width:100%;*/
     }
     .color-buttons {
         max-width:370px;
+        width:100%;
     }
     .color-button {
         max-width:50%;
     }
     .size-buttons {
+        max-width:240px;
+    }
+    .printsize-buttons {
         max-width:240px;
     }
     .display-price {
@@ -498,8 +503,33 @@ a {
     .col-lg-12 {
         padding-right:0px;
     }
+    .booty-img-number {
+        left: 85px;
+    }
 }
 
+@media (max-width: 415px) {
+    .frame-img {
+        width:200px;
+    }
+    .print-wrapper {
+        width:200px;
+    }
+    .image-section {
+        width:100%;
+    }
+    .print-img-number {
+        position: absolute;
+        top: 45px;
+        font-family: "Helvetica";
+        left: -3px;
+        color: black;
+        font-size: 63px;
+        text-align: center;
+        width: 200px;
+        letter-spacing: -11px;
+    }
+}
 
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
