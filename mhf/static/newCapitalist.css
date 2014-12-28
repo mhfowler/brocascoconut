@@ -396,6 +396,9 @@ a {
     .row {
         margin-right:0px;
     }
+    .col-lg-12 {
+        padding-right:0px;
+    }
 }
 
 
