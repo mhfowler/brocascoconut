@@ -3,6 +3,8 @@
 .shirt-img-wrapper {
 }
 .shirt-contingent {
+}
+.print-contingent {
     display:none;
 }
 
@@ -95,7 +97,6 @@ body {
 
 .row-buttons {
     margin:auto;
-    margin-top:30px;
 }
 
 .black-triangle-img {
@@ -128,15 +129,14 @@ body {
 .color-buttons {
     width:370px;
     height:30px;
-    display:none;
 }
 
 .which-buttons {
-      margin:auto;
-    margin-top:20px;
-    margin-bottom:20px;
-    height:30px;
-    width:240px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 280px;
 }
 .size-buttons {
     margin:auto;
@@ -178,7 +178,7 @@ body {
     border: 1px solid gray;
 }
 .which-button {
-    width: 80px;
+    width: 140px;
     float: left;
     text-align: center;
     padding: 5px;
@@ -192,6 +192,7 @@ body {
     padding: 5px;
     border: 1px solid gray;
     text-align: center;
+    margin-bottom:25px;
 }
 
 .shipping-input {

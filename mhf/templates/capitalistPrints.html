@@ -66,28 +66,12 @@
 
                     <div class="main-div purchase-div">
 
-                        <div class="print-wrapper">
-                            <img class="frame-img" src="/static/img/black_frame_triangle.png"/>
-                            <div class="print-img-number">?</div>
-                        </div>
 
-                        <div class="shirt-img-wrapper shirt-contingent">
-                            <div class="shirt-front-wrapper">
-                                <img class="black-male-shirt-img shirtimg shirtfront selected" src="/static/img/blacktriangle.jpg"/>
-                                <img class="white-male-shirt-img shirtimg shirtfront" src="/static/img/whitetriangle.jpg"/>
-                                <div class="shirt-img-number">?</div>
-                            </div>
-                            <div class="shirt-back-wrapper">
-                                <img class="black-shirt-back shirtimg shirtback selected" src="/static/img/blackshirtback.png"/>
-                                <img class="white-shirt-back shirtimg shirtback" src="/static/img/fractal.jpg"/>
-                            </div>
-                        </div>
 
 
                         <p class="description">
-                               Enter the number 'X' that you want printed on your t-shirt<br>
+                            Enter the number 'X' that you want printed on your t-shirt<br>
                             and we will send you the t-shirt for 10 + 'X' dollars.<br>
-                            (or a framed print for 5 + 'X' dollars)
                         </p>
 
                         <div class="select-number">
@@ -103,13 +87,21 @@
                             {#                                <div style="clear:both;"></div>#}
                             {#                            </div>#}
 
-                            <div class="size-buttons row-buttons">
+                            <div class="which-buttons row-buttons">
 
-                                <a href="" class="which-button print-button selected-which">5x7</a>
-                                <a href="" class="which-button print-button">18x20</a>
-                                <a href="" class="which-button tshirt-button">T-Shirt</a>
+                                <a href="" class="which-button tshirt-button selected-which">T-Shirt</a>
+                                <a href="" class="which-button print-button">Framed Print</a>
 
                             </div>
+
+                            <div class="print-buttons row-buttons print-contingent">
+
+                                <a href="" class="which-button print-button selected-print">5x7</a>
+                                <a href="" class="which-button print-button">18x20</a>
+                                <a href="" class="which-button print-button">90x120</a>
+
+                            </div>
+
 
                             <div class="color-buttons row-buttons shirt-contingent">
                                 <a href="" class="black-button color-button selected-color">Black</a>
@@ -142,9 +134,25 @@
                             </div>
 
                             <a href="" class="purchaseButton row-buttons">Purchase With Credit Card</a>
+
                         </div>
 
+                        <div class="print-wrapper print-contingent">
+                            <img class="frame-img" src="/static/img/black_frame_triangle.png"/>
+                            <div class="print-img-number">?</div>
+                        </div>
 
+                        <div class="shirt-img-wrapper shirt-contingent">
+                            <div class="shirt-front-wrapper">
+                                <img class="black-male-shirt-img shirtimg shirtfront selected" src="/static/img/blacktriangle.jpg"/>
+                                <img class="white-male-shirt-img shirtimg shirtfront" src="/static/img/whitetriangle.jpg"/>
+                                <div class="shirt-img-number">?</div>
+                            </div>
+                            <div class="shirt-back-wrapper">
+                                <img class="black-shirt-back shirtimg shirtback selected" src="/static/img/blackshirtback.png"/>
+                                <img class="white-shirt-back shirtimg shirtback" src="/static/img/fractal.jpg"/>
+                            </div>
+                        </div>
 
 
                     </div>
