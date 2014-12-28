@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 import random, os, re
 from settings.common import PROJECT_PATH, SECRETS_DICT, ADMIN_EMAILS, getTrueSpeakBucket, getOrCreateS3Key
+from common import send_mailgun_message
 from django.views.decorators.csrf import ensure_csrf_cookie
 from boto.s3.connection import S3Connection, Key
 import stripe, json, mailchimp
@@ -112,7 +113,7 @@ def buyShirt(request):
     size = request.POST["size"]
     cost = request.POST["cost"]
     address = request.POST["address"]
-    costincents = int(cost) * 1000
+    costincents = int(cost) * 100
     try:
         charge = stripe.Charge.create(
             amount=costincents, # amount in cents, again
@@ -128,22 +129,49 @@ def buyShirt(request):
         sendOrderEmail(False, user_email, color, size, cost, address)
         return HttpResponse("failure")
 
-# send an email about success or failure of order
+# send an email about success or failure of order to publisher and to the customer
 def sendOrderEmail(success, email, color, size, cost, address):
-    base_price = 15
+    base_price = 10
+    number = str(int(cost)-base_price)
     message = \
     "email: " + email + "\n" + \
     "color: " + color + "\n" + \
     "size: " + size + "\n" + \
-    "number: " + str(int(cost)-base_price) + "\n" + \
+    "number: " + number + "\n" + \
     "cost: " + cost + "\n" + \
     "address: " + address + "\n"
+    receipt = False
     if success:
         subject = "Capitalist Tee Order Placed"
+        # send receipt to customer
+        try:
+            customer_subject = "Capitalist T-Shirt Receipt"
+            customer_message = "Thank you for your Capitalist T-Shirt Order! \n\n" + \
+                "We received payment of " + cost + " dollars, and in less than a month we will print your shirt " + \
+                "(size: " + size + ", color: " + color + ", number: " + number + ") and mail it to the address: \n\n" + address + \
+                "\n\nIf you have any questions please send an email to questions@brocascoconut.com.\n\n" + \
+                "Sincerely,\n\nBroca's Coconut \nhttp://brocascoconut.com"
+            result = send_mailgun_message(send_to_list=[email], subject=customer_subject, message=customer_message, from_name="Brocas Coconut", from_email="receipt@brocascoconut.com")
+            receipt = True
+        except Exception as e:
+            pass
     else:
+        try:
+            customer_subject = "Capitalist T-Shirt Order Failure"
+            customer_message = "Thank you for your Capitalist T-Shirt order, \n" + \
+                "Unfortunately there was some error processing your payment. \n\n" + \
+                "You will not be charged and we will look into the issue, but sorry for the inconvenience." + \
+                "\n\nIf you have any questions please send an email to questions@brocascoconut.com.\n\n" + \
+                "Sincerely,\nBroca's Coconut \n\nhttp://brocascoconut.com"
+            result = send_mailgun_message(send_to_list=[email], subject=customer_subject, message=customer_message, from_name="Brocas Coconut", from_email="error@brocascoconut.com")
+            receipt = True
+        except Exception as e:
+            pass
         subject = "Capitalist Tee Order Failure"
-    send_mail(subject, message, 'order@robertmarvin.com',
-    ADMIN_EMAILS, fail_silently=False)
+    # send email to publishers so they know to print it
+    if receipt:
+        message += "\nreceipt successfully sent"
+    result = send_mailgun_message(send_to_list=ADMIN_EMAILS, subject=subject, message=message, from_name="Brocas Coconut", from_email="neworder@brocascoconut.com")
 
 # main pages
 def art(request):

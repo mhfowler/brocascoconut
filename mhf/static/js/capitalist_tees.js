@@ -50,7 +50,7 @@ $( document ).ready(function() {
 
     var handler = StripeCheckout.configure({
         key: stripePublishableKey,
-        image: '/square-image.png',
+        image: '/static/img/small_triangle.png',
         token: function (token) {
             // Use the token to create the charge with a server-side script.
             // You can access the token ID with `token.id`
@@ -81,11 +81,13 @@ $( document ).ready(function() {
             return;
         }
         var cost = $(".shirtCost").attr("data-cost");
+        var size = $(".selected-size").html();
+        var color = $(".selected-color").html();
         var costInCents = Math.floor(parseFloat(cost)*100);
         // Open Checkout with further options
         handler.open({
-            name: 'RobertMarvin.com',
-            description: 'Capitalist T-Shirt ($' + cost + ')',
+            name: 'brocascoconut.com',
+            description: 'Capitalist T-Shirt (Size: ' + size + ", Number: " + bonusNumber + ')',
             amount: costInCents
         });
     });
