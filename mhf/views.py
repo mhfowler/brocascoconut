@@ -101,7 +101,7 @@ def capitalistTees(request):
 def buyShirt(request):
     # Set your secret key: remember to change this to your live secret key in production
     # See your keys here https://dashboard.stripe.com/account
-    stripe_secret_key = SECRETS_DICT["STRIPE_SECRET_KEY"]
+    stripe_secret_key = SECRETS_DICT["STRIPE_SECRET_LIVE_KEY"]
     stripe.api_key = stripe_secret_key
 
     # Get the credit card details submitted by the form
