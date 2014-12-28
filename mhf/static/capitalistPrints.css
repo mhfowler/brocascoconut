@@ -1,6 +1,8 @@
 
 /* capitalist prints */
 .shirt-img-wrapper {
+}
+.shirt-contingent {
     display:none;
 }
 
@@ -14,24 +16,25 @@
 .print-img-number {
 
     /* in triangle */
+    position: absolute;
+    top: 83px;
+    font-family: "Helvetica";
+    left: 75px;
+    color: black;
+    font-size: 94px;
+    text-align: center;
+    width: 200px;
+    letter-spacing: -11px;
+
+    /* just numer */
     /*position: absolute;*/
-    /*top: 83px;*/
+    /*top: 43px;*/
     /*font-family: "Helvetica";*/
     /*left: 80px;*/
     /*color: black;*/
-    /*font-size: 94px;*/
+    /*font-size: 113px;*/
     /*text-align: center;*/
     /*width: 200px;*/
-
-    /* just numer */
-    position: absolute;
-    top: 43px;
-    font-family: "Helvetica";
-    left: 80px;
-    color: black;
-    font-size: 113px;
-    text-align: center;
-    width: 200px;
 }
 
 
@@ -98,7 +101,7 @@ body {
 .black-triangle-img {
     width:55%;
     margin:auto;
-    display:none;
+    /*display:none;*/
 }
 
 .number-input {
@@ -106,7 +109,7 @@ body {
     height: 94px;
     font-size: 40px;
     text-align: center;
-    /*position: absolute;*/
+    position: absolute;
     top: 56%;
     left: 228px;
 }
@@ -128,8 +131,14 @@ body {
     display:none;
 }
 
+.which-buttons {
+      margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    height:30px;
+    width:240px;
+}
 .size-buttons {
-    display:block;
     margin:auto;
     margin-top:20px;
     margin-bottom:20px;
@@ -162,6 +171,13 @@ body {
 
 
 .size-button {
+    width: 80px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid gray;
+}
+.which-button {
     width: 80px;
     float: left;
     text-align: center;
@@ -211,6 +227,10 @@ a.selected-size {
     color:white;
 }
 a.selected-style {
+    background-color:black;
+    color:white;
+}
+a.selected-which {
     background-color:black;
     color:white;
 }
@@ -272,11 +292,11 @@ a:hover {
 
 .shirt-img-number {
     position: absolute;
-    top: 66px;
+    top: 69px;
     font-family: "Helvetica";
-    left: 32%;
+    left: 206px;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     text-align: center;
     width: 200px;
 }
