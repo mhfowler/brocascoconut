@@ -26,8 +26,8 @@ urlpatterns = patterns('',
 
                        # capitalist products
                        (r'^the_capitalist_tshirt/$', viewWrapper(capitalistTees)),
-                       (r'^capitalist_prints/$', viewWrapper(capitalistTees)),
-                       (r'^capitalist_booty_shorts/$', viewWrapper(capitalistTees)),
+                       (r'^the_capitalist_print/$', viewWrapper(capitalistTees)),
+                       (r'^the_capitalist_booty/$', viewWrapper(capitalistTees)),
 
                        # other pages
                        (r'^writing/$', viewWrapper(writing)),

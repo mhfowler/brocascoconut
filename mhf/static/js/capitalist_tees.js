@@ -25,6 +25,7 @@ function printPage() {
     else if ($(".large-print-button").hasClass("selected-printsize")) {
         setBasePrice(100);
     }
+//    history.pushState('data', '', 'https://brocascoconut.com/the_capitalist_print/');
 }
 function bootyPage() {
     $(".shirt-contingent").hide();
@@ -35,6 +36,7 @@ function bootyPage() {
     $(".print-button").show();
     which_product = "booty";
     setBasePrice(10);
+//    history.pushState('data', '', 'https://brocascoconut.com/the_capitalist_booty/');
 }
 
 
@@ -271,18 +273,21 @@ $( document ).ready(function() {
 
     $(".tshirt-button").click(function(e) {
         e.preventDefault();
-        shirtPage();
+        window.location.replace("/the_capitalist_tshirt/");
+//        shirtPage();
 //        window.scrollTo(0, 300);
     });
     $(".print-button").click(function(e) {
         e.preventDefault();
-        printPage();
+        window.location.replace("/the_capitalist_print/");
+//        printPage();
 
 //        window.scrollTo(0, 300);
     });
     $(".booty-button").click(function(e) {
         e.preventDefault();
-        bootyPage();
+        window.location.replace("/the_capitalist_booty/");
+//        bootyPage();
 //        window.scrollTo(0, 300);
     });
 
