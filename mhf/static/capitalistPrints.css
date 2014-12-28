@@ -3,12 +3,14 @@
 .shirt-img-wrapper {
 }
 .shirt-contingent {
-    display:none;
 }
 .print-contingent {
     display:none;
 }
 .booty-contingent {
+    display:none;
+}
+.which-button {
     display:none;
 }
 
