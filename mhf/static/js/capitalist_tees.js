@@ -53,7 +53,7 @@ var which_product = "";
 $( document ).ready(function() {
 
     if (window.location.protocol != 'https:') {
-//       window.location.replace("https://brocascoconut.com/the_capitalist_tee/");
+        window.location.replace("https:" + window.location.href.replace("http:",""));
     }
 
     console.log("page: " + window.location.pathname);
