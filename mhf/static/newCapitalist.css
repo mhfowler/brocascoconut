@@ -145,6 +145,7 @@ body {
     height: 28px;
     padding: 1px 9px 2px 9px;
     font-size: 15px;
+    text-align:center;
 }
 .ship-to {
     position:relative;
