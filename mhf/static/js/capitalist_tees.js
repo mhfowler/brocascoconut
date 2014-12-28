@@ -194,12 +194,12 @@ $( document ).ready(function() {
     });
 
     $(".tshirt-button").click(function(e) {
-        $(".print-wrapper").hide();
+        $(".print-contingent").hide();
         $(".shirt-contingent").show();
     });
 
     $(".print-button").click(function(e) {
-        $(".print-wrapper").show();
+        $(".print-contingent").show();
         $(".shirt-contingent").hide();
     });
 

@@ -145,6 +145,13 @@ body {
     height:30px;
     width:240px;
 }
+.print-buttons {
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    height:30px;
+    width:240px;
+}
 .style-buttons {
     display:block;
     margin:auto;
@@ -168,7 +175,13 @@ body {
     border: 1px solid gray;
 }
 
-
+.print-button {
+    width: 80px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid gray;
+}
 
 .size-button {
     width: 80px;
@@ -232,6 +245,10 @@ a.selected-style {
     color:white;
 }
 a.selected-which {
+    background-color:black;
+    color:white;
+}
+a.selected-print {
     background-color:black;
     color:white;
 }
