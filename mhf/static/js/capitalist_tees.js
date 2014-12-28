@@ -2,7 +2,7 @@
 $( document ).ready(function() {
 
    if (window.location.protocol != 'https:') {
-       window.location.replace("https://brocascoconut.com/the_capitalist_tee/");
+//       window.location.replace("https://brocascoconut.com/the_capitalist_tee/");
    }
 
     // csrf protect
@@ -101,12 +101,13 @@ $( document ).ready(function() {
 
     // set new bonus price
     function setBonusPrice(newNumber) {
-        var base_price = 10;
+        var base_price = 5;
         if (newNumber == "") {
-            var total_price = 10;
+            var total_price = base_price;
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("?");
             $(".shirt-img-number").html("?");
+            $(".print-img-number").html("?");
             $(".total-price").html("What You Pay");
         }
         else {
@@ -114,6 +115,7 @@ $( document ).ready(function() {
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("$" + newNumber);
             $(".shirt-img-number").html(newNumber);
+            $(".print-img-number").html(newNumber);
             $(".total-price").html("$" + total_price);
         }
     }

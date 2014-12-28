@@ -95,7 +95,7 @@ def submitEmail(request):
 
 # capitalist tees ######################################################################################################
 def capitalistTees(request):
-    return render(request, 'newCapitalistTee.html')
+    return render(request, 'capitalistPrints.html')
     # return render(request, 'capitalistTees.html')
 
 def buyShirt(request):
