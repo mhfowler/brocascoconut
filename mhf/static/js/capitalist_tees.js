@@ -5,6 +5,8 @@ function shirtPage() {
     $(".booty-button").show();
     $(".tshirt-button").hide();
     $(".print-button").show();
+    which_product = "tshirt";
+    setBasePrice(10);
 }
 function printPage() {
     $(".shirt-contingent").hide();
@@ -13,6 +15,16 @@ function printPage() {
     $(".booty-button").show();
     $(".tshirt-button").show();
     $(".print-button").hide();
+    which_product = "print";
+    if ($(".small-print-button").hasClass("selected-printsize")) {
+        setBasePrice(5);
+    }
+    else if ($(".medium-print-button").hasClass("selected-printsize")) {
+        setBasePrice(20);
+    }
+    else if ($(".large-print-button").hasClass("selected-printsize")) {
+        setBasePrice(100);
+    }
 }
 function bootyPage() {
     $(".shirt-contingent").hide();
@@ -21,10 +33,20 @@ function bootyPage() {
     $(".booty-button").hide();
     $(".tshirt-button").show();
     $(".print-button").show();
+    which_product = "booty";
+    setBasePrice(10);
+}
+
+
+// set new base price
+function setBasePrice(newBasePrice) {
+    base_price = newBasePrice;
+    $(".base-price-num").html(base_price);
 }
 
 // base brice of product
 var base_price = 5;
+var which_product = "";
 
 $( document ).ready(function() {
 
@@ -98,14 +120,19 @@ $( document ).ready(function() {
             // You can access the token ID with `token.id`
             var json_token = JSON.stringify(token, null, 2);
             var color = $(".selected-color").html();
-            var size = $(".selected-size").html();
+            var shirtsize = $(".selected-size").html();
+            var bootysize = $(".selected-bootysize").html();
+            var printsize = $(".selected-printsize").html();
             var style = $(".selected-style").html();
             var address = $(".shipping-input").val();
             var cost = $(".shirtCost").attr("data-cost");
             startLoading();
             $.post("/buyShirt/", { stripeToken: json_token,
+                which_product:which_product,
                 color:color,
-                size:size,
+                bootysize:bootysize,
+                printsize:printsize,
+                shirtsize:shirtsize,
                 style:style,
                 address:address,
                 cost:cost},function(data) {
@@ -119,17 +146,30 @@ $( document ).ready(function() {
         var address = $(".shipping-input").val();
         var bonusNumber = $(".number-input").val();
         if (bonusNumber == "" || address == "") {
-            alert("You must enter a number to be printed on the shirt and a shipping address X_X");
+            alert("You must enter a number to be printed and a shipping address X_X");
             return;
         }
         var cost = $(".shirtCost").attr("data-cost");
         var size = $(".selected-size").html();
+        var bootysize = $(".selected-bootysize").html();
+        var printsize = $(".selected-printsize").html();
         var color = $(".selected-color").html();
         var costInCents = Math.floor(parseFloat(cost)*100);
+        // figure out which product
+        var description = '';
+        if (which_product === "tshirt") {
+            description = 'Capitalist T-Shirt (Size: ' + size + ", Number: " + bonusNumber + ')';
+        }
+        else if (which_product === "print") {
+            description = 'Capitalist Print (Size: ' + printsize + ", Number: " + bonusNumber + ')';
+        }
+        else if (which_product === "booty") {
+            description = 'Shorts (Size: ' + bootysize + ", Number: " + bonusNumber + ')';
+        }
         // Open Checkout with further options
         handler.open({
             name: 'brocascoconut.com',
-            description: 'Capitalist T-Shirt (Size: ' + size + ", Number: " + bonusNumber + ')',
+            description: description,
             amount: costInCents
         });
     });
@@ -137,11 +177,6 @@ $( document ).ready(function() {
     // focus on input
     $(".number-input").focus();
 
-    // set new base price
-    function setBasePrice(newBasePrice) {
-        base_price = newBasePrice;
-        $(".base-price-num").html(base_price);
-    }
 
     // set new bonus price
     function setBonusPrice(newNumber) {
@@ -213,10 +248,10 @@ $( document ).ready(function() {
         $(".size-button").removeClass("selected-size").removeClass("selected");
         $(this).addClass("selected-size").addClass("selected");
     });
-      $(".bootysize-button").click(function(e) {
+    $(".bootysize-button").click(function(e) {
         e.preventDefault();
         $(".bootysize-button").removeClass("selected-bootysize").removeClass("selected");
-        $(this).addClass("selected-size").addClass("selected");
+        $(this).addClass("selected-bootysize").addClass("selected");
     });
     $(".see-the-back").click(function(e) {
         e.preventDefault();
@@ -237,37 +272,27 @@ $( document ).ready(function() {
     $(".tshirt-button").click(function(e) {
         e.preventDefault();
         shirtPage();
-        setBasePrice(10);
 //        window.scrollTo(0, 300);
     });
     $(".print-button").click(function(e) {
         e.preventDefault();
         printPage();
-        if ($(".small-print-button").hasClass("selected-printsize")) {
-            setBasePrice(5);
-        }
-        else if ($(".medium-print-button").hasClass("selected-printsize")) {
-            setBasePrice(20);
-        }
-        else if ($(".large-print-button").hasClass("selected-printsize")) {
-            setBasePrice(100);
-        }
+
 //        window.scrollTo(0, 300);
     });
     $(".booty-button").click(function(e) {
         e.preventDefault();
         bootyPage();
-        setBasePrice(10);
 //        window.scrollTo(0, 300);
     });
 
     $(".small-print-button").click(function(e) {
         setBasePrice(5);
     });
-     $(".medium-print-button").click(function(e) {
+    $(".medium-print-button").click(function(e) {
         setBasePrice(20);
     });
-      $(".large-print-button").click(function(e) {
+    $(".large-print-button").click(function(e) {
         setBasePrice(100);
     });
 

@@ -100,96 +100,131 @@ def capitalistTees(request):
 def buyShirt(request):
     # Set your secret key: remember to change this to your live secret key in production
     # See your keys here https://dashboard.stripe.com/account
-    stripe_secret_key = SECRETS_DICT["STRIPE_SECRET_LIVE_KEY"]
+    stripe_secret_key = SECRETS_DICT["STRIPE_SECRET_TEST_KEY"]
+    # stripe_secret_key = SECRETS_DICT["STRIPE_SECRET_LIVE_KEY"]
     stripe.api_key = stripe_secret_key
 
     # Get the credit card details submitted by the form
+    which_product = request.POST["which_product"]
     json_token = request.POST['stripeToken']
     token = json.loads(json_token)
     user_email = token["email"]
     token_id = token["id"]
-    color = request.POST["color"]
-    size = request.POST["size"]
     cost = request.POST["cost"]
-    address = request.POST["address"]
+    base_price = getBasePriceOfProduct(request)
+    number = str(int(cost)-base_price)
+    if number < 0: # they trying to hack!
+        return HttpResponse("not today friend")
     costincents = int(cost) * 100
     try:
         charge = stripe.Charge.create(
             amount=costincents, # amount in cents, again
             currency="usd",
             card=token_id,
-            description=user_email
+            description=user_email + ": " + which_product
         )
         # successful charge
-        sendOrderEmail(True, user_email, color, size, cost, address)
+        sendOrderEmail(True, request, user_email)
         return HttpResponse("success")
     except stripe.CardError, e:
         # The card has been declined
-        sendOrderEmail(False, user_email, color, size, cost, address)
+        sendOrderEmail(False, request, user_email)
         return HttpResponse("failure")
 
 # send an email about success or failure of order to publisher and to the customer
-def sendOrderEmail(success, email, color, size, cost, address):
-    base_price = 10
+def sendOrderEmail(success, request, email):
+    which_product = request.POST["which_product"]
+    color = request.POST["color"]
+    shirtsize = request.POST["shirtsize"]
+    bootysize = request.POST["bootysize"]
+    printsize = request.POST["printsize"]
+    cost = request.POST["cost"]
+    address = request.POST["address"]
+    base_price = getBasePriceOfProduct(request)
     number = str(int(cost)-base_price)
     message = \
-    "email: " + email + "\n" + \
-    "color: " + color + "\n" + \
-    "size: " + size + "\n" + \
-    "number: " + number + "\n" + \
-    "cost: " + cost + "\n" + \
-    "address: " + address + "\n"
+        "product: " + which_product + "\n" + \
+        "email: " + email + "\n" + \
+        "color: " + color + "\n" + \
+        "shirtsize: " + shirtsize + "\n" + \
+        "printsize: " + printsize + "\n" + \
+        "bootysize: " + bootysize + "\n" + \
+        "number: " + number + "\n" + \
+        "cost: " + cost + "\n" + \
+        "address: " + address + "\n"
     receipt = False
+    error = False
     if success:
         subject = "Capitalist Tee Order Placed"
         # send receipt to customer
         try:
-            customer_subject = "Capitalist T-Shirt Receipt"
-            customer_message = "Thank you for your Capitalist T-Shirt Order! \n\n" + \
-                "We received payment of " + cost + " dollars, and in less than a month we will print your shirt " + \
-                "(size: " + size + ", color: " + color + ", number: " + number + ") and mail it to the address: \n\n" + address + \
-                "\n\nIf you have any questions please send an email to questions@brocascoconut.com.\n\n" + \
-                "Sincerely,\n\nBroca's Coconut \nhttp://brocascoconut.com"
+            customer_subject = "Broca's Coconut Receipt"
+            template = ""
+            if which_product == "tshirt":
+                template = "emails/tshirt_success.html"
+            elif which_product == "print":
+                template = "emails/print_success.html"
+            elif which_product == "booty":
+                template = "emails/booty_success.html"
+            template_dict = request.POST.copy()
+            template_dict["number"] = number
+            customer_message = render(request, template, template_dict)
             result = send_mailgun_message(send_to_list=[email], subject=customer_subject, message=customer_message, from_name="Brocas Coconut", from_email="receipt@brocascoconut.com")
             receipt = True
         except Exception as e:
             pass
     else:
         try:
-            customer_subject = "Capitalist T-Shirt Order Failure"
-            customer_message = "Thank you for your Capitalist T-Shirt order, \n" + \
-                "Unfortunately there was some error processing your payment. \n\n" + \
-                "You will not be charged and we will look into the issue, but sorry for the inconvenience." + \
-                "\n\nIf you have any questions please send an email to questions@brocascoconut.com.\n\n" + \
-                "Sincerely,\nBroca's Coconut \n\nhttp://brocascoconut.com"
+            customer_subject = "Broca's Coconut Order Failure"
+            customer_message =  render(request, "emails/order_failure.html", request.POST)
             result = send_mailgun_message(send_to_list=[email], subject=customer_subject, message=customer_message, from_name="Brocas Coconut", from_email="error@brocascoconut.com")
             receipt = True
+            error = True
         except Exception as e:
             pass
         subject = "Capitalist Tee Order Failure"
-    # send email to publishers so they know to print it
-    if receipt:
-        message += "\nreceipt successfully sent"
+    # send email to publishers so they know to print it TODO: add order tracking
+    message += "\nreceipt: " + str(receipt)
+    message += "\nerror: " + str(error)
     result = send_mailgun_message(send_to_list=ADMIN_EMAILS, subject=subject, message=message, from_name="Brocas Coconut", from_email="neworder@brocascoconut.com")
+
+# gets the base price of a product from what the product is
+def getBasePriceOfProduct(request):
+    which_product = request.POST["which_product"]
+    printsize = request.POST["printsize"]
+    base_price = None
+    if which_product == "tshirt":
+        base_price = 10
+    elif which_product == "print":
+        if printsize == "5x7":
+            base_price = 5
+        elif printsize == "20x30":
+            base_price = 20
+        elif printsize == "90x120":
+            base_price = 100
+    elif which_product == "booty":
+        base_price = 10
+    return base_price
+
 
 # main pages
 def art(request):
-     return render(request, 'art.html')
+    return render(request, 'art.html')
 
 def writing(request):
-     return render(request, 'writing.html')
+    return render(request, 'writing.html')
 
 def about(request):
-     return render(request, 'about.html')
+    return render(request, 'about.html')
 
 def contact(request):
-     return render(request, 'contact.html')
+    return render(request, 'contact.html')
 
 def projects(request):
-     return render(request, 'projects.html')
+    return render(request, 'projects.html')
 
 def store(request):
-     return render(request, 'store.html')
+    return render(request, 'store.html')
 
 # truespeak ######################################################################################
 def truespeak(request):
