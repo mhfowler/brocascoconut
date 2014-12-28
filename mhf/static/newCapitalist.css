@@ -345,6 +345,7 @@ a {
     .select-number {
         width:200px;
         margin:auto;
+        margin-top:20px;
     }
     .black-triangle-img {
         width:200px;
