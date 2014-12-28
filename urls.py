@@ -24,8 +24,12 @@ urlpatterns = patterns('',
                        # posts
                        (r'^submit_email/$', viewWrapper(submitEmail)),
 
-                       # pages
-                       (r'^the_capitalist_tee/$', viewWrapper(capitalistTees)),
+                       # capitalist products
+                       (r'^the_capitalist_tshirt/$', viewWrapper(capitalistTees)),
+                       (r'^capitalist_prints/$', viewWrapper(capitalistTees)),
+                       (r'^capitalist_booty_shorts/$', viewWrapper(capitalistTees)),
+
+                       # other pages
                        (r'^writing/$', viewWrapper(writing)),
                        (r'^art/$', viewWrapper(art)),
                        (r'^projects/$', viewWrapper(projects)),

@@ -96,7 +96,6 @@ def submitEmail(request):
 # capitalist tees ######################################################################################################
 def capitalistTees(request):
     return render(request, 'capitalistPrints.html')
-    # return render(request, 'capitalistTees.html')
 
 def buyShirt(request):
     # Set your secret key: remember to change this to your live secret key in production

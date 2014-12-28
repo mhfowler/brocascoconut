@@ -1,8 +1,46 @@
+function shirtPage() {
+    $(".shirt-contingent").show();
+    $(".print-contingent").hide();
+    $(".booty-contingent").hide();
+    $(".booty-button").show();
+    $(".tshirt-button").hide();
+    $(".print-button").show();
+}
+function printPage() {
+    $(".shirt-contingent").hide();
+    $(".print-contingent").show();
+    $(".booty-contingent").hide();
+    $(".booty-button").show();
+    $(".tshirt-button").show();
+    $(".print-button").hide();
+}
+function bootyPage() {
+    $(".shirt-contingent").hide();
+    $(".print-contingent").hide();
+    $(".booty-contingent").show();
+    $(".booty-button").hide();
+    $(".tshirt-button").show();
+    $(".print-button").show();
+}
+
+// base brice of product
+var base_price = 5;
 
 $( document ).ready(function() {
 
     if (window.location.protocol != 'https:') {
 //       window.location.replace("https://brocascoconut.com/the_capitalist_tee/");
+    }
+
+    console.log("page: " + window.location.pathname);
+    if (window.location.pathname === "/the_capitalist_tshirt/") {
+        shirtPage();
+    }
+    else if (window.location.pathname === "/the_capitalist_print/") {
+        printPage();
+    }
+    else if (window.location.pathname === "/the_capitalist_booty/") {
+        bootyPage()
     }
 
     // csrf protect
@@ -99,23 +137,26 @@ $( document ).ready(function() {
     // focus on input
     $(".number-input").focus();
 
+    // set new base price
+    function setBasePrice(newBasePrice) {
+        base_price = newBasePrice;
+        $(".base-price-num").html(base_price);
+    }
+
     // set new bonus price
     function setBonusPrice(newNumber) {
-        var base_price = 5;
         if (newNumber == "") {
             var total_price = base_price;
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("?");
-            $(".shirt-img-number").html("?");
-            $(".print-img-number").html("?");
+            $(".img-number").html("?");
             $(".total-price").html("What You Pay");
         }
         else {
             var total_price = base_price + parseInt(newNumber);
             $(".shirtCost").attr("data-cost",total_price);
             $(".bonus-price").html("$" + newNumber);
-            $(".shirt-img-number").html(newNumber);
-            $(".print-img-number").html(newNumber);
+            $(".img-number").html(newNumber);
             $(".total-price").html("$" + total_price);
         }
     }
@@ -143,8 +184,8 @@ $( document ).ready(function() {
 
     $(".color-button").click(function(e) {
         e.preventDefault();
-        $(".color-button").removeClass("selected-color");
-        $(this).addClass("selected-color");
+        $(".color-button").removeClass("selected-color").removeClass("selected");
+        $(this).addClass("selected-color").addClass("selected");
 
         if ($(this).hasClass("black-button")) {
             $(".black-male-shirt-img").addClass("selected");
@@ -162,20 +203,15 @@ $( document ).ready(function() {
         }
 
     });
-    $(".which-button").click(function(e) {
+    $(".printsize-button").click(function(e) {
         e.preventDefault();
-        $(".which-button").removeClass("selected-which");
-        $(this).addClass("selected-which");
+        $(".printsize-button").removeClass("selected-printsize").removeClass("selected");
+        $(this).addClass("selected-printsize").addClass("selected");
     });
     $(".size-button").click(function(e) {
         e.preventDefault();
-        $(".size-button").removeClass("selected-size");
-        $(this).addClass("selected-size");
-    });
-    $(".style-button").click(function(e) {
-        e.preventDefault();
-        $(".style-button").removeClass("selected-style");
-        $(this).addClass("selected-style");
+        $(".size-button").removeClass("selected-size").removeClass("selected");
+        $(this).addClass("selected-size").addClass("selected");
     });
     $(".see-the-back").click(function(e) {
         e.preventDefault();
@@ -194,13 +230,40 @@ $( document ).ready(function() {
     });
 
     $(".tshirt-button").click(function(e) {
-        $(".print-contingent").hide();
-        $(".shirt-contingent").show();
+        e.preventDefault();
+        shirtPage();
+        setBasePrice(10);
+//        window.scrollTo(0, 300);
+    });
+    $(".print-button").click(function(e) {
+        e.preventDefault();
+        printPage();
+        if ($(".small-print-button").hasClass("selected-printsize")) {
+            setBasePrice(5);
+        }
+        else if ($(".medium-print-button").hasClass("selected-printsize")) {
+            setBasePrice(20);
+        }
+        else if ($(".large-print-button").hasClass("selected-printsize")) {
+            setBasePrice(100);
+        }
+//        window.scrollTo(0, 300);
+    });
+    $(".booty-button").click(function(e) {
+        e.preventDefault();
+        bootyPage();
+        setBasePrice(10);
+//        window.scrollTo(0, 300);
     });
 
-    $(".print-button").click(function(e) {
-        $(".print-contingent").show();
-        $(".shirt-contingent").hide();
+    $(".small-print-button").click(function(e) {
+        setBasePrice(5);
+    });
+     $(".medium-print-button").click(function(e) {
+        setBasePrice(20);
+    });
+      $(".large-print-button").click(function(e) {
+        setBasePrice(100);
     });
 
 });

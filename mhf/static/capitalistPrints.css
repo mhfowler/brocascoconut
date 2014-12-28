@@ -7,6 +7,9 @@
 .print-contingent {
     display:none;
 }
+.booty-contingent {
+    display:none;
+}
 
 .print-wrapper {
     margin-top:30px;
@@ -37,6 +40,36 @@
     /*font-size: 113px;*/
     /*text-align: center;*/
     /*width: 200px;*/
+}
+
+/* related products */
+section.related-section {
+    padding-bottom:0px;
+    padding-top:0px;
+}
+div.related-products-wrapper {
+    margin-top:30px;
+    margin-bottom:30px;
+    padding-top:35px;
+    padding-bottom:45px;
+}
+.which-img {
+    width:100px;
+    margin-top:10px;
+}
+.which-button {
+    background-color:white;
+    height:160px;
+}
+.which-buttons {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 280px;
+}
+.related-title {
+    margin-bottom:30px;
+    color:black;
 }
 
 
@@ -115,29 +148,13 @@ body {
     left: 228px;
 }
 
-/*.number-input {*/
-/*margin-top: 205px;*/
-/*width: 100px;*/
-/*height: 110px;*/
-/*font-size: 40px;*/
-/*text-align: center;*/
-/*position: relative;*/
-/*top: 1%;*/
-/*left: 0.35%;*/
-/*}*/
-
 .color-buttons {
     width:370px;
     height:30px;
+    margin-top:30px;
 }
 
-.which-buttons {
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 30px;
-    width: 280px;
-}
+
 .size-buttons {
     margin:auto;
     margin-top:20px;
@@ -145,19 +162,12 @@ body {
     height:30px;
     width:240px;
 }
-.print-buttons {
+.printsize-buttons {
     margin:auto;
     margin-top:20px;
     margin-bottom:20px;
     height:30px;
     width:240px;
-}
-.style-buttons {
-    display:block;
-    margin:auto;
-    margin-top:20px;
-    margin-bottom:20px;
-    height:30px;
 }
 
 .color-button {
@@ -167,15 +177,8 @@ body {
     padding: 5px;
     border: 1px solid gray;
 }
-.style-button {
-    width: 185px;
-    float: left;
-    text-align: center;
-    padding: 5px;
-    border: 1px solid gray;
-}
 
-.print-button {
+.printsize-button {
     width: 80px;
     float: left;
     text-align: center;
@@ -226,29 +229,13 @@ body {
     margin:auto;
     height:40px;
     margin-top:12px;
-    width:196px;
+    width:210px;
 }
 .display-price span {
     font-size:18px;
 }
 
-a.selected-color {
-    background-color:black;
-    color:white;
-}
-a.selected-size {
-    background-color:black;
-    color:white;
-}
-a.selected-style {
-    background-color:black;
-    color:white;
-}
-a.selected-which {
-    background-color:black;
-    color:white;
-}
-a.selected-print {
+a.style-button.selected {
     background-color:black;
     color:white;
 }
@@ -307,6 +294,9 @@ a:hover {
 .shirt-back-wrapper {
     display:none;
 }
+.booty-img-wrapper {
+    position:relative;
+}
 
 .shirt-img-number {
     position: absolute;
@@ -317,6 +307,16 @@ a:hover {
     font-size: 13px;
     text-align: center;
     width: 200px;
+}
+.booty-img-number {
+    position: absolute;
+    left: 127px;
+    top: 93px;
+    font-size: 60px;
+    font-family: "Helvetica";
+    color: white;
+    text-align: center;
+    width: 300px;
 }
 
 .see-the-back {

@@ -64,6 +64,7 @@
                 <div class="central-pane pane">
                     <h1 class="capitalist-tee shirt-contingent"> The Capitalist T-Shirt </h1>
                     <h1 class="capitalist-tee print-contingent"> The Capitalist Print </h1>
+                    <h1 class="capitalist-tee booty-contingent"> Capitalist Booty Shorts </h1>
 
                     <div class="main-div purchase-div">
 
@@ -71,9 +72,13 @@
                             Enter the number 'X' that you want printed on your t-shirt<br>
                             and we will send you the t-shirt for 10 + 'X' dollars.<br>
                         </p>
-                          <p class="description print-contingent">
+                        <p class="description print-contingent">
                             Enter the number 'X' that you want on your print<br>
                             and we will send you the framed print for 5 + 'X' dollars.<br>
+                        </p>
+                        <p class="description booty-contingent">
+                            Enter the number 'X' that you want on your booty shorts<br>
+                            and we will send you the shorts for 5 + 'X' dollars.<br>
                         </p>
 
                         <div class="select-number">
@@ -83,52 +88,35 @@
 
                         <div class="buttons-wrapper">
 
-                            {#                            <div class="which-buttons row-buttons">#}
-                            {#                                <a href="" class="print-button color-button selected-which">Print</a>#}
-                            {#                                <a href="" class="which-button color-button">T-Shirt</a>#}
-                            {#                                <div style="clear:both;"></div>#}
-                            {#                            </div>#}
-
-                            <div class="which-buttons row-buttons">
-
-                                <a href="" class="which-button tshirt-button selected-which">T-Shirt</a>
-                                <a href="" class="which-button print-button">Framed Print</a>
-
+                            <div class="printsize-buttons row-buttons print-contingent">
+                                <a href="" class="style-button small-print-button printsize-button selected-printsize selected">5x7</a>
+                                <a href="" class="style-button medium-print-button printsize-button">18x20</a>
+                                <a href="" class="style-button large-print-button printsize-button">90x120</a>
                             </div>
-
-                            <div class="print-buttons row-buttons print-contingent">
-
-                                <a href="" class="print-button selected-print">5x7</a>
-                                <a href="" class="print-button">18x20</a>
-                                <a href="" class="print-button">90x120</a>
-
-                            </div>
-
 
                             <div class="color-buttons row-buttons shirt-contingent">
-                                <a href="" class="black-button color-button selected-color">Black</a>
-                                <a href="" class="white-button color-button">White</a>
+                                <a href="" class="style-button black-button color-button selected-color selected">Black</a>
+                                <a href="" class="style-button white-button color-button">White</a>
                                 <div style="clear:both;"></div>
                             </div>
 
-                            {#            <div class="style-buttons">#}
-                            {#                <a href="" class="mens-button style-button selected-style">Masculine</a>#}
-                            {#                <a href="" class="womens-button style-button">Feminine</a>#}
-                            {#            </div>#}
-
                             <div class="size-buttons row-buttons shirt-contingent">
+                                <a href="" class="style-button size-button selected-size selected">S</a>
+                                <a href="" class="style-button size-button">M</a>
+                                <a href="" class="style-button size-button">L</a>
+                            </div>
 
-                                <a href="" class="size-button selected-size">S</a>
-                                <a href="" class="size-button">M</a>
-                                <a href="" class="size-button">L</a>
-
+                            <div class="size-buttons row-buttons booty-contingent">
+                                <a href="" class="style-button size-button selected-size selected">S</a>
+                                <a href="" class="style-button size-button">M</a>
+                                <a href="" class="style-button size-button">L</a>
                             </div>
 
                             <div class="ship-to">SHIP TO</div>
                             <input type="text" class="shipping-input" placeholder="Enter your shipping address"/>
 
                             <div class="display-price row-buttons">
-                                <span class="base-price">$5</span>
+                                <span class="base-price">$<span class="base-price-num">5</span></span>
                                 <span class="plus">+</span>
                                 <span class="bonus-price">?</span>
                                 <span class="plus">=</span>
@@ -139,16 +127,18 @@
 
                         </div>
 
+                        <!-- product images -->
+
                         <div class="print-wrapper print-contingent">
                             <img class="frame-img" src="/static/img/black_frame_triangle.png"/>
-                            <div class="print-img-number">?</div>
+                            <div class="print-img-number img-number">?</div>
                         </div>
 
                         <div class="shirt-img-wrapper shirt-contingent">
                             <div class="shirt-front-wrapper">
                                 <img class="black-male-shirt-img shirtimg shirtfront selected" src="/static/img/blacktriangle.jpg"/>
                                 <img class="white-male-shirt-img shirtimg shirtfront" src="/static/img/whitetriangle.jpg"/>
-                                <div class="shirt-img-number">?</div>
+                                <div class="shirt-img-number img-number">?</div>
                             </div>
                             <div class="shirt-back-wrapper">
                                 <img class="black-shirt-back shirtimg shirtback selected" src="/static/img/blackshirtback.png"/>
@@ -156,8 +146,13 @@
                             </div>
                         </div>
 
+                        <div class="booty-img-wrapper booty-contingent">
+                            <img class="booty-img" src="/static/img/purple_shorts_triangle.png"/>
+                            <div class="booty-img-number img-number">?</div>
+                        </div>
 
                     </div>
+
 
                     <div class="main-div loading-div">
                         <p class="loading-text">
@@ -176,18 +171,48 @@
 
                 </div>
 
-                {% comment %}
-                <div class="description-pane">
-                    <h2>about</h2>
-                    <p class="about-paragraph">
-                        Logos, etc.
-                    </p>
-                </div>
-                {% endcomment %}
+
+
+
             </div>
         </div>
     </div>
 </header>
+
+<section class="text-center related-section">
+    <div class="container related-products-container">
+        <div class="row">
+
+            <!-- related products -->
+
+            <div class="related-products-wrapper central-pane">
+
+                <h2 class="related-title">Related Products</h2>
+
+                <div class="which-buttons row-buttons">
+                    <a href="" class="style-button  which-button tshirt-button">
+                        <span class="which-title">T-Shirts</span>
+                        <img class="which-img" src="/static/img/black_1000.png" />
+                        <div style="clear:both;"></div>
+                    </a>
+                    <a href="" class="style-button  which-button print-button">
+                        <span class="which-title">Framed Prints</span>
+                        <img class="which-img" src="/static/img/1000_print.png" />
+                        <div style="clear:both;"></div>
+                    </a>
+                    <a href="" class="style-button  which-button booty-button">
+                        <span class="which-title">Booty Shorts</span>
+                        <img class="which-img" src="/static/img/purple_shorts_1000.png" />
+                        <div style="clear:both;"></div>
+                    </a>
+                    <div style="clear:both;"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="text-center">
