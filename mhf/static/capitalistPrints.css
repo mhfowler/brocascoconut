@@ -71,7 +71,9 @@ div.related-products-wrapper {
     margin-bottom:30px;
     color:black;
 }
-
+.featured-pane {
+    height:1050px;
+}
 
 /* old */
 .body-wrapper {
@@ -162,6 +164,13 @@ body {
     height:30px;
     width:240px;
 }
+.bootysize-buttons {
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+    height:30px;
+    width:240px;
+}
 .printsize-buttons {
     margin:auto;
     margin-top:20px;
@@ -187,6 +196,13 @@ body {
 }
 
 .size-button {
+    width: 80px;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid gray;
+}
+.bootysize-button {
     width: 80px;
     float: left;
     text-align: center;

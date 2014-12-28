@@ -213,6 +213,11 @@ $( document ).ready(function() {
         $(".size-button").removeClass("selected-size").removeClass("selected");
         $(this).addClass("selected-size").addClass("selected");
     });
+      $(".bootysize-button").click(function(e) {
+        e.preventDefault();
+        $(".bootysize-button").removeClass("selected-bootysize").removeClass("selected");
+        $(this).addClass("selected-size").addClass("selected");
+    });
     $(".see-the-back").click(function(e) {
         e.preventDefault();
         $(".shirt-back-wrapper").show();
