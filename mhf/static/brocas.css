@@ -12,8 +12,12 @@ body {
 }
 .right-side {
     float: left;
-    padding-left: 100px;
+    padding-left: 145px;
     padding-bottom: 40px;
+}
+
+.pic-wrapper {
+    margin-left:85px;
 }
 
 .nav-link {
@@ -136,7 +140,7 @@ body {
 
 .about-container {
     float:left;
-    padding-left:100px;
+    padding-left:150px;
     padding-top:40px;
 }
 /* mobile */
@@ -171,7 +175,10 @@ body {
 }
 
 .about-text-wrapper p {
-    max-width:600px;
+    max-width:500px;
+}
+.about-text-wrapper {
+    margin-bottom:35px;
 }
 
 .about-page {
@@ -182,8 +189,8 @@ body {
 /* projects */
 .projects-wrapper {
     float: left;
-    width: 600px;
-    padding-left: 100px;
+    width: 500px;
+    padding-left: 150px;
     padding-top: 55px;
 }
 
@@ -230,7 +237,7 @@ a.project-link {
 .under-image {
     position: absolute;
     left: 107px;
-    top: 1px;
+    top:200px;
     z-index: -1;
     width: 213px;
     opacity: 0.5;
