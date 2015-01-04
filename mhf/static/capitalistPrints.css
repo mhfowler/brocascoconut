@@ -508,6 +508,10 @@ a {
     .booty-img-number {
         left: 85px;
     }
+    .why-text p {
+        width: 73%;
+        margin: auto;
+    }
 }
 
 @media (max-width: 415px) {
@@ -540,4 +544,24 @@ a {
 
 .btn-primary {
     background-color:black;
+}
+
+/* why button */
+.why-link {
+    color:darkblue;
+}
+.why-link.clicked{
+    color:black;
+}
+.why-section {
+    margin-top:35px;
+}
+.why-text p {
+    text-align:left;
+}
+.why-text {
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+    display:none;
 }

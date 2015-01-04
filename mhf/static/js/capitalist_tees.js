@@ -308,4 +308,10 @@ $( document ).ready(function() {
         setBasePrice(100);
     });
 
+
+     $(".why-link").click(function(e) {
+         e.preventDefault();
+         $(".why-text").show();
+     });
+
 });
