@@ -7,7 +7,7 @@ body {
     width:200px;
     height:100%;
     border-right:1px solid gray;
-    padding-right:15px;
+    padding-right:0px;
     padding-top:50px;
 }
 .right-side {
@@ -234,14 +234,27 @@ a.project-link {
     }
 }
 
+/*.under-image {*/
+/*position: absolute;*/
+/*left: 107px;*/
+/*top:172px;*/
+/*z-index: -1;*/
+/*width: 213px;*/
+/*opacity: 0.5;*/
+/*}*/
 .under-image {
-    position: absolute;
-    left: 107px;
-    top:172px;
-    z-index: -1;
-    width: 213px;
+    position:absolute;
+    /*position:relative;*/
+    width: 200px;
+    /* top: -5px; */
+    top: 843px;
+    left: 97px;
+    z-index:-1;
     opacity: 0.5;
+    margin-bottom:30px;
 }
+
+
 .left-under-image {
     display:none;
 }
