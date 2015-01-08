@@ -4,3 +4,4 @@
 *.db
 *secret*
 mailgun.secret
+*.psd
