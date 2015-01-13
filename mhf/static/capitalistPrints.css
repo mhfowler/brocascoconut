@@ -14,6 +14,8 @@
     display:none;
 }
 
+
+
 .print-wrapper {
     margin-top:30px;
     position:relative;
@@ -21,29 +23,59 @@
     margin: auto;
 }
 
+
+.print-img-number.questionMark {
+    top: 81px;
+    left: -24px;
+    font-size: 94px;
+}
+
 .print-img-number {
 
     /* in triangle */
     position: absolute;
-    top: 83px;
     font-family: "Helvetica";
-    left: 75px;
+    /*font-family:"garamond";*/
     color: black;
-    font-size: 94px;
     text-align: center;
-    width: 200px;
-    letter-spacing: -11px;
+    width: 400px;
 
-    /* just numer */
-    /*position: absolute;*/
-    /*top: 43px;*/
-    /*font-family: "Helvetica";*/
-    /*left: 80px;*/
-    /*color: black;*/
-    /*font-size: 113px;*/
-    /*text-align: center;*/
-    /*width: 200px;*/
+    /*top: 57px;*/
+    /*left: -25px;*/
+    /*font-size: 108px;*/
+
+    top:70px;
+    left:-20px;
+    font-size: 108px;
+
+    /*top:63px;*/
+    /*left:-20px;*/
+
+    top:56px;
+    left:-23px;
 }
+.print-img-number.singleDigit {
+    top:72px;
+    left:-20px;
+}
+
+/*.print-img-number.doubleDigit {*/
+
+/*top: 96px;*/
+/*left: -23px;*/
+/*font-size: 89px;*/
+/*}*/
+/*.print-img-number.tripleDigit {*/
+/*top: 120px;*/
+/*left: -23px;*/
+/*font-size: 65px;*/
+/*}*/
+/*.print-img-number.megaDigit {*/
+/*top: 60px;*/
+/*left: -21px;*/
+/*font-size: 94px;*/
+/*letter-spacing:4px;*/
+/*}*/
 
 /* booty coming soon */
 .booty-coming-soon {
@@ -135,7 +167,7 @@ body {
 .buttons-wrapper {
     width:400px;
     margin:auto;
-    padding-bottom:5px;
+    /*padding-bottom:5px;*/
 }
 
 .row-buttons {
@@ -232,7 +264,8 @@ body {
     padding: 5px;
     border: 1px solid gray;
     text-align: center;
-    margin-bottom:25px;
+    /*margin-bottom:25px;*/
+    margin-bottom:10px;
 }
 
 .shipping-input {
@@ -298,10 +331,13 @@ a:hover {
     width:90%;
 }
 .shirtimg {
-    width:240px;
-    height:249px;
+    width:405px;
+    /*height:249px;*/
     display:none;
     margin:auto;
+}
+.shirtback {
+    height:420px;
 }
 .black-male-shirt-img.shirtimg {
 }
@@ -317,6 +353,7 @@ a:hover {
 }
 .shirt-back-wrapper {
     display:none;
+    height:441px;
 }
 .booty-img-wrapper {
     position:relative;
@@ -324,14 +361,33 @@ a:hover {
 
 .shirt-img-number {
     position: absolute;
-    top: 69px;
     font-family: "Helvetica";
-    left: 206px;
+    left: 227px;
     color: white;
-    font-size: 13px;
     text-align: center;
     width: 200px;
+    top:116px;
+    font-size:21px;
 }
+.shirt-img-number.doubleDigit {
+    /*top:120px;*/
+    /*font-size:18px;*/
+    /*left:226px;*/
+    top: 120px;
+    left: 227px;
+    font-size: 18px;
+}
+.shirt-img-number.tripleDigit {
+    top: 125px;
+    left: 226px;
+    font-size: 15px;
+}
+.shirt-img-number.megaDigit {
+    top: 112px;
+    left: 225px;
+    font-size: 22px;
+}
+
 .booty-img-number {
     position: absolute;
     left: 184px;
@@ -512,6 +568,52 @@ a {
         width: 73%;
         margin: auto;
     }
+
+    .shirt-img-wrapper {
+        width:100%;
+        position:relative;
+    }
+    .shirt-img-number {
+        /*left:227px;*/
+    }
+}
+
+/* make the shirt smaller */
+@media (max-width: 600px) {
+    .shirt-img-wrapper {
+        width:350px;
+        margin:auto;
+        position:relative;
+    }
+    .shirtimg {
+        width:275px;
+    }
+    .shirtback {
+        height:285px;
+    }
+    .shirt-back-wrapper {
+        height:306px;
+    }
+    .shirt-img-number {
+        left: 110px;
+        top: 78px;
+        font-size: 16px;
+    }
+    .shirt-img-number.doubleDigit {
+        left: 110px;
+        top: 80px;
+        font-size: 14px;
+    }
+    .shirt-img-number.tripleDigit {
+        left: 110px;
+        top: 84px;
+        font-size: 10px;
+    }
+    .shirt-img-number.megaDigit {
+        left: 109px;
+        top: 77px;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 415px) {
@@ -526,15 +628,45 @@ a {
     }
     .print-img-number {
         position: absolute;
-        top: 45px;
+        top: 40px;
         font-family: "Helvetica";
-        left: -3px;
+        left: 1px;
         color: black;
         font-size: 63px;
         text-align: center;
         width: 200px;
-        letter-spacing: -11px;
     }
+    .print-img-number.singleDigit {
+        top: 45px;
+        left: 1px;
+        font-size: 63px;
+    }
+    .print-img-number.questionMark {
+        top: 46px;
+        left: 0px;
+        font-size: 63px;
+    }
+
+    /*.print-img-number.doubleDigit {*/
+    /*top: 64px;*/
+    /*left: -1px;*/
+    /*font-size: 46px;*/
+    /*}*/
+    /*.print-img-number.questionMark {*/
+    /*top: 49px;*/
+    /*left: -2px;*/
+    /*font-size: 59px;*/
+    /*}*/
+    /*.print-img-number.tripleDigit {*/
+    /*top: 117px;*/
+    /*left: -24px;*/
+    /*font-size: 61px;*/
+    /*}*/
+    /*.print-img-number.megaDigit {*/
+    /*top: 43px;*/
+    /*left: -1px;*/
+    /*font-size: 46px;*/
+    /*}*/
 }
 
 
