@@ -197,11 +197,11 @@ def getBasePriceOfProduct(request):
         base_price = 15
     elif which_product == "print":
         if printsize == "7x5":
-            base_price = 10
-        elif printsize == "35x25":
+            base_price = 15
+        elif printsize == "20x16":
             base_price = 30
-        elif printsize == "105x75":
-            base_price = 100
+        elif printsize == "54x36":
+            base_price = 200
     elif which_product == "booty":
         base_price = 10
     return base_price

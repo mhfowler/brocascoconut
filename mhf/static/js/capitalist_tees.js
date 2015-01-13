@@ -6,7 +6,7 @@ function shirtPage() {
     $(".tshirt-button").hide();
     $(".print-button").show();
     which_product = "tshirt";
-    setBasePrice(10);
+    setBasePrice(15);
     $(".booty-coming-soon").hide();
     $(".buttons-wrapper").show();
 }
@@ -19,13 +19,13 @@ function printPage() {
     $(".print-button").hide();
     which_product = "print";
     if ($(".small-print-button").hasClass("selected-printsize")) {
-        setBasePrice(5);
+        setBasePrice(15);
     }
     else if ($(".medium-print-button").hasClass("selected-printsize")) {
-        setBasePrice(20);
+        setBasePrice(30);
     }
     else if ($(".large-print-button").hasClass("selected-printsize")) {
-        setBasePrice(100);
+        setBasePrice(200);
     }
     $(".booty-coming-soon").hide();
     $(".buttons-wrapper").show();
