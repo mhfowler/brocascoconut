@@ -141,7 +141,7 @@ body {
 
 .about-container {
     float:left;
-    padding-left:150px;
+    padding-left:120px;
     padding-top:40px;
 }
 /* mobile */
@@ -191,7 +191,7 @@ body {
 .projects-wrapper {
     float: left;
     width: 500px;
-    padding-left: 150px;
+    padding-left: 120px;
     padding-top: 55px;
 }
 
