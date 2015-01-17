@@ -1,5 +1,6 @@
 body {
     margin:0;
+    width:900px;
 }
 
 .left-side {
@@ -219,6 +220,9 @@ a.project-link {
 
 /* mobile */
 @media (max-width: 770px) {
+    body {
+        width:100%;
+    }
     .projects-wrapper {
         padding-left:10px;
         width:100%;
