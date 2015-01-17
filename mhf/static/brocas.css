@@ -92,7 +92,7 @@ body {
 }
 
 /* mobile */
-@media (max-width: 750px) {
+@media (max-width: 770px) {
     .left-side {
         width:100%;
         border-bottom:1px solid gray;
@@ -144,7 +144,7 @@ body {
     padding-top:40px;
 }
 /* mobile */
-@media (max-width: 750px) {
+@media (max-width: 770px) {
     .about-container {
         padding-left:0px;
         width:100%;
@@ -218,7 +218,7 @@ a.project-link {
 }
 
 /* mobile */
-@media (max-width: 750px) {
+@media (max-width: 770px) {
     .projects-wrapper {
         padding-left:10px;
         width:100%;
