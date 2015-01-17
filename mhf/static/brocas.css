@@ -1,6 +1,6 @@
 body {
     margin:0;
-    width:900px;
+    min-width:900px;
 }
 
 .left-side {
