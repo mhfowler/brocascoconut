@@ -641,6 +641,22 @@ a {
         left: 1px;
         font-size: 63px;
     }
+    .print-img-number.doubleDigit {
+        top: 60px;
+        left: -1px;
+        font-size: 52px;
+    }
+    .print-img-number.tripleDigit  {
+        top: 75px;
+        left: -1px;
+        font-size: 38px;
+    }
+    .print-img-number.megaDigit {
+        top: 34px;
+        left: 2px;
+        font-size: 57px;
+        letter-spacing: 4px;
+    }
     .print-img-number.questionMark {
         top: 46px;
         left: 0px;
