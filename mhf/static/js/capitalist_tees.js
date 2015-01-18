@@ -46,10 +46,59 @@ function bootyPage() {
 }
 
 
+// set new bonus price
+function setBonusPrice(newNumber) {
+    // remove leading zeros
+    if (newNumber.length > 1) {
+        while (newNumber.indexOf("0") == 0) {
+            newNumber = newNumber.substring(1, newNumber.length)
+        }
+    }
+    $(".number-input").val(newNumber);
+    // remove old font classes
+    $(".img-number").removeClass("questionMark");
+    $(".img-number").removeClass("singleDigit");
+    $(".img-number").removeClass("doubleDigit");
+    $(".img-number").removeClass("tripleDigit");
+    $(".img-number").removeClass("megaDigit");
+    if (newNumber == "") {
+        var total_price = base_price;
+        $(".shirtCost").attr("data-cost",total_price);
+        $(".bonus-price").html("?");
+        $(".img-number").html("?");
+        $(".total-price").html("What You Pay");
+        $(".img-number").html("?");
+        // set font class
+        $(".img-number").addClass("questionMark");
+    }
+    else {
+        var total_price = base_price + parseInt(newNumber);
+        $(".shirtCost").attr("data-cost",total_price);
+        $(".bonus-price").html("$" + newNumber);
+        $(".img-number").html(newNumber);
+        $(".total-price").html("$" + total_price);
+        // set font class
+        if (newNumber < 10) {
+            $(".img-number").addClass("singleDigit");
+        }
+        else if (newNumber < 100) {
+            $(".img-number").addClass("doubleDigit");
+        }
+        else if (newNumber < 1000) {
+            $(".img-number").addClass("tripleDigit");
+        }
+        else {
+            $(".img-number").addClass("megaDigit");
+        }
+    }
+}
+
 // set new base price
 function setBasePrice(newBasePrice) {
     base_price = newBasePrice;
     $(".base-price-num").html(base_price);
+    var bonusNumber = $(".number-input").val();
+    setBonusPrice(bonusNumber);
 }
 
 // base brice of product
@@ -187,52 +236,6 @@ $( document ).ready(function() {
     $(".number-input").focus();
 
 
-    // set new bonus price
-    function setBonusPrice(newNumber) {
-        // remove leading zeros
-        if (newNumber.length > 1) {
-            while (newNumber.indexOf("0") == 0) {
-                newNumber = newNumber.substring(1, newNumber.length)
-            }
-        }
-        $(".number-input").val(newNumber);
-        // remove old font classes
-        $(".img-number").removeClass("questionMark");
-        $(".img-number").removeClass("singleDigit");
-        $(".img-number").removeClass("doubleDigit");
-        $(".img-number").removeClass("tripleDigit");
-        $(".img-number").removeClass("megaDigit");
-        if (newNumber == "") {
-            var total_price = base_price;
-            $(".shirtCost").attr("data-cost",total_price);
-            $(".bonus-price").html("?");
-            $(".img-number").html("?");
-            $(".total-price").html("What You Pay");
-            $(".img-number").html("?");
-            // set font class
-            $(".img-number").addClass("questionMark");
-        }
-        else {
-            var total_price = base_price + parseInt(newNumber);
-            $(".shirtCost").attr("data-cost",total_price);
-            $(".bonus-price").html("$" + newNumber);
-            $(".img-number").html(newNumber);
-            $(".total-price").html("$" + total_price);
-            // set font class
-            if (newNumber < 10) {
-                $(".img-number").addClass("singleDigit");
-            }
-            else if (newNumber < 100) {
-                $(".img-number").addClass("doubleDigit");
-            }
-            else if (newNumber < 1000) {
-                $(".img-number").addClass("tripleDigit");
-            }
-            else {
-                $(".img-number").addClass("megaDigit");
-            }
-        }
-    }
 
     // keypress in number input
     $(".number-input").keypress(function(e) {
