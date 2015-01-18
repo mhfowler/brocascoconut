@@ -222,6 +222,7 @@ a.project-link {
 @media (max-width: 770px) {
     body {
         width:100%;
+        min-width:100%;
     }
     .projects-wrapper {
         padding-left:10px;
@@ -235,6 +236,10 @@ a.project-link {
     }
     .left-side {
         position:relative;
+    }
+    .submit-email-wrapper {
+        padding-left:10px;
+        padding-right:10px;
     }
 }
 
