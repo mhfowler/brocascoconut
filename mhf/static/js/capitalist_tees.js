@@ -331,13 +331,13 @@ $( document ).ready(function() {
     });
 
     $(".small-print-button").click(function(e) {
-        setBasePrice(5);
+        setBasePrice(15);
     });
     $(".medium-print-button").click(function(e) {
-        setBasePrice(20);
+        setBasePrice(30);
     });
     $(".large-print-button").click(function(e) {
-        setBasePrice(100);
+        setBasePrice(200);
     });
 
 
