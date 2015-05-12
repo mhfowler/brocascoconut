@@ -10,6 +10,11 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from boto.s3.connection import S3Connection, Key
 import stripe, json, mailchimp
 
+
+# boiler ###############################################################################################################
+def vr_landing(request):
+    return render(request, 'vr_landing.html')
+
 # boiler ###############################################################################################################
 def redirect(request, page='/home'):
     return shortcuts.redirect(page)
