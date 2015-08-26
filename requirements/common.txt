@@ -7,3 +7,4 @@ South
 stripe
 mailchimp
 boto
+oauth2
