@@ -22,7 +22,19 @@ sayings = [
     'hey @{}, plz trash',
     'trash trash trash @{}',
     'the trash isn\'t going to take out itself @{}',
+    'plz help @{} SOS',
+    '@{} the righteous man knows not what he wants but what he must do',
+    'take the trash to its maker @{}',
+    'yo @{}',
+    'your time has come @{}',
+    'you can do it if you believe @{}',
+    'take no prisoners @{}',
+    'sometimes you are called on @{}',
+    'I kissed a girl and I liked it @{}',
+    'lets get rooted @{}',
+    'sorry @{}'
 ]
+
 
 def trashBot(request):
     who_next = random.choice(trash_takers)
