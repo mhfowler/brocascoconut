@@ -63,4 +63,4 @@ def check_for_mentions(previous_mention_id):
 def check_for_mentions_endpoint(request):
     previous_mention_id = get_latest_mention_id()
     check_for_mentions(previous_mention_id)
-    return HttpResponse(': checking for mentions :')
+    return HttpResponse(': checking for mentions: {}'.format(previous_mention_id))
