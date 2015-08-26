@@ -67,3 +67,16 @@ def post_tweet(tweet_str):
     parameters = [("status", tweet_str)]
     response = twitterreq(url, "POST", parameters)
     return response
+
+
+def get_latest_mentions(since_id):
+    url = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
+    if since_id:
+        parameters = [("since_id", str(since_id))]
+    else:
+         parameters = []
+    response = twitterreq(url, "GET", parameters)
+    for line in response:
+        parsed = json.loads(line)
+        break
+    return parsed
