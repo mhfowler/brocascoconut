@@ -6,3 +6,4 @@
 mailgun.secret
 *.psd
 bin/latest_mention.txt
+bots/latest_mention.txt

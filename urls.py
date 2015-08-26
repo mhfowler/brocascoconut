@@ -3,7 +3,7 @@ from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_vis
     loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
     writing, art, contact, about, truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts, \
     projects, store, vr_landing
-from bots.trashbot import trashBot
+from bots.trashbot import trashBot, check_for_mentions_endpoint
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -42,6 +42,7 @@ urlpatterns = patterns('',
 
                        # actions
                        (r'^trashbot/$', viewWrapper(trashBot)),
+                       (r'^check_for_mentions/$', viewWrapper(check_for_mentions_endpoint)),
 
                        # truespeak
                        (r'^truespeak/$', viewWrapper(truespeak)),
