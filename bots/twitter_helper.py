@@ -80,3 +80,16 @@ def get_latest_mentions(since_id):
         parsed = json.loads(line)
         break
     return parsed
+
+
+def get_latest_dms(since_id):
+    url = "https://api.twitter.com/1.1/direct_messages.json"
+    if since_id:
+        parameters = [("since_id", str(since_id))]
+    else:
+         parameters = []
+    response = twitterreq(url, "GET", parameters)
+    for line in response:
+        parsed = json.loads(line)
+        break
+    return parsed

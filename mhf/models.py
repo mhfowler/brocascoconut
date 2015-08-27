@@ -31,5 +31,12 @@ class Stat(XModel):
     number = models.IntegerField(default=0)
 
 
+#-----------------------------------------------------------------------------------------------------------------------
+#  for keeping track of ids
+#-----------------------------------------------------------------------------------------------------------------------
+class TwitterID(XModel):
+    key = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
+
 
 
