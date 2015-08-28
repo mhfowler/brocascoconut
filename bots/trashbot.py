@@ -33,6 +33,8 @@ sayings = [
     'sorry @{}'
 ]
 
+LATEST_DM_ID_KEY = 'latest_dm_id'
+
 
 def trashBot(request):
     who_next = random.choice(trash_takers)
@@ -40,16 +42,6 @@ def trashBot(request):
     post_tweet(saying.format(who_next))
     return HttpResponse(': trash bot notified :')
 
-
-def get_latest_mention_id():
-    if not os.path.isfile(latest_mention_file_path):
-        return None
-    with open(latest_mention_file_path, 'r') as latest_mention_file:
-        contents = latest_mention_file.read()
-        id = int(contents)
-    return id
-
-LATEST_DM_ID_KEY = 'latest_dm_id'
 
 def get_latest_dm_id():
     twitter_id = TwitterID.xg.get_or_none(key=LATEST_DM_ID_KEY)
@@ -66,11 +58,6 @@ def save_latest_dm_id(dm_id):
     twitter_id.value = dm_id
     twitter_id.save()
     print 'dm_id: {}'.format(dm_id)
-
-
-def save_latest_mention_id(id):
-    with open(latest_mention_file_path, 'w') as latest_mention_file:
-        latest_mention_file.write(str(id))
 
 
 def check_for_dms(previous_dm_id):
