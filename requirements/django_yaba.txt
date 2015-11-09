@@ -1,4 +1,4 @@
-django-tagging
+django-tagging==0.3.6
 feedparser
 python-Twitter
 urllib3
