@@ -63,9 +63,9 @@ urlpatterns += patterns('',
                         )
 
 # patterns for django_yaba
-urlpatterns += patterns('',
-                        url(r'^nocss/', include('django_yaba.urls')),
-                        )
+# urlpatterns += patterns('',
+                        # url(r'^nocss/', include('django_yaba.urls')),
+                        # )
 
 
 # patterns for admin
