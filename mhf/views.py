@@ -11,6 +11,11 @@ from boto.s3.connection import S3Connection, Key
 import stripe, json, mailchimp
 
 
+# abridged space #######################################################################################################
+def abridged_space(request):
+    return render(request, 'abridged_space.html')
+
+
 # boiler ###############################################################################################################
 def vr_landing(request):
     return render(request, 'vr_landing.html')
