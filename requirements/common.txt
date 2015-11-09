@@ -1,4 +1,4 @@
-Django==1.5
+Django==1.5.7
 dj-database-url==0.2.1
 dj-static==0.0.5
 mysql-python
