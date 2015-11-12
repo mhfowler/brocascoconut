@@ -78,7 +78,7 @@
         }
         .explanation-wrapper {
             opacity:0;
-            background-color:purple;
+            background-color:white;
             color:white;
             display:none;
             width:100%;
@@ -92,22 +92,6 @@
     <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged.css">
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#title-page-wrapper-id').fadeOut(4000);
-            {#            $('#title-page-wrapper-id').fadeOut(200);#}
-
-            $(".link-to-explanation").click(function(e) {
-                $('.explanation-wrapper').show();
-                $('.explanation-wrapper').css("opacity", 0.8);
-            });
-
-            $(".explanation-wrapper").click(function(e) {
-                $('.explanation-wrapper').hide();
-            });
-        });
-
-    </script>
 </head>
 <body>
 
@@ -134,6 +118,10 @@
 
 <div class="explanation-wrapper">
     this is explanation page
+
+    <a class="maps-link">Boston</a>
+    <a class="maps-link">New York</a>
+    <a class="maps-link">Cairo</a>
 </div>
 
 
@@ -148,9 +136,60 @@
 
 </div>
 <script>
-    // This example adds a search box to a map, using the Google Place Autocomplete
-    // feature. People can enter geographical searches. The search box will return a
-    // pick list containing a mix of places and predicted search terms.
+
+    var coordinates = "{{ coordinates }}";
+
+    $(document).ready(function() {
+        if (!coordinates) {
+            {#            $('#title-page-wrapper-id').fadeOut(4000);#}
+            $('#title-page-wrapper-id').fadeOut(200);
+        }
+        else {
+            $('#title-page-wrapper-id').hide();
+        }
+
+        $(".link-to-explanation").click(function(e) {
+            $('.explanation-wrapper').show();
+            $('.explanation-wrapper').css("opacity", 0.8);
+        });
+
+        $('.maps-link').click(function(e) {
+            e.preventDefault();
+            var link_text = $(this).text();
+            var link_to_coordinates_map = {
+                'Boston': [42.333262, -71.119202, 16],
+                'New York': [40.714486, -73.9807945, 14],
+                'Barcelona': [41.387010, 2.170223, 14],
+                'Mexico City': [19.432552, -99.133152, 14],
+                'London': [51.5059388, -0.1398862, 14],
+                'Tokyo': [35.6591335, 139.7001828, 15],
+                'Hong Kong': [22.282114, 114.157320, 15],
+                'Sydney': [-33.883059, 151.196884, 14],
+                'Moscow': [55.754038, 37.621054, 15],
+                'Istanbul': [41.007800, 28.983221, 14],
+                'Cape Town': [-33.926003, 18.415128, 14],
+                'Cairo': [30.044224, 31.235642, 14],
+                'Dubai': [25.232914, 55.172393, 15],
+                'New Delhi': [28.614580, 77.215158, 15],
+                'Havana': [23.129953, -82.385677, 14],
+                'Rio': [-22.981886, -43.193541, 14],
+                'Buenos Aires': [-34.610223, -58.377361, 14],
+                'Chicago': [41.875906, -87.627107, 14],
+                'Montreal': [45.515492, -73.566146, 14],
+                'Kiev': [50.455994, 30.540172, 14],
+                'Fes': [34.019067, -5.007964, 14],
+                'Bangkok': [13.766384, 100.469660, 14],
+                'Paris': [48.846328, 2.325754, 14]
+            };
+            var which_coordinates = link_to_coordinates_map[link_text];
+            var new_position = new google.maps.LatLng(which_coordinates[0], which_coordinates[1]);
+            map.setCenter(new_position);
+            map.setZoom(which_coordinates[2]);
+            $('.explanation-wrapper').fadeOut(1000);
+{#            window.location.replace("/gmaps/" + which_coordinates[0] +#}
+{#                    ',' + which_coordinates[1] + ',' + which_coordinates[2]);#}
+        });
+    });
 
     function initAutocomplete() {
         // Specify features and elements to define styles.
@@ -188,21 +227,20 @@
 
         // Create a map object and specify the DOM element for display.
         // zoomed out map
-        {#        map = new google.maps.Map(document.getElementById('map'), {#}
-        {#            center: {lat: -34.397, lng: 150.644},#}
-        {#            scrollwheel: false,#}
-        {#            // Apply the map style array to the map.#}
-        {#            styles: styleArray,#}
-        {#            zoom: 3#}
-        {#        });#}
 
-        // rome
+        // parse coordinates from url string
+        var splitted = [41.899669, 12.473004, 16];
+        if (coordinates && coordinates.indexOf(',') != -1) {
+            splitted = coordinates.split(",");
+            console.log(splitted);
+        }
+
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 41.899669, lng: 12.473004},
+            center: {lat: parseFloat(splitted[0]), lng: parseFloat(splitted[1])},
             scrollwheel: false,
             // Apply the map style array to the map.
             styles: styleArray,
-            zoom: 14
+            zoom: parseInt(splitted[2])
         });
 
         // Create the search box and link it to the UI element.

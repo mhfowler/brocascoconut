@@ -12,8 +12,8 @@ import stripe, json, mailchimp
 
 
 # abridged space #######################################################################################################
-def abridged_space(request):
-    return render(request, 'abridged_space.html')
+def abridged_space(request, coordinates=None):
+    return render(request, 'abridged_space.html', {'coordinates': coordinates})
 
 
 # boiler ###############################################################################################################
