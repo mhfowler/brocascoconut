@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+
+
+
     <style>
         html, body {
             height: 100%;
@@ -55,39 +59,7 @@
         }
 
     </style>
-    <title>Places Searchbox</title>
-    <style>
-
-        .link-to-explanation {
-            position: absolute;
-            float: right;
-            top: -3%;
-            right: 6%;
-            z-index: 8;
-            font-size: 104px;
-            font-weight: bold;
-            opacity:0.6;
-            width: 200px;
-            height: 200px;
-            padding-top:80px;
-            text-align: center;
-        }
-        .link-to-explanation:hover {
-            cursor:pointer;
-            opacity: 1;
-        }
-        .explanation-wrapper {
-            opacity:0;
-            background-color:white;
-            color:white;
-            display:none;
-            width:100%;
-            height:100%;
-            position:absolute;
-            z-index:5;
-        }
-
-    </style>
+    <title>Abridged Maps</title>
 
     <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged.css">
 
@@ -98,32 +70,38 @@
 <div class="title-page-wrapper" id="title-page-wrapper-id">
     <div class="title-page">
         <div class="abridged-maps-text">
-            <h2 class="abridged-maps-title">
+            <h1 class="abridged-maps-title">
                 Abridged Maps
-            </h2>
+            </h1>
             <p class="abridged-explanation">
-                Maps of concepts and of power.
+                What came first, the territory or the map?
             </p>
-            <div class="by-links">
-                <div class="jordibeard">
-                    <a href="http://twitter.com/jordibeard">jordibeard</a>
-                </div>
-                <div class="maxhfowler">
-                    <a href="http://twitter.com/maxhfowler">maxhfowler</a>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
 
 <div class="explanation-wrapper">
-    this is explanation page
-
-    <a class="maps-link">Boston</a>
-    <a class="maps-link">New York</a>
-    <a class="maps-link">Cairo</a>
+    <div class="explanation">
+        <h1>Abridged Maps</h1>
+        <div class="explanation-text">
+            Today abstraction is no longer that of the map,
+            the double, the mirror, or the concept.
+            The territory no longer precedes the map,
+            nor does it survive it.
+            <br><br><br>
+            <strong>places to explore:</strong><br>
+            <a class="maps-link">rome</a>, <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,
+           <a class="maps-link">buenos aires</a>, <a class="maps-link">london</a>, <a class="maps-link">washington</a>,
+           <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,
+           <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
+            <br><br>
+            <h3>
+                jordan beard / max fowler
+            </h3>
+        </div>
+    </div>
 </div>
-
 
 <div class="maps-wrapper">
 
@@ -140,54 +118,58 @@
     var coordinates = "{{ coordinates }}";
 
     $(document).ready(function() {
-        if (!coordinates) {
-            {#            $('#title-page-wrapper-id').fadeOut(4000);#}
-            $('#title-page-wrapper-id').fadeOut(200);
+        if (coordinates && coordinates.indexOf(',') != -1) {
+            $('#title-page-wrapper-id').fadeOut(4000);
         }
         else {
-            $('#title-page-wrapper-id').hide();
+            $('#title-page-wrapper-id').fadeOut(4000);
+{#            $('#title-page-wrapper-id').hide();#}
         }
 
         $(".link-to-explanation").click(function(e) {
             $('.explanation-wrapper').show();
             $('.explanation-wrapper').css("opacity", 0.8);
+            $(".link-to-explanation").hide();
+        });
+
+        $(".explanation-wrapper").click(function(e) {
+            $('.explanation-wrapper').hide();
+            $(".link-to-explanation").show();
         });
 
         $('.maps-link').click(function(e) {
             e.preventDefault();
             var link_text = $(this).text();
             var link_to_coordinates_map = {
-                'Boston': [42.333262, -71.119202, 16],
-                'New York': [40.714486, -73.9807945, 14],
-                'Barcelona': [41.387010, 2.170223, 14],
-                'Mexico City': [19.432552, -99.133152, 14],
-                'London': [51.5059388, -0.1398862, 14],
-                'Tokyo': [35.6591335, 139.7001828, 15],
-                'Hong Kong': [22.282114, 114.157320, 15],
-                'Sydney': [-33.883059, 151.196884, 14],
-                'Moscow': [55.754038, 37.621054, 15],
-                'Istanbul': [41.007800, 28.983221, 14],
-                'Cape Town': [-33.926003, 18.415128, 14],
-                'Cairo': [30.044224, 31.235642, 14],
-                'Dubai': [25.232914, 55.172393, 15],
-                'New Delhi': [28.614580, 77.215158, 15],
-                'Havana': [23.129953, -82.385677, 14],
-                'Rio': [-22.981886, -43.193541, 14],
-                'Buenos Aires': [-34.610223, -58.377361, 14],
-                'Chicago': [41.875906, -87.627107, 14],
-                'Montreal': [45.515492, -73.566146, 14],
-                'Kiev': [50.455994, 30.540172, 14],
-                'Fes': [34.019067, -5.007964, 14],
-                'Bangkok': [13.766384, 100.469660, 14],
-                'Paris': [48.846328, 2.325754, 14]
+                'boston': [42.333262, -71.119202, 16],
+                'new york': [40.714486, -73.9807945, 14],
+                'barcelona': [41.387010, 2.170223, 14],
+                'mexico city': [19.432552, -99.133152, 14],
+                'london': [51.5059388, -0.1398862, 14],
+                'tokyo': [35.6591335, 139.7001828, 15],
+                'hong kong': [22.282114, 114.157320, 15],
+                'sydney': [-33.883059, 151.196884, 14],
+                'moscow': [55.754038, 37.621054, 15],
+                'istanbul': [41.007800, 28.983221, 14],
+                'cape town': [-33.926003, 18.415128, 14],
+                'cairo': [30.044224, 31.235642, 14],
+                'dubai': [25.232914, 55.172393, 15],
+                'new delhi': [28.614580, 77.215158, 15],
+                'havana': [23.129953, -82.385677, 14],
+                'rio': [-22.981886, -43.193541, 14],
+                'buenos aires': [-34.610223, -58.377361, 14],
+                'chicago': [41.875906, -87.627107, 14],
+                'montreal': [45.515492, -73.566146, 14],
+                'kiev': [50.455994, 30.540172, 14],
+                'fes': [34.019067, -5.007964, 14],
+                'bangkok': [13.766384, 100.469660, 14],
+                'paris': [48.846328, 2.325754, 14]
             };
             var which_coordinates = link_to_coordinates_map[link_text];
             var new_position = new google.maps.LatLng(which_coordinates[0], which_coordinates[1]);
             map.setCenter(new_position);
             map.setZoom(which_coordinates[2]);
             $('.explanation-wrapper').fadeOut(1000);
-{#            window.location.replace("/gmaps/" + which_coordinates[0] +#}
-{#                    ',' + which_coordinates[1] + ',' + which_coordinates[2]);#}
         });
     });
 
@@ -225,10 +207,7 @@
             }
         ];
 
-        // Create a map object and specify the DOM element for display.
-        // zoomed out map
-
-        // parse coordinates from url string
+        // parse coordinates from url string (rome by default)
         var splitted = [41.899669, 12.473004, 16];
         if (coordinates && coordinates.indexOf(',') != -1) {
             splitted = coordinates.split(",");
