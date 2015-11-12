@@ -27,8 +27,15 @@
 .title-page {
     height: 100%;
     width: 600px;
-    text-align: center;
-    margin: auto;
+    padding-left: 230px;
+    padding-top: 55px;
+    text-align: left;
+    font-color:#434343;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    background-color: #FFF;
+    pointer-events: none;
+
 }
 
 .abridged-maps-text {
@@ -36,23 +43,72 @@
 }
 
 .abridged-maps-title {
-    font-size: 72px;
+    font-size: 70px;
+    margin-bottom: 20px;
 }
 
 .abridged-explanation {
-    font-size: 24px;
+    margin-top: 5px;
+    text-align: left;
+    font-size: 30px;
+}
+
+        .link-to-explanation {
+            position: absolute;
+            font-family: 'Roboto Slab', serif;
+            margin-top: 0.4%;
+            right: -0.7%;
+            float: right;
+            z-index: 8;
+            font-size: 104px;
+            font-weight: 400;
+            opacity:0.5;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+        }
+        .link-to-explanation:hover {
+            cursor:pointer;
+            opacity: 0.9;
+        }
+        .explanation-wrapper {
+            opacity:0;
+            background-color:#FFF;
+            color:#434343;
+            display:none;
+            width:100%;
+            height:100%;
+            position:absolute;
+            z-index:10;
+
+        }
+
+.explanation {
+            padding-left: 9%;
+            padding-right: 9%;
+    padding-top: 40px;
+    text-align: left;
+    font-color:#434343;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    background-color: #FFF;
+            z-index:10;
+
+        }
+
+
+
+        .explanation-text {
+    margin-top: 5px;
+    text-align: left;
+    font-family: 'Roboto Slab', serif;
+    font-size: 30px;
 }
 
 .by-links {
-    margin:auto;
-    width:170px;
-}
-.jordibeard {
-    float:left;
-    margin-right:20px;
-}
-.maxhfowler {
-    float:left;
+    text-align: left;
+    
+
 }
 
 a {
@@ -63,9 +119,54 @@ a:hover {
     text-decoration:underline;
 }
 
-.purple-div {
-    background-color:purple;
-    width:600px;
-    height:200px;
-    z-index:5;
+h1 {
+    text-align: left;
+    font-size: 72px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+
+}
+
+h3 {
+    text-align: left;
+    font-size: 28px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+
+}
+
+@media (max-width: 600px) {
+
+h1 {
+font-size: 50px;
+}
+
+.link-to-explanation {
+
+    bottom: -83px;
+    left: -19.7%;
+    float: left;
+    z-index: 8;
+    font-size: 81px;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.title-page {
+
+height: auto;
+width: auto;
+padding-left: 9%;
+padding-right: 9%;
+}
+
+.abridged-maps-title {
+font-size: 50px;
+}
+
+.abridged-explanation {
+font-size: 26.5px;
+
+}
+
 }

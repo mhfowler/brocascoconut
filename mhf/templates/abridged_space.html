@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+
+
+
     <style>
         html, body {
             height: 100%;
@@ -55,55 +59,26 @@
         }
 
     </style>
-    <title>Places Searchbox</title>
-    <style>
+    <title>Abridged Maps</title>
 
-        .link-to-explanation {
-            position: absolute;
-            float: right;
-            top: -3%;
-            right: 6%;
-            z-index: 8;
-            font-size: 104px;
-            font-weight: bold;
-            opacity:0.6;
-            width: 200px;
-            height: 200px;
-            padding-top:80px;
-            text-align: center;
-        }
-        .link-to-explanation:hover {
-            cursor:pointer;
-            opacity: 1;
-        }
-        .explanation-wrapper {
-            opacity:0;
-            background-color:purple;
-            color:white;
-            display:none;
-            width:100%;
-            height:100%;
-            position:absolute;
-            z-index:5;
-        }
 
-    </style>
-
-    <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged.css">
+    <link rel="stylesheet" type="text/css" href="abridged.css">
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#title-page-wrapper-id').fadeOut(4000);
-            {#            $('#title-page-wrapper-id').fadeOut(200);#}
+      //     $('#title-page-wrapper-id').fadeOut(4000);
+           // #            $('#title-page-wrapper-id').fadeOut(200);#
 
             $(".link-to-explanation").click(function(e) {
                 $('.explanation-wrapper').show();
                 $('.explanation-wrapper').css("opacity", 0.8);
+                $(".link-to-explanation").hide();
             });
 
             $(".explanation-wrapper").click(function(e) {
                 $('.explanation-wrapper').hide();
+                 $(".link-to-explanation").show();
             });
         });
 
@@ -114,28 +89,39 @@
 <div class="title-page-wrapper" id="title-page-wrapper-id">
     <div class="title-page">
         <div class="abridged-maps-text">
-            <h2 class="abridged-maps-title">
+            <h1 class="abridged-maps-title">
                 Abridged Maps
-            </h2>
+            </h1>
             <p class="abridged-explanation">
-                Maps of concepts and of power.
+                What came first, the territory or the map?
             </p>
-            <div class="by-links">
-                <div class="jordibeard">
-                    <a href="http://twitter.com/jordibeard">jordibeard</a>
-                </div>
-                <div class="maxhfowler">
-                    <a href="http://twitter.com/maxhfowler">maxhfowler</a>
-                </div>
+           
             </div>
         </div>
     </div>
 </div>
 
 <div class="explanation-wrapper">
-    this is explanation page
+   <div class="explanation"> 
+    <h1>Abridged Maps</h1>
+    <div class="explanation-text">
+Today abstraction is no longer that of the map,
+the double, the mirror, or the concept. 
+The territory no longer precedes the map,
+nor does it survive it.
+<br><br><br>
+<strong>places to explore:</strong><br>
+rome, bangkok, dubai, sydney,
+buenos aires, london, washington,
+havana, barcelona, cairo, tokyo,
+kiev, new delhi, fes, paris
+<br><br>
+<h3>
+jordan beard / max fowler
+</h3>
+    </div>
 </div>
-
+</div>
 
 <div class="maps-wrapper">
 
@@ -188,14 +174,7 @@
 
         // Create a map object and specify the DOM element for display.
         // zoomed out map
-        {#        map = new google.maps.Map(document.getElementById('map'), {#}
-        {#            center: {lat: -34.397, lng: 150.644},#}
-        {#            scrollwheel: false,#}
-        {#            // Apply the map style array to the map.#}
-        {#            styles: styleArray,#}
-        {#            zoom: 3#}
-        {#        });#}
-
+      
         // rome
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 41.899669, lng: 12.473004},
