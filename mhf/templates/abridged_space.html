@@ -93,13 +93,13 @@
             The map came before the territory and will be here long after it.
             <br><br><br>
             <strong>places to explore:</strong><br>
-            <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,
+            <a class="maps-link">rome</a>, <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,
            <a class="maps-link">buenos aires</a>, <a class="maps-link">london</a>, <a class="maps-link">washington</a>,
            <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,
            <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
             <br><br>
             <h3>
-                <a href="http://jordibeard.com/">jordan beard</a> / <a href="http://brocascoconut.com">max fowler</a>
+                <a href="http://jordibeard.com/">jordan beard</a> / <a href="http://maxhfowler.com">max fowler</a>
             </h3>
         </div>
     </div>
@@ -157,6 +157,7 @@
                 'dubai': [25.232914, 55.172393, 15],
                 'new delhi': [28.614580, 77.215158, 15],
                 'havana': [23.129953, -82.385677, 14],
+                'rome': [41.899669, 12.473004, 14],
                 'rio': [-22.981886, -43.193541, 14],
                 'buenos aires': [-34.610223, -58.377361, 14],
                 'chicago': [41.875906, -87.627107, 14],
@@ -212,7 +213,6 @@
         var splitted = [41.899669, 12.473004, 14];
         if (coordinates && coordinates.indexOf(',') != -1) {
             splitted = coordinates.split(",");
-            console.log(splitted);
         }
 
         map = new google.maps.Map(document.getElementById('map'), {

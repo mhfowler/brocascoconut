@@ -21,8 +21,8 @@
 .title-page {
     height: 100%;
     width: 600px;
-    padding-left: 230px;
-    padding-top: 55px;
+    padding-left: 10%;
+    padding-top: 9%;
     text-align: left;
     font-color:#434343;
     font-family: 'Roboto Slab', serif;
@@ -47,52 +47,52 @@
     font-size: 30px;
 }
 
-        .link-to-explanation {
-            position: absolute;
-            font-family: 'Roboto Slab', serif;
-            margin-top: 0.4%;
-            right: -0.7%;
-            float: right;
-            z-index: 8;
-            font-size: 104px;
-            font-weight: 400;
-            opacity:0.5;
-            width: 200px;
-            height: 200px;
-            text-align: center;
-        }
-        .link-to-explanation:hover {
-            cursor:pointer;
-            opacity: 0.9;
-        }
-        .explanation-wrapper {
-            opacity:0;
-            background-color:#FFF;
-            color:#434343;
-            display:none;
-            width:100%;
-            height:100%;
-            position:absolute;
-            z-index:10;
+.link-to-explanation {
+    position: absolute;
+    font-family: 'Roboto Slab', serif;
+    margin-top: 0.4%;
+    right: -0.7%;
+    float: right;
+    z-index: 8;
+    font-size: 104px;
+    font-weight: 400;
+    opacity:0.5;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+.link-to-explanation:hover {
+    cursor:pointer;
+    opacity: 0.9;
+}
+.explanation-wrapper {
+    opacity:0;
+    background-color:#FFF;
+    color:#434343;
+    display:none;
+    width:100%;
+    height:100%;
+    position:absolute;
+    z-index:10;
 
-        }
+}
 
 .explanation {
-            padding-left: 9%;
-            padding-right: 9%;
+    padding-left: 9%;
+    padding-right: 9%;
     padding-top: 40px;
     text-align: left;
     font-color:#434343;
     font-family: 'Roboto Slab', serif;
     font-weight: 400;
     background-color: #FFF;
-            z-index:10;
+    z-index:10;
 
-        }
+}
 
 
 
-        .explanation-text {
+.explanation-text {
     margin-top: 5px;
     text-align: left;
     font-family: 'Roboto Slab', serif;
@@ -101,7 +101,7 @@
 
 .by-links {
     text-align: left;
-    
+
 
 }
 
@@ -112,6 +112,7 @@ a {
 a:hover {
     text-decoration:line-through;
     color:#333;
+    cursor:pointer;
 }
 
 h1 {
@@ -130,38 +131,43 @@ h3 {
 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-h1 {
-font-size: 50px;
-}
+    h1 {
+        font-size: 50px;
+    }
 
-.link-to-explanation {
+    .link-to-explanation {
 
-    bottom: -83px;
-    left: -19.7%;
-    float: left;
-    z-index: 8;
-    font-size: 81px;
-    font-weight: 400;
-    opacity: 0.5;
-}
+        top: 41px;
+        left: -49px;
+        float: left;
+        z-index: 8;
+        font-size: 81px;
+        font-weight: 400;
+        opacity: 0.5;
+    }
 
-.title-page {
+    .title-page {
 
-height: auto;
-width: auto;
-padding-left: 9%;
-padding-right: 9%;
-}
+        height: auto;
+        width: auto;
+        padding-left: 9%;
+        padding-right: 9%;
+        padding-top:35%;
+    }
 
-.abridged-maps-title {
-font-size: 50px;
-}
+    .abridged-maps-title {
+        font-size: 50px;
+    }
 
-.abridged-explanation {
-font-size: 26.5px;
+    .abridged-explanation {
+        font-size: 26.5px;
 
-}
+    }
+
+    #pac-input {
+        width: 200px;
+    }
 
 }
