@@ -15,6 +15,7 @@
     height: 100%;
     opacity: 1;
     position:absolute;
+    pointer-events: none;
 }
 
 .title-page {
@@ -109,7 +110,8 @@ a {
     text-decoration:none;
 }
 a:hover {
-    text-decoration:underline;
+    text-decoration:line-through;
+    color:#333;
 }
 
 h1 {
