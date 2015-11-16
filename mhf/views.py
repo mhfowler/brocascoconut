@@ -15,6 +15,8 @@ import stripe, json, mailchimp
 def abridged_space(request, coordinates=None):
     return render(request, 'abridged_space.html', {'coordinates': coordinates})
 
+def abridged_space2(request, coordinates=None):
+    return render(request, 'abridged_space2.html', {'coordinates': coordinates})
 
 # boiler ###############################################################################################################
 def vr_landing(request):

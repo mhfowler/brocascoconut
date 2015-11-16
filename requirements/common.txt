@@ -10,3 +10,4 @@ boto
 oauth2
 selenium
 tweepy
+pygeocoder
