@@ -219,8 +219,10 @@
 
         $('.teleport-link').click(function(e) {
             e.preventDefault();
+            alert('teleport-link-clicked');
             $.post("/take_me_anywhere/", {
             },function(data) {
+                alert('data-returned');
                 var obj = jQuery.parseJSON(data);
                 var lat = obj.lat;
                 var lon = obj.lon;
