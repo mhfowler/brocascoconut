@@ -81,7 +81,7 @@
                 Abridged Maps
             </h1>
             <p class="abridged-explanation">
-                What came first, the territory or the map?
+                the map of the territory
             </p>
 
         </div>
@@ -115,7 +115,11 @@
         A
     </div>
 
-    <input id="pac-input" class="controls" type="text" placeholder="Take me anywhere">
+    <a class="teleport-link"><img class='compass-img' src="/static/img/compass.png"/></a>
+
+    <h1 class="place_str"></h1>
+
+    <input id="pac-input" class="controls" type="text" placeholder="Search Places">
     <div id="map"></div>
 
 </div>
@@ -124,22 +128,55 @@
     var coordinates = "{{ coordinates }}";
 
     $(document).ready(function() {
+
+        // csrf protect
+        /* csrf protection */
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
         if (coordinates && coordinates.indexOf(',') != -1) {
-            $('#title-page-wrapper-id').fadeOut(4000);
+            $('#title-page-wrapper-id').fadeOut(6000);
         }
         else {
-            $('#title-page-wrapper-id').fadeOut(4000);
+            $('#title-page-wrapper-id').fadeOut(6000);
         }
 
         $(".link-to-explanation").click(function(e) {
             $('.explanation-wrapper').show();
             $('.explanation-wrapper').css("opacity", 0.8);
-            $(".link-to-explanation").hide();
+            $("body").css("overflow", "auto");
+            window.scrollTo(0, 0);
         });
 
         $(".explanation-wrapper").click(function(e) {
             $('.explanation-wrapper').hide();
-            $(".link-to-explanation").show();
+            $("body").css("overflow", "hidden");
+            window.scrollTo(0, 0);
         });
 
         $('.maps-link').click(function(e) {
@@ -177,6 +214,24 @@
             map.setCenter(new_position);
             map.setZoom(which_coordinates[2]);
             $('.explanation-wrapper').fadeOut(1000);
+            $("body").css("overflow", "hidden");
+        });
+
+        $('.teleport-link').click(function(e) {
+            e.preventDefault();
+            $.post("/take_me_anywhere/", {
+            },function(data) {
+                var obj = jQuery.parseJSON(data);
+                var lat = obj.lat;
+                var lon = obj.lon;
+                var place_str = obj.place_str;
+                var new_position = new google.maps.LatLng(lat, lon);
+                map.setCenter(new_position);
+                map.setZoom(14);
+                $('.place_str').html(place_str);
+                $('.place_str').show();
+                $('.place_str').fadeOut(4000);
+            });
         });
     });
 
@@ -220,6 +275,11 @@
             splitted = coordinates.split(",");
         }
 
+        var showZoom = false;
+        if ($(document).width() > 700) {
+            showZoom = true;
+        }
+
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: parseFloat(splitted[0]), lng: parseFloat(splitted[1])},
             scrollwheel: false,
@@ -227,7 +287,7 @@
             styles: styleArray,
             zoom: parseInt(splitted[2]),
             streetViewControl: false,
-            zoomControl: true,
+            zoomControl: showZoom,
             mapTypeControl: false,
             zoomControlOptions: {
                 position: google.maps.ControlPosition.TOP_LEFT

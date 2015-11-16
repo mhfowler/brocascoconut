@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
     loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
     writing, art, contact, about, truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts, \
-    projects, store, vr_landing, abridged_space, abridged_space2
+    projects, store, vr_landing, abridged_space, abridged_space2, abridged_space_take_me_anywhere
 from bots.trashbot import trashBot, check_for_dms_endpoint
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
@@ -32,6 +32,7 @@ urlpatterns = patterns('',
 
                        # other pages
                        (r'^gmaps/$', viewWrapper(abridged_space)),
+                       (r'^take_me_anywhere/$', viewWrapper(abridged_space_take_me_anywhere)),
                        (r'^gmaps2/$', viewWrapper(abridged_space2)),
                        (r'^gmaps/(?P<coordinates>.*)/$', viewWrapper(abridged_space)),
                        (r'^writing/$', viewWrapper(writing)),
