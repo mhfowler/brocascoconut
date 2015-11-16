@@ -103,7 +103,7 @@
             <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
             <br><br>
             <h3>
-                <a class="bio-links" href="http://jordibeard.com/">jordan beard</a> / <a href="http://maxhfowler.com">max fowler</a>
+                <a class="bio-links" href="http://jordibeard.com/" target="_blank">jordan beard</a> / <a href="http://maxhfowler.com" target="_blank">max fowler</a>
             </h3>
         </div>
     </div>
@@ -232,6 +232,9 @@
                 $('.place_str').html(place_str);
                 $('.place_str').show();
                 $('.place_str').fadeOut(4000);
+            }).fail(function() {
+                alert('redirect!');
+                window.location.replace("/gmaps/take_me_anywhere/");
             });
         });
     });
