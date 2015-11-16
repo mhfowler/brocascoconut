@@ -32,12 +32,15 @@ def abridged_space_take_me_anywhere(request):
     which_city = random.choice(cities)
     which_city = which_city.replace('"', '')
     num, country, city, lat, lon, _ = which_city.split(';')
-    place_str = city + ', ' + country
-    return HttpResponse(json.dumps({
-        'lat': lat,
-        'lon': lon,
-        'place_str': place_str
-    }))
+    if request.method == 'POST':
+        place_str = city + ', ' + country
+        return HttpResponse(json.dumps({
+            'lat': lat,
+            'lon': lon,
+            'place_str': place_str
+        }))
+    else:
+        return shortcuts.redirect('/gmaps/{},{},{}/'.format(str(lat), str(lon), '15'))
 
 # boiler ###############################################################################################################
 def vr_landing(request):

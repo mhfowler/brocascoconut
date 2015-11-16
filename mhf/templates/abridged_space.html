@@ -115,7 +115,7 @@
         A
     </div>
 
-    <a class="teleport-link"><img class='compass-img' src="/static/img/compass.png"/></a>
+    <a class="teleport-link" href="/gmaps/take_me_anywhere/"><img class='compass-img' src="/static/img/compass.png"/></a>
 
     <h1 class="place_str"></h1>
 
@@ -220,8 +220,7 @@
         $('.teleport-link').click(function(e) {
             e.preventDefault();
             alert('teleport-link-clicked');
-            $.post("/take_me_anywhere/", {
-            },function(data) {
+            $.post("/gmaps/take_me_anywhere/", {}, function (data) {
                 alert('data-returned');
                 var obj = jQuery.parseJSON(data);
                 var lat = obj.lat;
