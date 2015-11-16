@@ -102,9 +102,11 @@
             <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,
             <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
             <br><br>
-            <h3>
-                <a class="bio-links bio-link" href="http://jordibeard.com/" target="_blank">jordan beard</a> / <a class='bio-link' href="http://maxhfowler.com" target="_blank">max fowler</a>
-            </h3>
+            <div class="bio-links">
+                <h3>
+                    <a class="bio-link" href="http://jordibeard.com/" target="_blank">jordan beard</a> / <a class='bio-link' href="http://maxhfowler.com" target="_blank">max fowler</a>
+                </h3>
+            </div>
         </div>
     </div>
 </div>
@@ -128,6 +130,8 @@
     var coordinates = "{{ coordinates }}";
 
     $(document).ready(function() {
+
+        window.scrollTo(0, 0);
 
         // csrf protect
         /* csrf protection */
