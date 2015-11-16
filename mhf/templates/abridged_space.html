@@ -63,7 +63,7 @@
     </style>
     <title>Abridged Maps</title>
 
-     <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged.css">
+    <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged.css">
 
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -94,9 +94,9 @@
             <br><br><br>
             <strong>places to explore:</strong><br>
             <a class="maps-link">rome</a>, <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,
-           <a class="maps-link">buenos aires</a>, <a class="maps-link">london</a>, <a class="maps-link">washington</a>,
-           <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,
-           <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
+            <a class="maps-link">buenos aires</a>, <a class="maps-link">london</a>, <a class="maps-link">washington</a>,
+            <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,
+            <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
             <br><br>
             <h3>
                 <a href="http://jordibeard.com/">jordan beard</a> / <a href="http://maxhfowler.com">max fowler</a>
@@ -162,6 +162,7 @@
                 'buenos aires': [-34.610223, -58.377361, 14],
                 'chicago': [41.875906, -87.627107, 14],
                 'montreal': [45.515492, -73.566146, 14],
+                'washington': [38.8974361,-77.044135, 14],
                 'kiev': [50.455994, 30.540172, 14],
                 'fes': [34.019067, -5.007964, 14],
                 'bangkok': [13.766384, 100.469660, 14],
@@ -220,7 +221,13 @@
             scrollwheel: false,
             // Apply the map style array to the map.
             styles: styleArray,
-            zoom: parseInt(splitted[2])
+            zoom: parseInt(splitted[2]),
+            streetViewControl: false,
+            zoomControl: true,
+            mapTypeControl: false,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.TOP_LEFT
+            }
         });
 
         // Create the search box and link it to the UI element.

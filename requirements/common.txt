@@ -8,3 +8,5 @@ stripe
 mailchimp
 boto
 oauth2
+selenium
+tweepy

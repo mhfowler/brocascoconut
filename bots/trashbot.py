@@ -1,7 +1,8 @@
 import random, os
 from django.http import HttpResponse
 
-from bots.twitter_helper import post_tweet, get_latest_dms
+from settings.common import SECRETS_DICT
+from bots.twitter_helper import TwitterHelper
 from mhf.models import TwitterID, Stat
 
 
@@ -36,10 +37,19 @@ sayings = [
 LATEST_DM_ID_KEY = 'latest_dm_id'
 
 
+access_token_key = SECRETS_DICT['TRASHBOT_TWITTER_ACCESS_TOKEN_KEY']
+access_token_secret = SECRETS_DICT['TRASHBOT_TWITTER_ACCESS_TOKEN_SECRET']
+consumer_key = SECRETS_DICT['TRASHBOT_TWITTER_CONSUMER_KEY']
+consumer_secret = SECRETS_DICT['TRASHBOT_TWITTER_CONSUMER_SECRET']
+
+twitter_helper = TwitterHelper(access_token_secret=access_token_secret, access_token_key=access_token_key,
+                               consumer_key=consumer_key, consumer_secret=consumer_secret)
+
+
 def trashBot(request):
     who_next = random.choice(trash_takers)
     saying = random.choice(sayings)
-    post_tweet(saying.format(who_next))
+    twitter_helper.post_tweet(saying.format(who_next))
     return HttpResponse(': trash bot notified :')
 
 
@@ -61,7 +71,7 @@ def save_latest_dm_id(dm_id):
 
 
 def check_for_dms(previous_dm_id):
-    latest_dms = get_latest_dms(previous_dm_id)
+    latest_dms = twitter_helper.get_latest_dms(previous_dm_id)
     if latest_dms:
         dms_by_trashtaker = []
         for dm in latest_dms:
