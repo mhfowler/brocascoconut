@@ -32,7 +32,7 @@ urlpatterns = patterns('',
 
                        # other pages
                        (r'^gmaps/$', viewWrapper(abridged_space)),
-                       (r'^take_me_anywhere/$', viewWrapper(abridged_space_take_me_anywhere)),
+                       (r'^gmaps/take_me_anywhere/$', viewWrapper(abridged_space_take_me_anywhere)),
                        (r'^gmaps2/$', viewWrapper(abridged_space2)),
                        (r'^gmaps/(?P<coordinates>.*)/$', viewWrapper(abridged_space)),
                        (r'^writing/$', viewWrapper(writing)),
