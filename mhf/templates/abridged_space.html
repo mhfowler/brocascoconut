@@ -108,7 +108,7 @@
         </p>
 
         <p>
-           Abridged Maps strips Google Maps of all natural and graphical imagery to reveal a set of minimal compositions illuminating common conceptualizations of contemporary space:
+            Abridged Maps strips Google Maps of all natural and graphical imagery to reveal a set of minimal compositions illuminating common conceptualizations of contemporary space:
         </p>
         <div class="map-links">
             <a class="maps-link">rome</a>, <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,
@@ -147,13 +147,20 @@
 
     $(document).ready(function() {
 
-
+        // js
+        console.log(window.location.pathname);
+        if (window.location.pathname.indexOf('.') != -1) {
+            window.scrollTo(0, 0);
+            $('.explanation-wrapper').hide();
+            $('.maps-wrapper').show();
+            $('.maps-wrapper').css({'height':'104%'});
+            $('body').css({
+                height:'100%',
+                overflow:'hidden'
+            });
+        }
 
         window.scrollTo(0, 0);
-
-        // fade the map in
-        {#        $('.maps-wrapper').fadeIn(4000);#}
-        {#        $('.explanation-wrapper').animate({opacity: '0.9'}, 2000);#}
 
         // csrf protect
         /* csrf protection */
@@ -244,14 +251,13 @@
             $('.place_str').html(link_text);
             $('.place_str').show();
             $('.place_str').fadeOut(4000);
-
         });
 
         $('.teleport-link').click(function(e) {
             e.preventDefault();
-{#            alert('teleport-link-clicked');#}
+            {#            alert('teleport-link-clicked');#}
             $.post("/gmaps/take_me_anywhere/", {}, function (data) {
-{#                alert('data-returned');#}
+                {#                alert('data-returned');#}
                 var obj = jQuery.parseJSON(data);
                 var lat = obj.lat;
                 var lon = obj.lon;
@@ -263,7 +269,7 @@
                 $('.place_str').show();
                 $('.place_str').fadeOut(4000);
             }).fail(function() {
-{#                alert('redirect!');#}
+                {#                alert('redirect!');#}
                 window.location.replace("/gmaps/take_me_anywhere/");
             });
         });
