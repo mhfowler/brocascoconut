@@ -71,7 +71,6 @@
 
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
 
@@ -209,8 +208,7 @@
 
         $('.maps-link').click(function(e) {
             window.scrollTo(0, 0);
-            $('.maps-wrapper').animate({scrollTop:0},0);
-            $.mobile.silentScroll(0)
+            $('html').animate({scrollTop:0},0);
             $('.maps-wrapper').show();
             $('.maps-wrapper').css({'height':'104%'});
             e.preventDefault();
