@@ -243,6 +243,9 @@ h3 {
         position: relative;
         padding-top:40px;
     }
+    .maps-link {
+        text-decoration:underline;
+    }
 }
 
 
