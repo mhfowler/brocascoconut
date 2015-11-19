@@ -246,6 +246,9 @@ h3 {
     .maps-link {
         text-decoration:underline;
     }
+    .simple-text {
+        padding-left:30px;
+    }
 }
 
 
