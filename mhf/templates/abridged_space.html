@@ -207,8 +207,8 @@
         {#        });#}
 
         $('.maps-link').click(function(e) {
-            window.scrollTo(0, 0);
-            $('body,html').animate({scrollTop:0},0);
+            window.scrollTo(0, -100);
+            $('body,html').animate({scrollTop:-100},0);
             $('.maps-wrapper').show();
             $('.maps-wrapper').css({'height':'104%'});
             e.preventDefault();
