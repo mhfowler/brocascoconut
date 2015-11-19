@@ -1,35 +1,8 @@
 body {
+    height:100%;
     width:100%;
+    overflow:hidden;
 }
-
-.simple-text {
-     font-family: 'Menlo', serif;
-    padding-left: 40px;
-    padding-top: 20px;
-    width: 80%;
-    max-width: 800px;
-}
-.simple-text p  {
-    margin-bottom:20px;
-}
-.simple-text .title-paragraph {
-    margin-bottom:30px;
-}
-
-.simple-text .map-links {
-    margin-top: 30px;
-}
-
-a.maps-link {
-    font-weight:bold;
-    font-size: 24px;
-}
-
-.bio-links {
-    position: absolute;
-    bottom: 30px;
-}
-
 
 #target {
     width: 345px;
@@ -37,9 +10,8 @@ a.maps-link {
 
 .maps-wrapper {
     width:100%;
-    height: 100%;
-    /*height:104%;*/
-    /*display:none;*/
+    height:104%;
+    display:block;
 }
 
 #title-page-wrapper-id {
@@ -100,14 +72,15 @@ a.maps-link {
     opacity: 0.9;
 }
 .explanation-wrapper {
-    /*opacity: 0.9;*/
-    opacity: 1;
+    opacity:0;
     background-color:#FFF;
     color:#434343;
+    display:none;
     width:100%;
     height:100%;
     position:absolute;
     z-index:10;
+    padding-bottom:20px;
 }
 
 .explanation {
@@ -194,9 +167,8 @@ h3 {
         font-size: 38px;
         font-weight: 400;
         opacity: 0.5;
-        float: right;
-        right: 30px;
-        left: auto;
+        float: left;
+        left: 270px;
     }
 
     .title-page {
@@ -218,33 +190,25 @@ h3 {
     }
 
     #pac-input {
-        width: 240px;
+        width: 200px;
         border: 1px solid gray;
     }
 
     .maps-wrapper {
-        opacity:1;
-        /*height:105%;*/
+        height:105%;
     }
 
     a.teleport-link {
-        float: right;
-        right: 60px;
-        left: auto;
+        float: left;
+        left: 228px;
     }
 
-    h1.place_str {
-         width: 100%;
-        margin: auto;
-        top: 25%;
+    .place_str {
+        width: 60%;
+        margin:auto;
     }
 
-    .bio-links {
-        position: relative;
-        padding-top:40px;
-    }
 }
-
 
 .compass-img {
     width: 31px;
@@ -272,3 +236,6 @@ h3 {
     z-index:8;
 }
 
+.bio-links {
+    padding-bottom:20px;
+}

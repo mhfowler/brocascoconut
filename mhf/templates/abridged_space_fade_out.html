@@ -12,7 +12,6 @@
     <link href="http://brocascoconut.com/static/img/FAV_A.png" rel="shortcut icon" type="image/x-icon">
 
 
-
     <style>
         html, body {
             height: 100%;
@@ -67,70 +66,54 @@
     </style>
     <title>Abridged Maps</title>
 
-    <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged.css">
+    <link rel="stylesheet" type="text/css" href="/static/abridged_space/abridged_space_fade_out.css">
 
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
 
+<div class="title-page-wrapper" id="title-page-wrapper-id">
+    <div class="title-page">
+        <div class="abridged-maps-text">
+            <h1 class="abridged-maps-title">
+                Abridged Maps
+            </h1>
+            <p class="abridged-explanation">
+                the map of the territory
+            </p>
+
+        </div>
+    </div>
+</div>
 
 <div class="explanation-wrapper">
-    {#    <div class="explanation">#}
-    {#        <h1>Abridged Maps</h1>#}
-    {#        <div class="explanation-text">#}
-    {#            Abstraction is no longer symbolized by the map,#}
-    {#            the mirror, the digital, or the invisible.#}
-    {#            The map came before the territory and will be here long after it.#}
-    {#            <br><br><br>#}
-    {#            <strong>places to explore:</strong><br>#}
-    {#            <a class="maps-link">rome</a>, <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,#}
-    {#            <a class="maps-link">buenos aires</a>, <a class="maps-link">london</a>, <a class="maps-link">washington</a>,#}
-    {#            <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,#}
-    {#            <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>#}
-    {#            <br><br>#}
-    {#            <div class="bio-links">#}
-    {#                <h3>#}
-    {#                    <a class="bio-link" href="http://jordibeard.com/" target="_blank">jordan beard</a> / <a class='bio-link' href="http://maxhfowler.com" target="_blank">max fowler</a>#}
-    {#                </h3>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-
-    <div class="simple-text">
-        <p class="title-paragraph">
-            Abridged Maps: Text-only Maps.
-        </p>
-
-        <p>
-            From Borneo to Brooklyn, we visualize the world through the names attached to places.
-            These words shape our understandings of the world more than the land signified by 'Toronto', 'Tahiti', or 'Trinidad'.
-        </p>
-
-        <p>
-           Abridged Maps strips Google Maps of all natural and graphical imagery to reveal a set of minimal compositions illuminating common conceptualizations of contemporary space:
-        </p>
-        <div class="map-links">
+    <div class="explanation">
+        <h1>Abridged Maps</h1>
+        <div class="explanation-text">
+            Abstraction is no longer symbolized by the map,
+            the mirror, the digital, or the invisible.
+            The map came before the territory and will be here long after it.
+            <br><br><br>
+            <strong>places to explore:</strong><br>
             <a class="maps-link">rome</a>, <a class="maps-link">bangkok</a>, <a class="maps-link">dubai</a>, <a class="maps-link">sydney</a>,
             <a class="maps-link">buenos aires</a>, <a class="maps-link">london</a>, <a class="maps-link">washington</a>,
             <a class="maps-link">havana</a>, <a class="maps-link">barcelona</a>, <a class="maps-link">cairo</a>, <a class="maps-link">tokyo</a>,
             <a class="maps-link">kiev</a>,  <a class="maps-link">new delhi</a>, <a class="maps-link">fes</a>, <a class="maps-link">paris</a>
-        </div>
-        <br><br>
-        <div class="bio-links">
-            {#            <h3>#}
-            <a class="bio-link" href="http://jordibeard.com/" target="_blank">jordan beard</a> / <a class='bio-link' href="http://maxhfowler.com" target="_blank">max fowler</a>
-            {#            </h3>#}
+            <br><br>
+            <div class="bio-links">
+                <h3>
+                    <a class="bio-link" href="http://jordibeard.com/" target="_blank">jordan beard</a> / <a class='bio-link' href="http://maxhfowler.com" target="_blank">max fowler</a>
+                </h3>
+            </div>
         </div>
     </div>
-
 </div>
 
 <div class="maps-wrapper">
 
     <div class="link-to-explanation">
-        {#        A#}
-        i
+        A
     </div>
 
     <a class="teleport-link" href="/gmaps/take_me_anywhere/"><img class='compass-img' src="/static/img/compass.png"/></a>
@@ -147,13 +130,7 @@
 
     $(document).ready(function() {
 
-
-
         window.scrollTo(0, 0);
-
-        // fade the map in
-        {#        $('.maps-wrapper').fadeIn(4000);#}
-        {#        $('.explanation-wrapper').animate({opacity: '0.9'}, 2000);#}
 
         // csrf protect
         /* csrf protection */
@@ -185,24 +162,27 @@
             }
         });
 
+        if (coordinates && coordinates.indexOf(',') != -1) {
+            $('#title-page-wrapper-id').fadeOut(6000);
+        }
+        else {
+            $('#title-page-wrapper-id').fadeOut(6000);
+        }
+
         $(".link-to-explanation").click(function(e) {
-            window.scrollTo(0, 0);
             $('.explanation-wrapper').show();
             $('.explanation-wrapper').css("opacity", 0.8);
             $("body").css("overflow", "auto");
-            $(".maps-wrapper").css({'height': '100%'});
+            window.scrollTo(0, 0);
         });
 
-        {#        $(".explanation-wrapper").click(function(e) {#}
-        {#            $('.explanation-wrapper').hide();#}
-        {#            $("body").css("overflow", "hidden");#}
-        {#            window.scrollTo(0, 0);#}
-        {#        });#}
+        $(".explanation-wrapper").click(function(e) {
+            $('.explanation-wrapper').hide();
+            $("body").css("overflow", "hidden");
+            window.scrollTo(0, 0);
+        });
 
         $('.maps-link').click(function(e) {
-            window.scrollTo(0, 0);
-            $('.maps-wrapper').show();
-            $('.maps-wrapper').css({'height':'104%'});
             e.preventDefault();
             var link_text = $(this).text();
             var link_to_coordinates_map = {
@@ -236,22 +216,15 @@
             var new_position = new google.maps.LatLng(which_coordinates[0], which_coordinates[1]);
             map.setCenter(new_position);
             map.setZoom(which_coordinates[2]);
-            $('body').css({
-                height:'100%',
-                overflow:'hidden'
-            });
             $('.explanation-wrapper').fadeOut(1000);
-            $('.place_str').html(link_text);
-            $('.place_str').show();
-            $('.place_str').fadeOut(4000);
-
+            $("body").css("overflow", "hidden");
         });
 
         $('.teleport-link').click(function(e) {
             e.preventDefault();
-{#            alert('teleport-link-clicked');#}
+            alert('teleport-link-clicked');
             $.post("/gmaps/take_me_anywhere/", {}, function (data) {
-{#                alert('data-returned');#}
+                alert('data-returned');
                 var obj = jQuery.parseJSON(data);
                 var lat = obj.lat;
                 var lon = obj.lon;
@@ -263,7 +236,7 @@
                 $('.place_str').show();
                 $('.place_str').fadeOut(4000);
             }).fail(function() {
-{#                alert('redirect!');#}
+                alert('redirect!');
                 window.location.replace("/gmaps/take_me_anywhere/");
             });
         });
