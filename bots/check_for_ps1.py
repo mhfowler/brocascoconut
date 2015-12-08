@@ -1,19 +1,28 @@
 from settings.common import SECRETS_DICT
 
 import json
-import smtplib
 import urllib2
 import time
 import random
 import numpy
 
+from bots.text_helper import send_text
 from mhf.models import TwitterID
 
 
 PS1_ID_KEY = 'ps1_id'
 PS1_DATE_KEY = 'ps1_date'
-
 PS1_ID_SENT = 'ps_id_sent'
+
+
+def get_ps1_id_key(event_id):
+   return PS1_ID_KEY + str(event_id)
+
+def get_ps1_date_key(event_id):
+    return PS1_ID_KEY + str(event_id)
+
+def get_ps1_id_sent_key(event_id):
+    return PS1_ID_SENT + str(event_id)
 
 
 def get_previous_value_helper(key):
@@ -33,64 +42,36 @@ def save_value_helper(key, val):
     print 'val: {}'.format(val)
 
 
-def get_previous_ps1_id():
-    return get_previous_value_helper(key=PS1_ID_KEY)
+def get_previous_ps1_id(event_id):
+    return get_previous_value_helper(key=get_ps1_id_key(event_id))
 
 
-def get_previous_ps1_date():
-    return get_previous_value_helper(key=PS1_DATE_KEY)
+def get_previous_ps1_date(event_id):
+    return get_previous_value_helper(key=get_ps1_date_key(event_id))
 
 
-def save_latest_ps1_date(date_string):
-    save_value_helper(key=PS1_DATE_KEY, val=date_string)
+def save_latest_ps1_date(date_string, event_id):
+    save_value_helper(key=get_ps1_date_key(event_id), val=date_string)
 
 
-def save_latest_ps1_id(fb_id):
-    save_value_helper(key=PS1_ID_KEY, val=fb_id)
+def save_latest_ps1_id(fb_id, event_id):
+    save_value_helper(key=get_ps1_id_key(event_id), val=fb_id)
 
 
-def send_text_to_me(msg):
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login('maximusfowler@gmail.com', SECRETS_DICT['TEXT_SECRET'])
-    my_phone_number = SECRETS_DICT['MY_PHONE_NUMBER']
-    server.sendmail('max', my_phone_number, msg)
-
-
-def check_for_ps1():
+def check_for_ps1(fb_event_id, to_phone_number):
     access_token = SECRETS_DICT['FB_FRIENDSFRIENDS_ACCESS_TOKEN']
-    url = "https://graph.facebook.com/472307929618113/feed?key=value&access_token={}".format(access_token)
+    url = "https://graph.facebook.com/{}/feed?key=value&access_token={}".format(fb_event_id, access_token)
     req = urllib2.Request(url)
     response = urllib2.urlopen(req)
     the_page = response.read()
     returned = json.loads(the_page)
     messages = returned['data']
 
-    # if id is different send message
-    # most_recent = messages[0]
-    # previous_id = get_previous_ps1_id()
-    # most_recent_id = most_recent['id']
-    # if most_recent.get('type') == 'status':
-    #     most_recent_message = most_recent['message']
-    # elif most_recent.get('type') == 'link':
-    #     most_recent_message = most_recent['link']
-    # else:
-    #     most_recent_message = 'uNkNoWn'
-    #
-    # if most_recent_id != previous_id:
-    #     save_latest_ps1_id(most_recent_id)
-    #     ascii_message = most_recent_message.encode('ascii', 'ignore')
-    #     msg = str(ascii_message)
-    #     print msg
-    #     send_text_to_me(msg)
-    # else:
-    #     print '++ no new posts'
-
     # also check for mo recent date
-    previous_latest_date_string = get_previous_ps1_date()
+    previous_latest_date_string = get_previous_ps1_date(event_id=fb_event_id)
     if not previous_latest_date_string:
         first_date_string = messages[0]['created_time']
-        save_latest_ps1_date(date_string=first_date_string)
+        save_latest_ps1_date(date_string=first_date_string, event_id=fb_event_id)
 
     previous_latest_date = numpy.datetime64(previous_latest_date_string)
     latest_found = previous_latest_date
@@ -101,27 +82,30 @@ def check_for_ps1():
             if message_date > previous_latest_date:
                 if message_date > latest_found:
                     latest_found = message_date
-                    save_latest_ps1_date(date_string=updated_time_string)
+                    save_latest_ps1_date(date_string=updated_time_string, event_id=fb_event_id)
                 message_text = message.get('message')
-                ascii_message = message_text.encode('ascii', 'ignore')
                 message_id = message['id']
-                already_sent = TwitterID.xg.get_or_none(key=PS1_ID_SENT, value=message_id)
+                link_to_comment = 'http://facebook.com/{}/'.format(message_id)
+                message_text += '--> {}'.format(link_to_comment)
+                already_sent = TwitterID.xg.get_or_none(key=get_ps1_id_sent_key(fb_event_id), value=message_id)
                 if not already_sent:
-                    already_sent = TwitterID(key=PS1_ID_SENT, value=message_id)
+                    already_sent = TwitterID(key=get_ps1_id_sent_key(fb_event_id), value=message_id)
                     already_sent.save()
-                    send_text_to_me(msg=ascii_message)
-
+                    send_text(msg=message_text, to_phone_number=to_phone_number)
 
 
 if __name__ == '__main__':
+
+    fb_e_id = '1007079329351257'
+
     expo_sleep = 0
     while True:
         try:
-            check_for_ps1()
+            check_for_ps1(fb_event_id=fb_e_id)
             expo_sleep = 0
             time.sleep(20 + random.randint(0,5))
         except:
             print 'XX exception'
-            send_text_to_me('XX ' + str(expo_sleep))
+            send_text('XX ' + str(expo_sleep))
             expo_sleep += 1
             time.sleep(2**expo_sleep * 60)

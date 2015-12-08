@@ -3,7 +3,7 @@ from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_vis
     loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
     writing, art, contact, about, truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts, \
     projects, store, vr_landing, abridged_space, abridged_space2, abridged_space_take_me_anywhere
-from bots.trashbot import trashBot, check_for_dms_endpoint
+from bots.trashbot import trashBot, check_for_dms_endpoint, get_tix_endpoint
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
@@ -47,6 +47,7 @@ urlpatterns = patterns('',
                        # actions
                        (r'^trashbot/$', viewWrapper(trashBot)),
                        (r'^check_for_dms/$', viewWrapper(check_for_dms_endpoint)),
+                       (r'^get_tix/(?P<event_id>\S+)/(?P<to_phone_number>\S+)/$', viewWrapper(get_tix_endpoint)),
 
                        # truespeak
                        (r'^truespeak/$', viewWrapper(truespeak)),
