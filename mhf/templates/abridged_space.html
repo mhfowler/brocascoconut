@@ -207,10 +207,17 @@
         {#        });#}
 
         $('.maps-link').click(function(e) {
+            $('.maps-wrapper').css({'height':'104%'});
             window.scrollTo(0, 0);
             $('html').animate({scrollTop:0},0);
+            $('.place_str').html(link_text);
+            $('.place_str').show();
+            $('.place_str').fadeOut(4000);
+            $('body').css({
+                height:'100%',
+                overflow:'hidden'
+            });
             $('.maps-wrapper').show();
-            $('.maps-wrapper').css({'height':'104%'});
             e.preventDefault();
             var link_text = $(this).text();
             var link_to_coordinates_map = {
@@ -244,14 +251,7 @@
             var new_position = new google.maps.LatLng(which_coordinates[0], which_coordinates[1]);
             map.setCenter(new_position);
             map.setZoom(which_coordinates[2]);
-            $('body').css({
-                height:'100%',
-                overflow:'hidden'
-            });
             $('.explanation-wrapper').fadeOut(1000);
-            $('.place_str').html(link_text);
-            $('.place_str').show();
-            $('.place_str').fadeOut(4000);
         });
 
         $('.teleport-link').click(function(e) {

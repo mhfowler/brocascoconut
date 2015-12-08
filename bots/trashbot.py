@@ -11,9 +11,9 @@ DIR_PATH = os.path.dirname(__file__)
 latest_mention_file_path = os.path.join(DIR_PATH, 'latest_mention.txt')
 
 trash_takers = [
-    '_coffee_banana',
     'jefffwii',
-    'jordibeard'
+    'jordibeard',
+    'notplants'
 ]
 
 sayings = [
