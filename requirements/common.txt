@@ -10,3 +10,4 @@ oauth2
 selenium
 tweepy
 pygeocoder
+numpy
