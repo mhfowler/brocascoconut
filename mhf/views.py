@@ -449,6 +449,8 @@ def fishingRemoveAlert(request):
 def fishingAddAlert(request):
     phone = request.POST['phone']
     fb_link = request.POST['fblink']
+    phone = phone.strip()
+    fb_link = fb_link.strip()
     matched = re.match('.*www\.facebook\.com/events/(\d+)/', fb_link)
     if not matched:
         return HttpResponse(json.dumps({

@@ -41,7 +41,7 @@ def get_facebook_cron_alerts():
     found_alerts = []
     for line in lines:
         matched = re.match(
-            pattern='\* \* \* \* \* curl http://brocascoconut.com/get_tix/(\d+)/(\S+)/ >> /home/ec2-user/crontab_tix_2.log',
+            pattern='\* \* \* \* \* curl http://brocascoconut.com/get_tix/(\d+)/(.+)/ >> /home/ec2-user/crontab_tix_2.log',
             string=line
         )
         if matched:
