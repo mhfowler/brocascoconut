@@ -2,7 +2,8 @@ from django.conf.urls import patterns, include, url
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
     loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
     writing, art, contact, about, truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts, \
-    projects, store, vr_landing, abridged_space, abridged_space2, abridged_space_take_me_anywhere
+    projects, store, vr_landing, abridged_space, abridged_space2, abridged_space_take_me_anywhere, fishing2016, \
+    fishingRemoveAlert, fishingAddAlert
 from bots.trashbot import trashBot, check_for_dms_endpoint, get_tix_endpoint
 from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
@@ -54,6 +55,11 @@ urlpatterns = patterns('',
                        (r'^truespeak/(?P<name>\w+)/(?P<appendage>\d+)/$', viewWrapper(truespeakPublicDetail)),
                        (r'^secretlink/(?P<name>\S+)/(?P<appendage>\d+)/$', viewWrapper(truespeakSecretLink)),
                        (r'^publish_texts/$', viewWrapper(publishTexts)),
+
+                       # bassproshop
+                       (r'^greenlightning/$', viewWrapper(fishing2016)),
+                       (r'^bass_remove_alert/$', viewWrapper(fishingRemoveAlert)),
+                       (r'^bass_add_alert/$', viewWrapper(fishingAddAlert)),
 
 
                        )

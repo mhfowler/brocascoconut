@@ -4,6 +4,7 @@ from mhf.models import Stat
 from django.core.mail import send_mail
 from django.shortcuts import render
 from bots.abridged_bot import DIR_PATH as BOT_PATH
+from bots.cronbox_s3 import get_facebook_cron_alerts, add_facebook_cron_alert, remove_facebook_cron_alert
 import random, os, re
 from settings.common import PROJECT_PATH, SECRETS_DICT, ADMIN_EMAILS, getTrueSpeakBucket, getOrCreateS3Key
 from common import send_mailgun_message
@@ -436,3 +437,32 @@ def obfuscate(conversation, orig_convowith, alias_convowith, orig_username, alia
     return conversation
 
 
+# fishing2016 ######################################################################################
+
+def fishingRemoveAlert(request):
+    phone = request.POST['phone']
+    fb_id = request.POST['fblink']
+    remove_facebook_cron_alert(phone=phone, fb_id=fb_id)
+    return HttpResponse('removed')
+
+
+def fishingAddAlert(request):
+    phone = request.POST['phone']
+    fb_link = request.POST['fblink']
+    matched = re.match('.*www\.facebook\.com/events/(\d+)/', fb_link)
+    if not matched:
+        return HttpResponse(json.dumps({
+            'message': 'Invalid format of fb events link'
+        }))
+    fb_id = matched.group(1)
+    add_facebook_cron_alert(phone=phone, fb_id=fb_id)
+    return HttpResponse(json.dumps({
+        'message': 'added new alert'
+    }))
+
+
+def fishing2016(request):
+    active_alerts = get_facebook_cron_alerts()
+    return render(request, 'fishing2016.html', {
+        'active_alerts': active_alerts
+    })
