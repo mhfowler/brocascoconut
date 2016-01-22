@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <style>
         .mainimg {
             width:100%;
@@ -45,6 +47,19 @@
         }
         p.mini-text{
             font-size:10px;
+        }
+
+        @media (max-width: 400px) {
+            .alert-wrapper {
+                margin-left: 0px;
+                width:300px;
+            }
+            input.alert-input {
+                width: 280px;
+            }
+            div.alert {
+                font-size:11px;
+            }
         }
 
         .alert {
@@ -101,7 +116,7 @@
     {% endfor %}
     <form class="new-alert-form">
         <h3 style="margin-top:0px;margin-bottom:0px;font-style:italic;">
-           Create New Alert
+            Create New Alert
         </h3>
         <div class="input-wrapper">
             <label>Link To Facebook Event</label>
