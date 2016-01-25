@@ -1,41 +1,27 @@
 from django.conf.urls import patterns, include, url
-from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
-    loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
-    writing, art, contact, about, truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts, \
-    projects, store, vr_landing, abridged_space, abridged_space2, abridged_space_take_me_anywhere, fishing2016, \
-    fishingRemoveAlert, fishingAddAlert
-from bots.trashbot import trashBot, check_for_dms_endpoint, get_tix_endpoint
-from settings.common import LOCAL, STATIC_URL, STATIC_ROOT
 from django.conf.urls.static import static
 from django.conf import settings
 from django.http import HttpResponse
 
-# urlpatterns = patterns('',
-#     # ... the rest of your URLconf goes here ...
-# ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
+    loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
+    writing, art, contact, about, projects, store, vr_landing
 
-#
+from truespeak.views import truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts
+
+from greenlightning.views import fishing2016, fishingAddAlert, fishingRemoveAlert, get_tix_endpoint, get_all_tix
+
+from bots.trashbot import trashBot, check_for_dms_endpoint
+
+
 # patterns for mhfowler
 urlpatterns = patterns('',
-                       # (r'^$', viewWrapper(monkeyLoader)),
+                        # brocas coconut
                        (r'^______/$', viewWrapper(theHome)),
                        (r'^~/$', viewWrapper(monkeySkull)),
                        (r'^brocascoconut/$', viewWrapper(brocasCoconut)),
                        (r'^LOADING/(?P<page>\w+)/$', viewWrapper(loadingCrazy)),
-
-                       # posts
                        (r'^submit_email/$', viewWrapper(submitEmail)),
-
-                       # capitalist products
-                       (r'^the_capitalist_tshirt/$', viewWrapper(capitalistTees)),
-                       (r'^the_capitalist_print/$', viewWrapper(capitalistTees)),
-                       (r'^the_capitalist_booty/$', viewWrapper(capitalistTees)),
-
-                       # other pages
-                       (r'^gmaps/$', viewWrapper(abridged_space)),
-                       (r'^gmaps/take_me_anywhere/$', viewWrapper(abridged_space_take_me_anywhere)),
-                       (r'^gmaps2/$', viewWrapper(abridged_space2)),
-                       (r'^gmaps/(?P<coordinates>.*)/$', viewWrapper(abridged_space)),
                        (r'^writing/$', viewWrapper(writing)),
                        (r'^art/$', viewWrapper(art)),
                         (r'^vr/$', viewWrapper(vr_landing)),
@@ -45,10 +31,14 @@ urlpatterns = patterns('',
                        (r'^about_brocas/$', viewWrapper(about)),
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
 
-                       # actions
+                        # capitalist products
+                       (r'^the_capitalist_tshirt/$', viewWrapper(capitalistTees)),
+                       (r'^the_capitalist_print/$', viewWrapper(capitalistTees)),
+                       (r'^the_capitalist_booty/$', viewWrapper(capitalistTees)),
+
+                       # trashbot
                        (r'^trashbot/$', viewWrapper(trashBot)),
                        (r'^check_for_dms/$', viewWrapper(check_for_dms_endpoint)),
-                       (r'^get_tix/(?P<event_id>\S+)/(?P<to_phone_number>\S+)/$', viewWrapper(get_tix_endpoint)),
 
                        # truespeak
                        (r'^truespeak/$', viewWrapper(truespeak)),
@@ -56,7 +46,9 @@ urlpatterns = patterns('',
                        (r'^secretlink/(?P<name>\S+)/(?P<appendage>\d+)/$', viewWrapper(truespeakSecretLink)),
                        (r'^publish_texts/$', viewWrapper(publishTexts)),
 
-                       # bassproshop
+                       # greenlightining
+                       (r'^get_all_tix/$', viewWrapper(get_all_tix)),
+                       (r'^get_tix/(?P<event_id>\S+)/(?P<to_phone_number>\S+)/$', viewWrapper(get_tix_endpoint)),
                        (r'^greenlightning/$', viewWrapper(fishing2016)),
                        (r'^bass_remove_alert/$', viewWrapper(fishingRemoveAlert)),
                        (r'^bass_add_alert/$', viewWrapper(fishingAddAlert)),

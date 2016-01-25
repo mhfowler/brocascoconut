@@ -1,11 +1,11 @@
-import random, os
+import random
+import os
+
 from django.http import HttpResponse
 
 from settings.common import SECRETS_DICT
 from bots.twitter_helper import TwitterHelper
-from bots.check_for_ps1 import check_for_ps1
-from mhf.models import TwitterID, Stat
-
+from mhf.models import TwitterID
 
 DIR_PATH = os.path.dirname(__file__)
 
@@ -92,6 +92,3 @@ def check_for_dms_endpoint(request):
     return HttpResponse(': checking for dms: {}'.format(previous_dm_id))
 
 
-def get_tix_endpoint(request, event_id, to_phone_number):
-    check_for_ps1(fb_event_id=event_id, to_phone_number=to_phone_number)
-    return HttpResponse(': checking for tix: {}, {}'.format(event_id, to_phone_number))

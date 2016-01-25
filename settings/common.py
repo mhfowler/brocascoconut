@@ -125,6 +125,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_PATH, "django_yaba/media"),
     os.path.join(PROJECT_PATH, "mhf/static"),
+    os.path.join(PROJECT_PATH, "greenlightning/static"),
 )
 
 # List of finder classes that know how to find static files in
@@ -161,7 +162,9 @@ ROOT_URLCONF = 'urls'
 WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_PATH, 'mhf/templates')
+    os.path.join(PROJECT_PATH, 'mhf/templates'),
+    os.path.join(PROJECT_PATH, 'greenlightning/templates'),
+    os.path.join(PROJECT_PATH, 'truespeak/templates')
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

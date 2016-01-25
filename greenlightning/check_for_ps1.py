@@ -83,7 +83,7 @@ def check_for_ps1(fb_event_id, to_phone_number):
                 if latest_found == numpy.datetime64('NaT') or message_date > latest_found:
                     latest_found = message_date
                     save_latest_ps1_date(date_string=updated_time_string, event_id=fb_event_id, to_phone_number=to_phone_number)
-                message_text = str(message.get('message'))
+                message_text = message.get('message') if message.get('message') else ''
                 message_id = message['id']
                 link_to_comment = 'http://facebook.com/{}/'.format(message_id)
                 message_text += '--> {}'.format(link_to_comment)
