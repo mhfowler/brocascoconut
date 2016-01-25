@@ -10,12 +10,12 @@ from greenlightning.cronbox_s3 import remove_facebook_cron_alert, add_facebook_c
 # greenlightning
 def get_all_tix(request):
     active_alerts = get_facebook_active_alerts()
-    to_return = ': getting all tix :'
+    to_return = 'getting all tix: '
     for alert in active_alerts:
         event_id = alert[0]
         to_phone_number = alert[1]
         check_for_ps1(fb_event_id=event_id, to_phone_number=to_phone_number)
-        to_return += ' {}, {} |'.format(event_id, to_phone_number)
+        to_return += '| fb_id: {}, phone: {} '.format(event_id, to_phone_number)
     return HttpResponse(to_return)
 
 
