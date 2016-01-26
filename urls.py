@@ -13,6 +13,8 @@ from greenlightning.views import fishing2016, fishingAddAlert, fishingRemoveAler
 
 from bots.trashbot import trashBot, check_for_dms_endpoint
 
+from citigroup_slack.slack import citigroup_slackbot_endpoint
+
 
 # patterns for mhfowler
 urlpatterns = patterns('',
@@ -53,6 +55,8 @@ urlpatterns = patterns('',
                        (r'^bass_remove_alert/$', viewWrapper(fishingRemoveAlert)),
                        (r'^bass_add_alert/$', viewWrapper(fishingAddAlert)),
 
+                       # slack
+                       (r'^citigroup_bot/$', viewWrapper(citigroup_slackbot_endpoint)),
 
                        )
 
