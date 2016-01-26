@@ -21,7 +21,7 @@ def citigroup_slack_bot():
     cronbox_messages_dict = json.loads(cronbox_messages)
     found_git_sync = False
     for message in cronbox_messages_dict['messages']:
-        if 'synced crontab with git3' in message['text']:
+        if 'synced crontab with git4' in message['text']:
             found_git_sync = True
 
 
