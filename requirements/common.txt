@@ -11,3 +11,4 @@ selenium
 tweepy
 pygeocoder
 numpy
+slackclient
