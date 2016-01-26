@@ -109,23 +109,28 @@
             <input type="text" class='alert-input fb-input' name="facebooklink-input" placeholder="https://www.facebook.com/events/1510354015927592/">
         </div>
         <div class="input-wrapper">
-            <label>Your Phone Number</label>
-            <p class="mini-text">
-                Format must be phonenumber@provider
-                <br>
-                ~ examples below ~
-                <br>
-                at&t:     number@mms.att.net
-                <br>
-                t-mobile: number@tmomail.net
-                <br>
-                verizon:  number@vtext.com
-                <br>
-                sprint:   number@page.nextel.com
-                <br>
-                or for other providers look up your <a href="https://en.wikipedia.org/wiki/SMS_gateway">sms gateway</a>
+            <label>Your Service Provider</label>
+            <p>
+            <div>
+                <input type="radio" name="provider" value="ATT"/>
+                <span> AT&T</span>
+            </div>
+            <div>
+                <input type="radio" name="provider" value="VERIZON"/>
+                <span> Verizon</span>
+            </div>
+            <div>
+                <input type="radio" name="provider" value="TMOBILE"/>
+                <span> T-Mobile</span>
+            </div>
+            <div>
+                <input type="radio" name="provider" value="SPRINT"/>
+                <span> Sprint</span>
+            </div>
             </p>
-            <input type="text" class='alert-input phone-input' name="phone-input" placeholder="4013234567@vtext.com">
+            </p>
+            <label>Your Phone Number</label>
+            <input type="text" class='alert-input phone-input' name="phone-input" placeholder="4013234567">
         </div>
         <button type="button" class="set-new-alert-button btn btn-lg">
             <span>SET NEW ALERT</span>

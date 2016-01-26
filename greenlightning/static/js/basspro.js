@@ -51,8 +51,21 @@ $(document).ready(function() {
     $(".set-new-alert-button").click(function(e) {
         var phone = $('.phone-input').val();
         var fblink = $('.fb-input').val();
+        var provider = $('input[name=provider]:checked').val();
+        if (!provider || !phone) {
+            alert("must select phone service provider and enter phone number");
+            return;
+        }
+        var provider_map = {
+            'ATT': 'mms.att.net',
+            'TMOBILE': 'tmomail.net',
+            'VERIZON': 'vtext.com',
+            'SPRINT': 'page.nextel.com'
+        };
+        var phone_string = phone.replace(/\D/g,'');
+        phone_string = phone_string + '@' + provider_map[provider];
         $.post("/bass_add_alert/", {
-            phone: phone,
+            phone: phone_string,
             fblink: fblink
         },function(data) {
             alert(data);
