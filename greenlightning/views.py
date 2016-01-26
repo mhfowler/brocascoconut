@@ -6,6 +6,8 @@ from django.shortcuts import render
 from greenlightning.check_for_ps1 import check_for_ps1
 from greenlightning.cronbox_s3 import remove_facebook_cron_alert, add_facebook_cron_alert, get_facebook_active_alerts
 
+from slack_heartbeat.slack import slack_notify_message
+
 
 # greenlightning
 def get_all_tix(request):
@@ -43,6 +45,7 @@ def fishingAddAlert(request):
         }))
     fb_id = matched.group(1)
     add_facebook_cron_alert(phone=phone, fb_id=fb_id)
+    slack_notify_message('someone added a new greenlightning alert! http://brocascoconut.com/greenlightning/')
     return HttpResponse(json.dumps({
         'message': 'added new alert'
     }))

@@ -8,6 +8,16 @@ from slackclient import SlackClient
 from django.http import HttpResponse
 
 
+def slack_notify_message(message):
+    bot_token = SECRETS_DICT['CITIGROUP_SLACKBOT_TOKEN']
+    sc = SlackClient(bot_token)
+
+    general_channel_id = 'C0GEA5C1X'
+    sc.api_call('chat.postMessage', channel=general_channel_id,
+                text='@channel: {}'.format(message), link_names=1,
+                as_user=True)
+
+
 def citigroup_slack_bot():
     bot_token = SECRETS_DICT['CITIGROUP_SLACKBOT_TOKEN']
     sc = SlackClient(bot_token)
@@ -41,4 +51,4 @@ def citigroup_slackbot_endpoint(request):
 
 
 if __name__ == '__main__':
-    citigroup_slack_bot()
+    slack_notify_message('hmmmm ? hmmm')
