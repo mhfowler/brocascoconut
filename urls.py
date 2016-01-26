@@ -13,7 +13,7 @@ from greenlightning.views import fishing2016, fishingAddAlert, fishingRemoveAler
 
 from bots.trashbot import trashBot, check_for_dms_endpoint
 
-from citigroup_slack.slack import citigroup_slackbot_endpoint
+from slack_heartbeat.slack import citigroup_slackbot_endpoint
 
 
 # patterns for mhfowler

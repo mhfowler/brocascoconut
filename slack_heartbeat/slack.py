@@ -24,12 +24,12 @@ def citigroup_slack_bot():
         if 'synced crontab with git' in message['text']:
             found_git_sync = True
 
-
     warnings_channel_id = 'C0KCAG7AL'
     if not found_git_sync:
         sc.api_call('chat.postMessage', channel=warnings_channel_id,
                     text='@channel: did not find message with "synced crontab with git" '
-                        ' in channel #cronbox', link_names=1)
+                         'in channel #cronbox. '
+                         'This suggests that cronbox is not syncing its crontab with git. ', link_names=1)
     else:
         sc.api_call('chat.postMessage', channel=warnings_channel_id,
                     text='k')
