@@ -12,7 +12,7 @@ def citigroup_slack_bot():
     bot_token = SECRETS_DICT['CITIGROUP_SLACKBOT_TOKEN']
     sc = SlackClient(bot_token)
 
-    log_message_window = datetime.timedelta(minutes=2)
+    log_message_window = datetime.timedelta(hours=24)
     oldest_window = datetime.datetime.now() - log_message_window
     oldest_window = time.mktime(oldest_window.timetuple())
 
