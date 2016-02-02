@@ -3,7 +3,8 @@ body {
   font-family: 'CaladeaRegular';
   font-weight: normal;
   font-style: normal;
-  background-size: contain; }
+  /*background-size: contain; */
+}
 
 .page1 {
   background: linear-gradient(to right, white 30%, transparent 0);
