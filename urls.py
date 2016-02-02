@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 from mhf.views import viewWrapper, home, redirect, machine_learning, twitter_visualization,map_reduce, \
     loadingCrazy, theHome, submitEmail, monkeySkull, brocasCoconut, capitalistTees, buyShirt, \
-    writing, art, contact, about, projects, store, vr_landing
+    writing, art, contact, about, projects, store, vr_landing, helloPage
 
 from truespeak.views import truespeak, truespeakPublicDetail, truespeakSecretLink, publishTexts
 
@@ -32,6 +32,7 @@ urlpatterns = patterns('',
                        (r'^contact/$', viewWrapper(contact)),
                        (r'^about_brocas/$', viewWrapper(about)),
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
+                       (r'^hello/$', viewWrapper(helloPage)),
 
                         # capitalist products
                        (r'^the_capitalist_tshirt/$', viewWrapper(capitalistTees)),

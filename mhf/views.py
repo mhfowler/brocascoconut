@@ -74,6 +74,9 @@ def home(request):
     stat = getNumVisitors()
     return render(request, 'home.html', {"stat":stat})
 
+def helloPage(request):
+    return render(request, 'hello.html')
+
 
 # data science blog posts ##############################################################################################
 def machine_learning(request):
