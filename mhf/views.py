@@ -74,8 +74,8 @@ def home(request):
     stat = getNumVisitors()
     return render(request, 'home.html', {"stat":stat})
 
-def helloPage(request):
-    return render(request, 'hello.html')
+def helloPage(request, image_url):
+    return render(request, 'hello.html', {"background_image_url":image_url})
 
 
 # data science blog posts ##############################################################################################

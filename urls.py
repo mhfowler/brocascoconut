@@ -32,7 +32,7 @@ urlpatterns = patterns('',
                        (r'^contact/$', viewWrapper(contact)),
                        (r'^about_brocas/$', viewWrapper(about)),
                        (r'^buyShirt/$', viewWrapper(buyShirt)),
-                       (r'^hello/$', viewWrapper(helloPage)),
+                       (r'^hello/(?P<image_url>.*)/$', viewWrapper(helloPage)),
 
                         # capitalist products
                        (r'^the_capitalist_tshirt/$', viewWrapper(capitalistTees)),
