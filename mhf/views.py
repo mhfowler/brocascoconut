@@ -77,6 +77,8 @@ def home(request):
 def helloPage(request, image_url):
     return render(request, 'hello.html', {"background_image_url":image_url})
 
+def bananaPage(request):
+    return render(request, 'banana.html')
 
 # data science blog posts ##############################################################################################
 def machine_learning(request):

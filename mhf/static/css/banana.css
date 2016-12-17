@@ -1,0 +1,110 @@
+.page1 {
+  background: linear-gradient(blue, blue), linear-gradient(red, red);
+  background-size: cover;
+  background-clip: padding-box, border-box;
+  padding: 5px;
+  border: 10px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; }
+
+@keyframes ants {
+  to {
+    background-position: 100%; } }
+
+.page2 {
+  margin-top: 10px;
+  background: linear-gradient(blue, blue), repeating-linear-gradient(-45deg, red 20%, green);
+  background-size: cover, 30px 30px;
+  background-clip: padding-box, border-box;
+  padding: 5px;
+  border: 10px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  animation: ants 12s linear infinite; }
+
+.page3 {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center; }
+
+.elipsis1 {
+  width: 30px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, yellow 0, green); }
+
+.elipsis2 {
+  width: 30px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, yellow 0, green); }
+
+.elipsis3 {
+  width: 30px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, yellow 0, green); }
+
+.hey {
+  width: 100px;
+  text-align: center; }
+
+.page5 {
+  background: linear-gradient(to right, red 50%, orange 0);
+  height: 40%;
+  display: none; }
+
+.page6 {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  margin-top: 30px;
+  align-items: center;
+  height: max-content;
+  margin-bottom: 60px; }
+
+.e-wrapper {
+  display: flex;
+  flex-flow: column; }
+
+.text-wrapper {
+  height: 750px;
+  margin-left: 50px;
+  width: 100%;
+  margin-right: 40px;
+  align-self: flex-start; }
+
+.faces-img {
+  border: 1px solid red;
+  height: 450px;
+  display: flex;
+  align-self: center;
+  width: 100%; }
+
+.information-text {
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
+.funky-elipsis1 {
+  background: linear-gradient(purple, purple);
+  width: 160px;
+  height: 250px;
+  border-radius: 0 100% 0 0; }
+
+.funky-elipsis2 {
+  background: linear-gradient(purple, purple);
+  width: 160px;
+  height: 250px;
+  border-radius: 14% 40% 20% 30%; }
+
+.funky-elipsis3 {
+  background: linear-gradient(purple, purple);
+  width: 160px;
+  height: 250px;
+  border-radius: 100% 0 0 0; }
